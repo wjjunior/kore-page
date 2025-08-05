@@ -1560,7 +1560,7 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.8.tgz#958b91c991b1867ced318bedea0e215ee050726e"
   integrity sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==
 
-"@types/node@*":
+"@types/node@*", "@types/node@^24.2.0":
   version "24.2.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-24.2.0.tgz#cde712f88c5190006d6b069232582ecd1f94a760"
   integrity sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==
@@ -1694,6 +1694,15 @@
   resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-2.4.22.tgz#3b001bbfb0900e34382e513a1fa1a5513443cc5f"
   integrity sha512-L2nVr/1vei0xKRgO2tYVXtJYd09HTRjaZi418e85Q+QdbbqA8h7bBjfNyPPSsjnrOO4l4kaAo78c8SQUAdHvgA==
 
+"@volar/typescript@2.4.22":
+  version "2.4.22"
+  resolved "https://registry.yarnpkg.com/@volar/typescript/-/typescript-2.4.22.tgz#e44e018f2cbdd39bee89626100dcdbbd2402f96c"
+  integrity sha512-6ZczlJW1/GWTrNnkmZxJp4qyBt/SGVlcTuCWpI5zLrdPdCZsj66Aff9ZsfFaT3TyjG8zVYgBMYPuCm/eRkpcpQ==
+  dependencies:
+    "@volar/language-core" "2.4.22"
+    path-browserify "^1.0.1"
+    vscode-uri "^3.0.8"
+
 "@vue-macros/common@3.0.0-beta.16":
   version "3.0.0-beta.16"
   resolved "https://registry.yarnpkg.com/@vue-macros/common/-/common-3.0.0-beta.16.tgz#504141897a7acd2cdab6d7ba85a61b2bae178faa"
@@ -1823,7 +1832,7 @@
   dependencies:
     rfdc "^1.4.1"
 
-"@vue/language-core@^3.0.1":
+"@vue/language-core@3.0.5", "@vue/language-core@^3.0.1":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-3.0.5.tgz#c296c65e7b2e6d69fbf2088f0208a55362825323"
   integrity sha512-gCEjn9Ik7I/seHVNIEipOm8W+f3/kg60e8s1IgIkMYma2wu9ZGUTMv3mSL2bX+Md2L8fslceJ4SU8j1fgSRoiw==
@@ -5659,7 +5668,7 @@ type-level-regexp@~0.1.17:
   resolved "https://registry.yarnpkg.com/type-level-regexp/-/type-level-regexp-0.1.17.tgz#ec1bf7dd65b85201f9863031d6f023bdefc2410f"
   integrity sha512-wTk4DH3cxwk196uGLK/E9pE45aLfeKJacKmcEgEOA/q5dnPGNxXt0cfYdFxb57L+sEpf1oJH4Dnx/pnRcku9jg==
 
-typescript@^5.7.3:
+typescript@^5.7.3, typescript@^5.9.2:
   version "5.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.2.tgz#d93450cddec5154a2d5cabe3b8102b83316fb2a6"
   integrity sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==
@@ -5962,7 +5971,7 @@ vite-plugin-vue-tracer@^1.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vscode-uri@^3.1.0:
+vscode-uri@^3.0.8, vscode-uri@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.1.0.tgz#dd09ec5a66a38b5c3fffc774015713496d14e09c"
   integrity sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==
@@ -5985,6 +5994,14 @@ vue-router@^4.5.1:
   integrity sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==
   dependencies:
     "@vue/devtools-api" "^6.6.4"
+
+vue-tsc@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-3.0.5.tgz#2edb2222393fd8b70613c083aacc72484a9296be"
+  integrity sha512-PsTFN9lo1HJCrZw9NoqjYcAbYDXY0cOKyuW2E7naX5jcaVyWpqEsZOHN9Dws5890E8e5SDAD4L4Zam3dxG3/Cw==
+  dependencies:
+    "@volar/typescript" "2.4.22"
+    "@vue/language-core" "3.0.5"
 
 vue@^3.5.18:
   version "3.5.18"
