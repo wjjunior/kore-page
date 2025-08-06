@@ -12,7 +12,7 @@ module.exports = {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
         "hanken-grotesk": ["Hanken Grotesk", "sans-serif"],
-        "futura-hv": ["Futura Hv BT", "sans-serif"],
+        "futura-hv": ["Inter", "Futura Hv BT", "sans-serif"],
       },
       colors: {
         primary: {
@@ -22,6 +22,7 @@ module.exports = {
         gray: {
           900: "#252525",
           6: "#1C1E1D",
+          2: "#A9B6B3",
         },
         blue: {
           50: "#EFF6FF",

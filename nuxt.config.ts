@@ -34,4 +34,24 @@ export default defineNuxtConfig({
       },
     },
   },
+  // @ts-ignore - Google Fonts configuration
+  googleFonts: {
+    families: {
+      Lato: {
+        wght: [100, 300, 400, 700, 900],
+        ital: [100, 300, 400, 700, 900],
+      },
+      "Hanken Grotesk": {
+        wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+        ital: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      },
+      Inter: {
+        wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+        ital: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      },
+    },
+    display: "swap",
+    prefetch: true,
+    preconnect: true,
+  },
 });

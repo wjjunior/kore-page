@@ -155,60 +155,101 @@
         </div>
 
         <!-- Right Column - Investment Details -->
-        <div
-          class="bg-white text-black rounded-xl shadow-xl h-fit border border-gray-100"
-        >
-          <div class="p-8 space-y-6">
+        <div>
+          <div
+            class="p-4 bg-white rounded-xl shadow-xl h-fit border border-gray-100"
+          >
             <!-- Funding Info -->
-            <div class="space-y-4">
+            <div class="flex flex-col gap-2">
               <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Funding Goal</span>
                 <span
-                  class="px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700"
+                  class="text-[13px] font-normal leading-5 tracking-[0px] text-[#212121]"
+                  >Funding Goal</span
+                >
+                <span
+                  class="w-[70px] h-6 pt-[2px] pr-4 pb-[2px] pl-4 text-[#7E7C7C] rounded-[37px] border border-[#7E7C7C] text-[13px] font-normal leading-[100%] tracking-[0px] text-center flex items-center justify-center"
                   >RegCF</span
                 >
               </div>
-              <div class="text-2xl font-bold text-gray-900">
-                ${{ fundingGoal.toLocaleString() }}
-              </div>
-
-              <div>
-                <div class="text-sm text-[#138dee] mb-1">Funds Raised</div>
-                <div class="text-3xl font-bold text-[#138dee]">
-                  ${{ fundsRaised.toLocaleString() }}
-                </div>
-              </div>
+              <span
+                class="block text-[20px] font-normal leading-[100%] tracking-[1%] align-middle text-[#212121]"
+              >
+                ${{
+                  fundingGoal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                }}
+              </span>
+              <span
+                class="block text-[20px] font-normal leading-6 tracking-[0px] text-[#0084F8]"
+              >
+                Funds Raised
+              </span>
+              <span
+                class="mb-4 block font-hanken-grotesk text-[32px] font-bold leading-[100%] tracking-[1%] align-middle text-[#0084F8]"
+              >
+                ${{
+                  fundsRaised.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                }}
+              </span>
             </div>
 
-            <hr class="border-gray-200" />
+            <hr class="border-gray-2" />
 
             <!-- Investment Details -->
-            <div class="space-y-4">
-              <div class="flex justify-between">
-                <span class="text-lg font-semibold text-gray-900"
-                  >${{ minimumInvestment.toLocaleString() }}</span
+            <div>
+              <div class="flex items-center my-2 gap-2">
+                <span
+                  class="text-2xl font-normal leading-[100%] tracking-[0%] text-[#212121]"
+                  >${{
+                    minimumInvestment.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })
+                  }}</span
                 >
-                <span class="text-gray-600">Minimum Investment</span>
+                <span
+                  class="text-base font-normal leading-5 tracking-[0px] text-[#212121]"
+                  >Minimum Investment</span
+                >
               </div>
 
-              <div class="space-y-3">
-                <div class="flex justify-between">
-                  <span class="text-gray-600">Deadline:</span>
-                  <span class="font-semibold text-gray-900">{{
-                    deadline
-                  }}</span>
+              <hr class="border-gray-2" />
+
+              <div class="flex flex-col gap-2 mt-2">
+                <div>
+                  <span
+                    class="text-base font-normal leading-5 tracking-[0px] text-gray-600"
+                    >Deadline:</span
+                  >
+                  <span
+                    class="ml-2 text-xl font-bold leading-6 tracking-[0px] text-gray-900"
+                    >{{ deadline }}</span
+                  >
                 </div>
 
-                <div class="flex justify-between">
-                  <span class="text-gray-600">Type of Security:</span>
-                  <span class="font-semibold text-gray-900">{{
-                    securityType
-                  }}</span>
+                <div>
+                  <span
+                    class="text-base font-normal leading-5 tracking-[0px] text-gray-600"
+                    >Type of Security:
+                  </span>
+                  <span
+                    class="ml-2 text-xl font-bold leading-6 tracking-[0px] text-gray-900"
+                    >Revenue Share Agreement</span
+                  >
                 </div>
 
-                <div class="flex justify-between">
-                  <span class="text-gray-600">Revenue Share Duration:</span>
-                  <span class="font-semibold text-gray-900"
+                <div>
+                  <span
+                    class="text-base font-normal leading-5 tracking-[0px] text-gray-600"
+                    >Revenue Share Duration:</span
+                  >
+                  <span
+                    class="ml-2 text-xl font-bold leading-6 tracking-[0px] text-gray-900"
                     >{{ duration }} months</span
                   >
                 </div>
@@ -216,29 +257,30 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="space-y-3 pt-6">
+            <div class="flex flex-col gap-2 pt-6 mt-4">
               <button
                 @click="investNow"
-                class="w-full bg-[#138dee] hover:bg-[#0084f8] text-white py-4 text-lg font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                class="font-lato w-[357px] h-[46px] pt-3 pr-[14px] pb-3 pl-[14px] rounded-button bg-[#0084F8] hover:bg-[#138dee] text-white text-lg font-bold leading-[100%] tracking-[0%] text-center align-middle transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Invest Now
               </button>
               <button
                 @click="viewOffering"
-                class="w-full text-gray-600 hover:text-gray-900 underline bg-transparent border-none cursor-pointer text-center py-2"
+                class="font-lato text-[#212121] w-full bg-transparent border-none cursor-pointer py-2 font-normal text-base leading-6 tracking-[0px] text-center underline"
               >
                 View Offering Circular
               </button>
             </div>
           </div>
+          <!-- Disclaimer -->
+          <div
+            class="mt-4 font-normal text-xs leading-4 tracking-[0px] text-center text-white/80 max-w-lg ml-auto"
+          >
+            Purchased securities are not currently tradeable. Expect to hold
+            your investment until the company lists on a national exchange or is
+            acquired.
+          </div>
         </div>
-      </div>
-
-      <!-- Disclaimer -->
-      <div class="mt-12 text-sm text-white/80 max-w-lg ml-auto">
-        Purchased securities are not currently tradeable. Expect to hold your
-        investment until the company lists on a national exchange or is
-        acquired.
       </div>
     </div>
   </div>
