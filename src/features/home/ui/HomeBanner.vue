@@ -94,9 +94,9 @@
 
     <!-- Main Content -->
     <div class="pb-8">
-      <div class="grid lg:grid-cols-[1fr_420px] gap-10 max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-[1fr_405px] mx-auto">
         <!-- Left Column -->
-        <div>
+        <div class="pr-[29px]">
           <!-- Tags and Metrics Row -->
           <div class="flex items-center justify-between mb-[15px]">
             <!-- Category Tags -->
@@ -114,14 +114,11 @@
             </div>
 
             <!-- Key Metrics -->
-            <div class="flex gap-[3px]">
+            <div class="flex gap-[3px] justify-end">
               <div
                 class="h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-2"
               >
-                <FontAwesomeIcon
-                  :icon="faCalendar"
-                  class="w-4 h-4 text-gray-600"
-                />
+                <CalendarIcon />
                 <span
                   class="text-base font-normal leading-5 tracking-[0px] text-secondary-800"
                   >213 Days Left</span
@@ -139,56 +136,21 @@
           </div>
 
           <!-- Video Player -->
-          <div
-            class="relative overflow-hidden bg-white rounded-xl shadow-lg mb-[17px]"
-          >
-            <div class="aspect-video relative">
-              <div
-                class="w-full h-full bg-gradient-to-r from-slate-100 to-slate-200 flex items-center justify-center"
-              >
-                <!-- Placeholder for professional woman image -->
-                <div
-                  class="w-full h-full bg-gradient-to-br from-slate-200 via-slate-100 to-blue-50 flex items-center justify-center"
-                >
-                  <div class="text-center text-slate-500">
-                    <div
-                      class="w-24 h-24 mx-auto mb-4 bg-slate-300 rounded-full flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-12 h-12 text-slate-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-sm font-medium">Business Professional</p>
-                    <p class="text-xs text-slate-400">Video Content</p>
-                  </div>
-                </div>
-              </div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <button
-                  class="w-20 h-20 rounded-full bg-white/95 hover:bg-white text-[#138dee] flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-105"
-                >
-                  <FontAwesomeIcon :icon="faPlay" class="w-10 h-10 ml-1" />
-                </button>
-              </div>
-            </div>
+          <div class="h-[375px] border border-[#C9D6DF] shadow-lg mb-[17px]">
+            <!-- Background image -->
+            <NuxtImg
+              src="/images/thumbnail.svg"
+              alt="Video thumbnail"
+              class="w-full h-full object-cover"
+            />
           </div>
 
           <!-- Website -->
-          <div class="flex items-center gap-2 text-white/90">
-            <div
-              class="w-4 h-4 rounded-full border border-white/50 flex items-center justify-center"
+          <div class="flex items-center gap-2 text-secondary-50">
+            <GlobeIcon />
+            <span class="text-base font-normal leading-5 tracking-[0px]"
+              >https://site.com</span
             >
-              <div class="w-2 h-2 bg-white/70 rounded-full"></div>
-            </div>
-            <span>https://site.com</span>
           </div>
         </div>
 
@@ -290,12 +252,8 @@ import {
   faLinkedinIn,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import {
-  faEnvelope,
-  faChevronLeft,
-  faCalendar,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { GlobeIcon, CalendarIcon } from "@/shared/ui";
 
 // Investment data
 const fundingGoal = ref(250000);
