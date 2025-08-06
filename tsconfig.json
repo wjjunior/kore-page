@@ -4,9 +4,8 @@
   "compilerOptions": {
     "strict": true,
     "skipLibCheck": true,
-    "types": ["node", "vue"],
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "types": [],
+
     "allowImportingTsExtensions": true,
     "moduleDetection": "force",
     "noEmit": true,
