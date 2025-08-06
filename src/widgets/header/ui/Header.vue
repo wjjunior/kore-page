@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between">
         <div class="h-[72px] flex gap-8">
           <div class="flex items-center px-[15.38px] py-[11.25px] my-[4.64px]">
-            <a href="/" class="flex items-center space-x-2">
+            <a :href="ROUTES.HOME" class="flex items-center space-x-2">
               <NuxtImg
                 src="/images/kore-logo.svg"
                 alt="Kore Logo"
@@ -15,25 +15,25 @@
 
           <nav class="hidden md:flex items-center gap-8 h-full">
             <NavigationLink
-              href="/invest"
+              :href="ROUTES.INVEST"
               :is-active="activeNavItem === NavItems.INVEST"
             >
               INVEST
             </NavigationLink>
             <NavigationLink
-              href="/faq"
+              :href="ROUTES.FAQ"
               :is-active="activeNavItem === NavItems.FAQ"
             >
               FAQ
             </NavigationLink>
             <NavigationLink
-              href="/contact"
+              :href="ROUTES.CONTACT"
               :is-active="activeNavItem === NavItems.CONTACT"
             >
               CONTACT US
             </NavigationLink>
             <NavigationLink
-              href="/education"
+              :href="ROUTES.EDUCATION"
               :is-active="activeNavItem === NavItems.EDUCATION"
             >
               EDUCATION
@@ -61,28 +61,28 @@
       <div v-if="isMobileMenuOpen" class="md:hidden border-t border-gray-100">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
           <NavigationLink
-            href="/invest"
+            :href="ROUTES.INVEST"
             :is-active="activeNavItem === NavItems.INVEST"
             :is-mobile="true"
           >
             INVEST
           </NavigationLink>
           <NavigationLink
-            href="/faq"
+            :href="ROUTES.FAQ"
             :is-active="activeNavItem === NavItems.FAQ"
             :is-mobile="true"
           >
             FAQ
           </NavigationLink>
           <NavigationLink
-            href="/contact"
+            :href="ROUTES.CONTACT"
             :is-active="activeNavItem === NavItems.CONTACT"
             :is-mobile="true"
           >
             CONTACT US
           </NavigationLink>
           <NavigationLink
-            href="/education"
+            :href="ROUTES.EDUCATION"
             :is-active="activeNavItem === NavItems.EDUCATION"
             :is-mobile="true"
           >
@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { NavItems, MobileMenuIcon } from "@/shared";
+import { NavItems, MobileMenuIcon, ROUTES } from "@/shared";
 import { NavigationLink } from "@/features/navigation/ui";
 import { AuthButton } from "@/features/auth/ui";
 
