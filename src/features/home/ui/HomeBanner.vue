@@ -4,11 +4,12 @@
   >
     <!-- Back Button - Above Banner -->
     <div>
-      <button
-        class="flex items-center gap-2 px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors"
-      >
+      <button class="flex items-center gap-2 p-0 text-white rounded-lg">
         <ArrowLeft class="w-4 h-4" />
-        Back
+        <span
+          class="font-medium text-[18px] leading-[24px] tracking-[0px] align-middle"
+          >Back</span
+        >
       </button>
     </div>
 
@@ -32,14 +33,24 @@
 
           <!-- Main Title and Description -->
           <div class="flex-1">
-            <h1 class="text-5xl font-bold mb-2">Kore</h1>
-            <p class="text-xl text-white/90">Lorem ipsum dolor sit</p>
+            <h1
+              class="font-hanken-grotesk font-bold text-[32px] leading-[100%] tracking-[1%] mb-4"
+            >
+              Kore
+            </h1>
+            <h5
+              class="font-futura-hv font-normal text-[24px] leading-[100%] tracking-[1%] text-secondary-50"
+            >
+              Lorem ipsum dolor sit
+            </h5>
           </div>
         </div>
 
         <!-- Right Side - Share Buttons -->
         <div class="flex items-center gap-3">
-          <span class="text-sm">Share This Deal:</span>
+          <span class="font-normal text-[14px] leading-[40px] tracking-[0px]"
+            >Share This Deal:</span
+          >
           <div class="flex gap-2">
             <button
               class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"

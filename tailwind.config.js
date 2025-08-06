@@ -11,6 +11,8 @@ module.exports = {
     extend: {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
+        "hanken-grotesk": ["Hanken Grotesk", "sans-serif"],
+        "futura-hv": ["Futura Hv BT", "sans-serif"],
       },
       colors: {
         primary: {
@@ -23,6 +25,9 @@ module.exports = {
         blue: {
           50: "#EFF6FF",
           800: "#1e3a8a",
+        },
+        secondary: {
+          50: "#F3EFF9",
         },
       },
       borderRadius: {
