@@ -18,11 +18,14 @@ module.exports = {
         primary: {
           200: "#0084F8",
           50: "#EFF6FF",
+          500: "#138dee",
+          600: "#0084F8",
         },
         gray: {
           900: "#252525",
           6: "#1C1E1D",
           2: "#A9B6B3",
+          600: "#7E7C7C",
         },
         blue: {
           50: "#EFF6FF",
@@ -31,6 +34,12 @@ module.exports = {
         secondary: {
           50: "#F3EFF9",
           800: "#2F106D",
+        },
+        neutral: {
+          212121: "#212121",
+        },
+        border: {
+          c9d6df: "#C9D6DF",
         },
       },
       borderRadius: {
