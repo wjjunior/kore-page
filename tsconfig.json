@@ -5,18 +5,29 @@
     "strict": true,
     "skipLibCheck": true,
     "types": ["node", "vue"],
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "moduleDetection": "force",
     "noEmit": true,
     "composite": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/entities/*": ["./src/entities/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/widgets/*": ["./src/widgets/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/app/*": ["./src/app/*"]
+    }
   },
-  "include": [".nuxt/nuxt.d.ts", "app/**/*", "**/*"],
+  "include": [".nuxt/nuxt.d.ts", "src/**/*", "**/*"],
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

@@ -14,5 +14,10 @@
 </template>
 
 <script setup lang="ts">
+import { Header } from "@/widgets/header";
+
+defineOptions({
+  name: "HomePage",
+});
 </script>
 
