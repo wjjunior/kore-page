@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header active-nav-item="invest" />
+    <HomeBanner />
     <div
       class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center"
     >
@@ -15,6 +16,7 @@
 
 <script setup lang="ts">
 import { Header } from "@/widgets/header";
+import HomeBanner from "../../../features/home/ui/HomeBanner.vue";
 
 defineOptions({
   name: "HomePage",
