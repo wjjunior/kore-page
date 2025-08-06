@@ -7,7 +7,19 @@ module.exports = {
     "./layouts/**/*.{js,vue,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lato: ["Lato", "sans-serif"],
+      },
+      colors: {
+        primary: {
+          200: "#0084F8",
+        },
+      },
+      borderRadius: {
+        button: "8px",
+      },
+    },
   },
   plugins: [],
 };
