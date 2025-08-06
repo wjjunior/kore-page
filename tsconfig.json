@@ -17,6 +17,6 @@
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true
   },
-  "include": [".nuxt/nuxt.d.ts", "**/*"],
+  "include": [".nuxt/nuxt.d.ts", "app/**/*", "**/*"],
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

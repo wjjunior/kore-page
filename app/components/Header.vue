@@ -114,7 +114,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { NavItems } from "../../types";
+import { NavItems } from "../shared/lib/constants";
 
 const props = defineProps({
   activeNavItem: {
