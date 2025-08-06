@@ -5,7 +5,10 @@
     <!-- Back Button - Above Banner -->
     <div>
       <button class="flex items-center gap-2 p-0 text-white rounded-lg">
-        <ArrowLeft class="w-4 h-4" />
+        <FontAwesomeIcon
+          :icon="faChevronLeft"
+          class="w-[7.12px] h-[11.41px] text-secondary-50"
+        />
         <span
           class="font-medium text-[18px] leading-[24px] tracking-[0px] align-middle"
           >Back</span
@@ -53,24 +56,36 @@
           >
           <div class="flex gap-2">
             <button
-              class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+              class="w-6 h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors"
             >
-              <Facebook class="w-4 h-4" />
+              <FontAwesomeIcon
+                :icon="faFacebookF"
+                class="w-[6px] h-[12px] text-gray-6"
+              />
             </button>
             <button
-              class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+              class="w-6 h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors"
             >
-              <Linkedin class="w-4 h-4" />
+              <FontAwesomeIcon
+                :icon="faLinkedinIn"
+                class="w-[10px] h-[10px] text-gray-6"
+              />
             </button>
             <button
-              class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+              class="w-6 h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors"
             >
-              <Twitter class="w-4 h-4" />
+              <FontAwesomeIcon
+                :icon="faXTwitter"
+                class="w-[12.94px] h-[13.7px] text-gray-6"
+              />
             </button>
             <button
-              class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+              class="w-6 h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors"
             >
-              <Mail class="w-4 h-4" />
+              <FontAwesomeIcon
+                :icon="faEnvelope"
+                class="w-[11px] h-[9px] text-gray-6"
+              />
             </button>
           </div>
         </div>
@@ -103,7 +118,10 @@
               <div
                 class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200"
               >
-                <Calendar class="w-4 h-4 text-gray-600" />
+                <FontAwesomeIcon
+                  :icon="faCalendar"
+                  class="w-4 h-4 text-gray-600"
+                />
                 <span class="text-sm font-medium text-gray-800"
                   >213 Days Left</span
                 >
@@ -111,7 +129,10 @@
               <div
                 class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200"
               >
-                <Users class="w-4 h-4 text-gray-600" />
+                <FontAwesomeIcon
+                  :icon="faUsers"
+                  class="w-4 h-4 text-gray-600"
+                />
                 <span class="text-sm font-medium text-gray-800"
                   >157 Total Investors</span
                 >
@@ -154,7 +175,7 @@
                 <button
                   class="w-20 h-20 rounded-full bg-white/95 hover:bg-white text-[#138dee] flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-105"
                 >
-                  <Play class="w-10 h-10 ml-1" />
+                  <FontAwesomeIcon :icon="faPlay" class="w-10 h-10 ml-1" />
                 </button>
               </div>
             </div>
@@ -263,16 +284,19 @@
 
 <script setup>
 import { ref } from "vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-  ArrowLeft,
-  Calendar,
-  Users,
-  Play,
-  Facebook,
-  Linkedin,
-  Twitter,
-  Mail,
-} from "lucide-vue-next";
+  faFacebookF,
+  faLinkedinIn,
+  faXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faChevronLeft,
+  faCalendar,
+  faUsers,
+  faPlay,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Investment data
 const fundingGoal = ref(250000);
