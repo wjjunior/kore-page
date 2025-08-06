@@ -44,29 +44,9 @@
         <div class="md:hidden">
           <button
             @click="toggleMobileMenu"
-            class="text-[#252525] hover:text-primary-200 focus:outline-none focus:text-primary-200 transition-colors duration-200"
+            class="text-gray-900 hover:text-primary-200 focus:outline-none focus:text-primary-200 transition-colors duration-200"
           >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                v-if="!isMobileMenuOpen"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-              <path
-                v-else
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <MobileMenuIcon :is-open="isMobileMenuOpen" />
           </button>
         </div>
 
@@ -129,7 +109,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { NavItems } from "@/shared/lib";
+import { NavItems, MobileMenuIcon } from "@/shared";
 import { NavigationLink } from "@/features/navigation/ui";
 import { AuthButton } from "@/features/auth/ui";
 

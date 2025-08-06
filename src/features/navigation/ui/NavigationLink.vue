@@ -22,7 +22,7 @@ const navLinkClasses = computed(() => {
   const baseClasses =
     "font-medium transition-colors duration-200 h-full flex items-center";
   const activeClasses = "text-primary-200 border-b-2 border-primary-200";
-  const inactiveClasses = "text-primary-200 hover:text-[#1e3a8a]";
+  const inactiveClasses = "text-primary-200 hover:text-blue-800";
 
   return `${baseClasses} ${props.isActive ? activeClasses : inactiveClasses}`;
 });
@@ -32,7 +32,7 @@ const mobileNavLinkClasses = computed(() => {
     "px-3 py-2 font-medium transition-colors duration-200 h-12 flex items-center";
   const activeClasses =
     "text-primary-200 border-l-2 border-primary-200 bg-blue-50";
-  const inactiveClasses = "text-primary-200 hover:text-[#1e3a8a]";
+  const inactiveClasses = "text-primary-200 hover:text-blue-800";
 
   return `${baseClasses} ${props.isActive ? activeClasses : inactiveClasses}`;
 });

@@ -15,6 +15,14 @@ module.exports = {
       colors: {
         primary: {
           200: "#0084F8",
+          50: "#EFF6FF",
+        },
+        gray: {
+          900: "#252525",
+        },
+        blue: {
+          50: "#EFF6FF",
+          800: "#1e3a8a",
         },
       },
       borderRadius: {
