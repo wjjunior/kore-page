@@ -96,44 +96,42 @@
     <div class="pb-8">
       <div class="grid lg:grid-cols-[1fr_420px] gap-10 max-w-7xl mx-auto">
         <!-- Left Column -->
-        <div class="space-y-6">
+        <div>
           <!-- Tags and Metrics Row -->
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between mb-[15px]">
             <!-- Category Tags -->
-            <div class="flex gap-3">
+            <div class="flex gap-2">
               <span
-                class="px-4 py-2 bg-transparent rounded-full text-sm border border-white text-white"
+                class="h-6 pt-[2px] pr-4 pb-[2px] pl-4 bg-transparent rounded-[37px] text-[13px] font-semibold leading-[100%] tracking-[0px] text-center border border-white text-white flex items-center"
               >
                 Fintech
               </span>
               <span
-                class="px-4 py-2 bg-transparent rounded-full text-sm border border-white text-white"
+                class="h-6 pt-[2px] pr-4 pb-[2px] pl-4 bg-transparent rounded-[37px] text-[13px] font-semibold leading-[100%] tracking-[0px] text-center border border-white text-white flex items-center"
               >
                 Investments
               </span>
             </div>
 
             <!-- Key Metrics -->
-            <div class="flex gap-3">
+            <div class="flex gap-[3px]">
               <div
-                class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200"
+                class="h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-2"
               >
                 <FontAwesomeIcon
                   :icon="faCalendar"
                   class="w-4 h-4 text-gray-600"
                 />
-                <span class="text-sm font-medium text-gray-800"
+                <span
+                  class="text-base font-normal leading-5 tracking-[0px] text-secondary-800"
                   >213 Days Left</span
                 >
               </div>
               <div
-                class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200"
+                class="h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-2"
               >
-                <FontAwesomeIcon
-                  :icon="faUsers"
-                  class="w-4 h-4 text-gray-600"
-                />
-                <span class="text-sm font-medium text-gray-800"
+                <span
+                  class="text-base font-normal leading-5 tracking-[0px] text-secondary-800"
                   >157 Total Investors</span
                 >
               </div>
@@ -141,7 +139,9 @@
           </div>
 
           <!-- Video Player -->
-          <div class="relative overflow-hidden bg-white rounded-xl shadow-lg">
+          <div
+            class="relative overflow-hidden bg-white rounded-xl shadow-lg mb-[17px]"
+          >
             <div class="aspect-video relative">
               <div
                 class="w-full h-full bg-gradient-to-r from-slate-100 to-slate-200 flex items-center justify-center"
@@ -294,7 +294,6 @@ import {
   faEnvelope,
   faChevronLeft,
   faCalendar,
-  faUsers,
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 

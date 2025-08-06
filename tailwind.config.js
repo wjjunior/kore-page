@@ -29,6 +29,7 @@ module.exports = {
         },
         secondary: {
           50: "#F3EFF9",
+          800: "#2F106D",
         },
       },
       borderRadius: {
