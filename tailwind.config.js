@@ -48,5 +48,25 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".section-title": {
+          "font-weight": "normal",
+          "font-size": "18px",
+          "line-height": "20px",
+          "letter-spacing": "0px",
+          color: "#1C1E1D",
+          "margin-bottom": "1.5rem",
+        },
+        ".list-item": {
+          "font-weight": "normal",
+          "font-size": "16px",
+          "line-height": "20px",
+          "letter-spacing": "0px",
+          color: "#1C1E1D",
+        },
+      });
+    },
+  ],
 };
