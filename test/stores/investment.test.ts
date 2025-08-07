@@ -92,7 +92,10 @@ describe("useInvestmentStore", () => {
           },
         ],
         teamMembers: [],
-        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const store = useInvestmentStore();
@@ -146,6 +149,8 @@ describe("useInvestmentStore", () => {
         ],
         teamMembers: [],
         teamDescription: "Test team description",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const store = useInvestmentStore();
@@ -200,7 +205,10 @@ describe("useInvestmentStore", () => {
           },
         ],
         teamMembers: [],
-        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -290,7 +298,10 @@ describe("useInvestmentStore", () => {
         offeringTerms: [],
         documents: [],
         teamMembers: [],
-        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -326,7 +337,10 @@ describe("useInvestmentStore", () => {
         offeringTerms: [],
         documents: [],
         teamMembers: [],
-        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -369,7 +383,10 @@ describe("useInvestmentStore", () => {
         offeringTerms: [],
         documents: [],
         teamMembers: [],
-        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       const store = useInvestmentStore();
@@ -405,6 +422,8 @@ describe("useInvestmentStore", () => {
         documents: [],
         teamMembers: [],
         teamDescription: "Test team description",
+        marketingPlan:
+          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
       };
 
       store.bannerData = mockData;

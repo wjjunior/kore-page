@@ -25,75 +25,14 @@
     </div>
 
     <div v-else class="flex flex-col gap-6 max-w-4xl">
-      <section>
-        <h3 class="section-title">Lorem ipsum</h3>
-        <ul class="list-disc list-outside ml-14">
-          <li class="list-item">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </li>
-          <li class="list-item">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus
-            erat velit,
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3 class="section-title">Lorem ipsum</h3>
-        <ol class="list-[lower-alpha] list-outside ml-14">
-          <li class="list-item">Lorem ipsum dolor sit amet, co</li>
-          <li class="list-item">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus
-            erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor
-            at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Nunc luctus erat velit, non Nunc luctus erat velit,
-            non interdum lorem efficitur eu. Etiam hendrerit tortor at libero
-            auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit.
-          </li>
-          <li class="list-item">
-            Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam
-            hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit.
-          </li>
-          <li class="list-item">
-            Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam
-            hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Nunc luctus erat velit, non
-            interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor
-            hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </li>
-        </ol>
-      </section>
-
-      <section>
-        <h3 class="section-title">Lorem ipsum</h3>
-        <ul class="list-disc list-outside ml-14">
-          <li class="list-item">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus
-            erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor
-            at libero auctor hendrerit.
-          </li>
-          <div class="ml-6">
-            <li class="list-item">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              luctus erat velit, non interdum lorem efficitur eu. Etiam
-              hendrerit tortor at libero auctor hendrerit. on App Store/Play
-              Store aligned with Adventure mode release, optimize creatives.
-            </li>
-            <li class="list-item">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              luctus erat velit, non interdum lorem efficitur eu. Etiam
-              hendrerit tortor at libero auctor hendrerit.
-            </li>
-          </div>
-        </ul>
-      </section>
+      <div v-html="marketingPlan"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useInvestmentData } from "../composables/useInvestmentData";
+
 defineOptions({
   name: "InvestmentMarketingPlan",
 });
@@ -105,4 +44,7 @@ interface InvestmentMarketingPlanProps {
 withDefaults(defineProps<InvestmentMarketingPlanProps>(), {
   loading: false,
 });
+
+const { getMarketingPlan } = useInvestmentData();
+const marketingPlan = getMarketingPlan;
 </script>

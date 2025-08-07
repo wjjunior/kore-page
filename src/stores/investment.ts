@@ -35,6 +35,7 @@ export const useInvestmentStore = defineStore("investment", {
     getDocuments: (state) => state.bannerData?.documents ?? [],
     getTeamMembers: (state) => state.bannerData?.teamMembers ?? [],
     getTeamDescription: (state) => state.bannerData?.teamDescription ?? "",
+    getMarketingPlan: (state) => state.bannerData?.marketingPlan ?? "",
   },
 
   actions: {

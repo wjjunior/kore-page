@@ -24,6 +24,7 @@ export function useInvestmentData() {
     getDocuments,
     getTeamMembers,
     getTeamDescription,
+    getMarketingPlan,
   } = storeToRefs(investmentStore);
 
   const isDataReady = computed(
@@ -63,6 +64,7 @@ export function useInvestmentData() {
     getDocuments,
     getTeamMembers,
     getTeamDescription,
+    getMarketingPlan,
 
     // Actions
     loadData,

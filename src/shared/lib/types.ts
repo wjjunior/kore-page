@@ -45,4 +45,5 @@ export interface InvestmentBannerData {
   documents: Document[];
   teamMembers: TeamMember[];
   teamDescription: string;
+  marketingPlan: string;
 }

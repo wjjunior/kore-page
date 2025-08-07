@@ -151,7 +151,46 @@ export class InvestmentAPI {
           },
         },
       ],
-      teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit.",
+      teamDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit.",
+      marketingPlan: `
+        <section style="margin-bottom: 24px; font-weight: 400; color: #1C1E1D;">
+          <h3 style="font-size: 18px; line-height: 1.2; margin-bottom: 16px;">Lorem ipsum</h3>
+          <ul style="list-style-type: disc; list-style-position: outside; margin-left: 56px; line-height: 1.6;">
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit,</li>
+          </ul>
+        </section>
+
+        <section style="margin-bottom: 24px; font-weight: 400; color: #1C1E1D;">
+          <h3 style="font-size: 18px; line-height: 1.2; margin-bottom: 16px;">Lorem ipsum</h3>
+          <ol style="list-style-type: lower-alpha; list-style-position: outside; margin-left: 56px; line-height: 1.6;">
+            <li>Lorem ipsum dolor sit amet, co</li>
+            <li>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+            <li>
+              Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+            <li>
+              Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+          </ol>
+        </section>
+
+        <section style="margin-bottom: 24px; font-weight: 400; color: #1C1E1D;">
+          <h3 style="font-size: 18px; line-height: 1.2; margin-bottom: 16px;">Lorem ipsum</h3>
+          <ul style="list-style-type: disc; list-style-position: outside; margin-left: 56px; line-height: 1.6;">
+            <li>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit.
+              <ul style="list-style-type: disc; list-style-position: outside; margin-left: 24px;">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. on App Store/Play Store aligned with Adventure mode release, optimize creatives.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      `,
     };
 
     return mockData;
