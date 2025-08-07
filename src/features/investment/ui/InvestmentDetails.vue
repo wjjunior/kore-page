@@ -5,26 +5,28 @@
         <div class="w-[190px] flex-shrink-0">
           <div class="w-[143px] sticky top-[120px]">
             <nav class="flex flex-col gap-4">
-              <a
+              <button
                 v-for="link in navigationLinks"
                 :key="link.href"
-                :href="link.href"
-                class="block text-primary-200 font-hanken-grotesk font-bold text-base leading-5 hover:text-primary-300 transition-colors"
+                @click="handleScrollToSection(link.href)"
+                class="block text-left text-primary-200 font-hanken-grotesk font-bold text-base leading-5 hover:text-primary-300 transition-colors cursor-pointer"
               >
                 {{ link.text }}
-              </a>
+              </button>
             </nav>
           </div>
         </div>
 
         <div class="w-[906px] flex-shrink-0">
-          <InvestmentCards
-            :offering-terms="getOfferingTerms"
-            :documents="getDocuments"
-            :loading="loading"
-          />
+          <div id="offering-terms" ref="offeringTermsRef">
+            <InvestmentCards
+              :offering-terms="getOfferingTerms"
+              :documents="getDocuments"
+              :loading="loading"
+            />
+          </div>
 
-          <div class="mt-10">
+          <div id="team" class="mt-10" ref="teamRef">
             <InvestmentTeam
               :team-members="getTeamMembers"
               :team-description="getTeamDescription"
@@ -32,14 +34,14 @@
             />
           </div>
 
-          <div class="mt-10">
+          <div id="marketing-plan" class="mt-10" ref="marketingPlanRef">
             <InvestmentMarketingPlan
               :marketing-plan="getMarketingPlan"
               :loading="loading"
             />
           </div>
 
-          <div class="mt-10">
+          <div id="faq" class="mt-10" ref="faqRef">
             <InvestmentFaq :loading="loading" :faq-items="getFaqItems" />
           </div>
         </div>
@@ -49,8 +51,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useInvestmentData } from "../composables";
+import { scrollToSection } from "@/shared/lib";
 import {
   InvestmentCards,
   InvestmentTeam,
@@ -58,11 +61,17 @@ import {
   InvestmentFaq,
 } from "./";
 
-// Types
-interface NavigationLink {
-  href: string;
-  text: string;
-}
+const offeringTermsRef = ref<HTMLElement | null>(null);
+const teamRef = ref<HTMLElement | null>(null);
+const marketingPlanRef = ref<HTMLElement | null>(null);
+const faqRef = ref<HTMLElement | null>(null);
+
+const navigationLinks = [
+  { href: "#offering-terms", text: "Offering Terms and Documents" },
+  { href: "#team", text: "Team" },
+  { href: "#marketing-plan", text: "Marketing Plan" },
+  { href: "#faq", text: "FAQ" },
+];
 
 const {
   getOfferingTerms,
@@ -75,12 +84,16 @@ const {
   loading,
 } = useInvestmentData();
 
-const navigationLinks: NavigationLink[] = [
-  { href: "#offering-terms", text: "Offering Terms and Documents" },
-  { href: "#team", text: "Team" },
-  { href: "#marketing-plan", text: "Marketing Plan" },
-  { href: "#faq", text: "FAQ" },
-];
+const sectionMap = {
+  "#offering-terms": offeringTermsRef,
+  "#team": teamRef,
+  "#marketing-plan": marketingPlanRef,
+  "#faq": faqRef,
+};
+
+const handleScrollToSection = (href: string) => {
+  scrollToSection(href, sectionMap);
+};
 
 onMounted(async () => {
   await loadData();
