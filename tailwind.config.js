@@ -13,13 +13,20 @@ module.exports = {
         lato: ["Lato", "sans-serif"],
         "hanken-grotesk": ["Hanken Grotesk", "sans-serif"],
         "futura-hv": ["Inter", "Futura Hv BT", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       colors: {
         primary: {
           200: "#0084F8",
           300: "#0066CC",
+          400: "#1C3666",
           50: "#EFF6FF",
           500: "#138dee",
+          600: "#163f7f",
+          700: "#1b4e9c",
+        },
+        brand: {
+          300: "#204496",
         },
         gray: {
           900: "#252525",

@@ -5,3 +5,4 @@ export { default as CalendarIcon } from "./CalendarIcon.vue";
 export { default as LoadingSpinner } from "./LoadingSpinner.vue";
 export { default as ErrorMessage } from "./ErrorMessage.vue";
 export { default as FileIcon } from "./FileIcon.vue";
+export { default as KoreLogo } from "./KoreLogo.vue";

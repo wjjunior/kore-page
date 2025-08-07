@@ -5,11 +5,7 @@
         <div class="h-[72px] flex gap-8">
           <div class="flex items-center px-[15.38px] py-[11.25px] my-[4.64px]">
             <a :href="ROUTES.HOME" class="flex items-center space-x-2">
-              <NuxtImg
-                src="/images/kore-logo.svg"
-                alt="Kore Logo"
-                class="w-[104.33px] h-[40.22px]"
-              />
+              <KoreLogo width="104.33" height="40.22" />
             </a>
           </div>
 
@@ -109,7 +105,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { NavItems, MobileMenuIcon, ROUTES } from "@/shared";
+import { NavItems, MobileMenuIcon, ROUTES, KoreLogo } from "@/shared";
 import { NavigationLink } from "@/features/navigation/ui";
 import { AuthButton } from "@/features/auth/ui";
 
@@ -135,4 +131,3 @@ const handleSignUp = () => {
   console.log("Sign Up clicked");
 };
 </script>
-

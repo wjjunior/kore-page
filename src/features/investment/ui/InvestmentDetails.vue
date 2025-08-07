@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white pt-[93px] px-40">
+  <div class="min-h-screen bg-white pt-[93px] px-40 mb-[137px]">
     <div class="max-w-7xl mx-auto">
       <div class="flex space-x-6">
         <div class="w-[190px] flex-shrink-0">
