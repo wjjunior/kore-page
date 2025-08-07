@@ -37,37 +37,11 @@ interface FaqItem {
 
 interface InvestmentFaqProps {
   loading?: boolean;
-  faqItems?: FaqItem[];
+  faqItems: FaqItem[];
 }
 
 withDefaults(defineProps<InvestmentFaqProps>(), {
   loading: false,
-  faqItems: () => [
-    {
-      id: "faq-1",
-      question: "Lorem ipsum",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: "faq-2",
-      question: "Lorem ipsum",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: "faq-3",
-      question: "Lorem ipsum",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: "faq-4",
-      question: "Lorem ipsum",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ],
 });
 
 const openItems = ref<Record<number, boolean>>({});

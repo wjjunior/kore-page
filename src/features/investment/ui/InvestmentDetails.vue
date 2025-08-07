@@ -40,7 +40,7 @@
           </div>
 
           <div class="mt-10">
-            <InvestmentFaq :loading="loading" />
+            <InvestmentFaq :loading="loading" :faq-items="getFaqItems" />
           </div>
         </div>
       </div>
@@ -70,6 +70,7 @@ const {
   getTeamMembers,
   getTeamDescription,
   getMarketingPlan,
+  getFaqItems,
   loadData,
   loading,
 } = useInvestmentData();

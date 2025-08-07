@@ -28,6 +28,12 @@ export interface TeamMember {
   socialLinks: SocialLinks;
 }
 
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
 export interface InvestmentBannerData {
   daysLeft: number;
   totalInvestors: number;
@@ -46,4 +52,5 @@ export interface InvestmentBannerData {
   teamMembers: TeamMember[];
   teamDescription: string;
   marketingPlan: string;
+  faqItems: FaqItem[];
 }

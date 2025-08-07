@@ -97,6 +97,7 @@ describe("useInvestmentData", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -159,6 +160,7 @@ describe("useInvestmentData", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -195,6 +197,7 @@ describe("useInvestmentData", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -250,6 +253,7 @@ describe("useInvestmentData", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");

@@ -96,6 +96,7 @@ describe("useInvestmentStore", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const store = useInvestmentStore();
@@ -151,6 +152,7 @@ describe("useInvestmentStore", () => {
         teamDescription: "Test team description",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const store = useInvestmentStore();
@@ -209,6 +211,7 @@ describe("useInvestmentStore", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -302,6 +305,7 @@ describe("useInvestmentStore", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -341,6 +345,7 @@ describe("useInvestmentStore", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -387,6 +392,7 @@ describe("useInvestmentStore", () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       const store = useInvestmentStore();
@@ -424,6 +430,7 @@ describe("useInvestmentStore", () => {
         teamDescription: "Test team description",
         marketingPlan:
           "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
+        faqItems: [],
       };
 
       store.bannerData = mockData;
