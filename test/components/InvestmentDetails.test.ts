@@ -87,44 +87,11 @@ vi.mock("@/features/investment/composables/useInvestmentData", () => ({
         },
       },
     ]),
-    getTeamDescription: ref("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    getTeamDescription: ref(
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    ),
     loadData: vi.fn(),
   }),
-}));
-
-vi.mock("@/features/investment/ui/InvestmentCards.vue", () => ({
-  default: {
-    name: "InvestmentCards",
-    props: ["offeringTerms", "documents", "loading"],
-    template: `
-      <div class="investment-cards-mock">
-        <div class="offering-terms-mock">
-          <h2>Offering Terms</h2>
-          <div v-if="loading" class="loading-state">
-            <div class="loading-item">Loading offering terms...</div>
-          </div>
-          <div v-else>
-            <div v-for="term in offeringTerms" :key="term.label">
-              <h3>{{ term.label }}</h3>
-              <p>{{ term.value }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="documents-mock">
-          <h2>Documents</h2>
-          <div v-if="loading" class="loading-state">
-            <div class="loading-item">Loading documents...</div>
-          </div>
-          <div v-else>
-            <div v-for="doc in documents" :key="doc.id">
-              <h3>{{ doc.title }}</h3>
-              <p>{{ doc.filename }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  },
 }));
 
 const mountInvestmentDetails = () => {
