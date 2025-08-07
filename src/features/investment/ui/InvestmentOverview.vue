@@ -5,7 +5,7 @@
 
   <div
     v-else-if="isDataReady"
-    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-12 lg:px-16 xl:px-[120px] pt-4 lg:pt-10"
+    class="bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-12 lg:px-16 xl:px-[120px] pt-4 lg:pt-10"
   >
     <button class="flex items-center gap-2 p-0 text-white rounded-lg">
       <FontAwesomeIcon
