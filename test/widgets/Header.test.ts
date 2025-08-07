@@ -4,18 +4,11 @@ import Header from "@/widgets/header/ui/Header.vue";
 
 const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
-const MockNuxtImg = {
-  name: "NuxtImg",
-  template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
-};
-
 const mountHeader = (props = {}) => {
   return mount(Header, {
     props,
     global: {
-      components: {
-        NuxtImg: MockNuxtImg,
-      },
+      components: {},
     },
   });
 };
@@ -34,7 +27,7 @@ describe("Header", () => {
 
     expect(wrapper.find("header").exists()).toBe(true);
     expect(wrapper.find("nav").exists()).toBe(true);
-    expect(wrapper.find('img[alt="Kore Logo"]').exists()).toBe(true);
+    expect(wrapper.find("svg").exists()).toBe(true);
   });
 
   it("renders navigation links", () => {
