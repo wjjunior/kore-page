@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
-import HomePage from "@/components/home";
+import InvestmentPage from "@/components/investment";
 
-vi.mock("@/features/home", () => ({
+vi.mock("@/features/investment", () => ({
   useInvestmentData: () => ({
     loadData: vi.fn().mockResolvedValue(undefined),
     loading: { value: false },
@@ -30,8 +30,8 @@ const MockNuxtImg = {
   template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
 };
 
-const mountHomePage = () => {
-  return mount(HomePage, {
+const mountInvestmentPage = () => {
+  return mount(InvestmentPage, {
     global: {
       components: {
         NuxtImg: MockNuxtImg,
@@ -40,19 +40,19 @@ const mountHomePage = () => {
   });
 };
 
-describe("HomePage", () => {
+describe("InvestmentPage", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
   it("renders the main heading correctly", () => {
-    const wrapper = mountHomePage();
+    const wrapper = mountInvestmentPage();
 
-    expect(wrapper.find("h1").text()).toBe("Homepage");
+    expect(wrapper.find("h1").text()).toBe("Investment Page");
   });
 
   it("renders the main container with correct styling", () => {
-    const wrapper = mountHomePage();
+    const wrapper = mountInvestmentPage();
 
     const mainContainer = wrapper.find(".min-h-screen");
     expect(mainContainer.exists()).toBe(true);
@@ -62,7 +62,7 @@ describe("HomePage", () => {
   });
 
   it("renders the content card with proper styling", () => {
-    const wrapper = mountHomePage();
+    const wrapper = mountInvestmentPage();
 
     // Busca especificamente pelo div do card, não pelo botão
     const contentCard = wrapper.find("div.bg-white.rounded-lg");
@@ -78,7 +78,7 @@ describe("HomePage", () => {
   });
 
   it("has the proper page structure", () => {
-    const wrapper = mountHomePage();
+    const wrapper = mountInvestmentPage();
 
     // Verifica se a estrutura básica da página está presente
     expect(wrapper.findComponent({ name: "Header" }).exists()).toBe(true);
