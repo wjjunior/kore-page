@@ -201,7 +201,7 @@
             <div class="flex flex-col gap-3 pt-4 mt-3">
               <button
                 @click="investNow"
-                class="font-lato w-full lg:w-[357px] h-11 lg:h-[46px] pt-3 px-[14px] rounded-button bg-primary-600 hover:bg-primary-500 text-white text-sm lg:text-lg font-bold text-center transition-all duration-200 shadow-lg hover:shadow-xl"
+                class="font-lato w-full lg:w-[357px] h-11 lg:h-[46px] px-[14px] rounded-button bg-primary-600 hover:bg-primary-500 text-white text-sm lg:text-lg font-bold flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Invest Now
               </button>
