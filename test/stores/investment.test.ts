@@ -49,6 +49,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("");
       expect(store.getCompanyDescription).toBe("");
       expect(store.getWebsite).toBe("");
+      expect(store.getOfferingTerms).toEqual([]);
+      expect(store.getDocuments).toEqual([]);
     });
 
     it("should return correct values when bannerData is loaded", () => {
@@ -65,6 +67,28 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [
+          {
+            label: "Regulation",
+            value: "Regulation Crowdfunding (RegCF)",
+          },
+          {
+            label: "Offering Type",
+            value: "Revenue Sharing Agreement",
+          },
+        ],
+        documents: [
+          {
+            id: 1,
+            title: "Form C",
+            filename: "FileName_GoesHere.pdf",
+          },
+          {
+            id: 2,
+            title: "Custodian and Voting Agreement",
+            filename: "FileName_GoesHere.pdf",
+          },
+        ],
       };
 
       const store = useInvestmentStore();
@@ -83,6 +107,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("Kore");
       expect(store.getCompanyDescription).toBe("Lorem ipsum dolor sit");
       expect(store.getWebsite).toBe("https://site.com");
+      expect(store.getOfferingTerms).toEqual(mockData.offeringTerms);
+      expect(store.getDocuments).toEqual(mockData.documents);
     });
 
     it("should handle partial bannerData with undefined values", () => {
@@ -99,6 +125,19 @@ describe("useInvestmentStore", () => {
         companyName: "Test Company",
         companyDescription: "Test description",
         website: "https://test.com",
+        offeringTerms: [
+          {
+            label: "Test Term",
+            value: "Test Value",
+          },
+        ],
+        documents: [
+          {
+            id: 1,
+            title: "Test Document",
+            filename: "test.pdf",
+          },
+        ],
       };
 
       const store = useInvestmentStore();
@@ -117,6 +156,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("Test Company");
       expect(store.getCompanyDescription).toBe("Test description");
       expect(store.getWebsite).toBe("https://test.com");
+      expect(store.getOfferingTerms).toEqual(partialData.offeringTerms);
+      expect(store.getDocuments).toEqual(partialData.documents);
     });
   });
 
@@ -135,6 +176,19 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [
+          {
+            label: "Regulation",
+            value: "Regulation Crowdfunding (RegCF)",
+          },
+        ],
+        documents: [
+          {
+            id: 1,
+            title: "Form C",
+            filename: "FileName_GoesHere.pdf",
+          },
+        ],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -221,6 +275,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -253,6 +309,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -292,6 +350,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       const store = useInvestmentStore();
@@ -323,6 +383,8 @@ describe("useInvestmentStore", () => {
         companyName: "Test Company",
         companyDescription: "Test description",
         website: "https://test.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       store.bannerData = mockData;

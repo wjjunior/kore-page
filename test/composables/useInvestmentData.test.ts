@@ -40,6 +40,8 @@ describe("useInvestmentData", () => {
         getCompanyName,
         getCompanyDescription,
         getWebsite,
+        getOfferingTerms,
+        getDocuments,
       } = useInvestmentData();
 
       expect(loading.value).toBe(false);
@@ -57,6 +59,8 @@ describe("useInvestmentData", () => {
       expect(getCompanyName.value).toBe("");
       expect(getCompanyDescription.value).toBe("");
       expect(getWebsite.value).toBe("");
+      expect(getOfferingTerms.value).toEqual([]);
+      expect(getDocuments.value).toEqual([]);
     });
   });
 
@@ -75,6 +79,19 @@ describe("useInvestmentData", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [
+          {
+            label: "Regulation",
+            value: "Regulation Crowdfunding (RegCF)",
+          },
+        ],
+        documents: [
+          {
+            id: 1,
+            title: "Form C",
+            filename: "FileName_GoesHere.pdf",
+          },
+        ],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -130,6 +147,8 @@ describe("useInvestmentData", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -159,6 +178,8 @@ describe("useInvestmentData", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -187,6 +208,28 @@ describe("useInvestmentData", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        offeringTerms: [
+          {
+            label: "Regulation",
+            value: "Regulation Crowdfunding (RegCF)",
+          },
+          {
+            label: "Offering Type",
+            value: "Revenue Sharing Agreement",
+          },
+        ],
+        documents: [
+          {
+            id: 1,
+            title: "Form C",
+            filename: "FileName_GoesHere.pdf",
+          },
+          {
+            id: 2,
+            title: "Custodian and Voting Agreement",
+            filename: "FileName_GoesHere.pdf",
+          },
+        ],
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -210,6 +253,8 @@ describe("useInvestmentData", () => {
         getCompanyName,
         getCompanyDescription,
         getWebsite,
+        getOfferingTerms,
+        getDocuments,
       } = useInvestmentData();
 
       expect(getDaysLeft.value).toBe(213);
@@ -224,6 +269,28 @@ describe("useInvestmentData", () => {
       expect(getCompanyName.value).toBe("Kore");
       expect(getCompanyDescription.value).toBe("Lorem ipsum dolor sit");
       expect(getWebsite.value).toBe("https://site.com");
+      expect(getOfferingTerms.value).toEqual([
+        {
+          label: "Regulation",
+          value: "Regulation Crowdfunding (RegCF)",
+        },
+        {
+          label: "Offering Type",
+          value: "Revenue Sharing Agreement",
+        },
+      ]);
+      expect(getDocuments.value).toEqual([
+        {
+          id: 1,
+          title: "Form C",
+          filename: "FileName_GoesHere.pdf",
+        },
+        {
+          id: 2,
+          title: "Custodian and Voting Agreement",
+          filename: "FileName_GoesHere.pdf",
+        },
+      ]);
     });
 
     it("should have correct loading and error states after successful load", () => {

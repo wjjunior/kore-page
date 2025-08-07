@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
-import { createPinia, setActivePinia } from "pinia";
 import { ref } from "vue";
 import InvestmentDetails from "@/features/investment/ui/InvestmentDetails.vue";
 
@@ -9,20 +8,108 @@ vi.mock("@/features/investment/composables/useInvestmentData", () => ({
     loading: ref(false),
     error: ref(null),
     isDataReady: ref(true),
-    getDaysLeft: ref(213),
-    getTotalInvestors: ref(157),
-    getFundingGoal: ref(250000),
-    getFundsRaised: ref(300000),
-    getMinimumInvestment: ref(100),
-    getDeadline: ref("Feb, 2025"),
-    getTypeOfSecurity: ref("Revenue Share Agreement"),
-    getRevenueShareDuration: ref(36),
-    getCategories: ref(["Fintech", "Investments"]),
-    getCompanyName: ref("Kore"),
-    getCompanyDescription: ref("Lorem ipsum dolor sit"),
-    getWebsite: ref("https://site.com"),
-    retryLoad: vi.fn(),
+    getOfferingTerms: ref([
+      {
+        label: "Regulation",
+        value: "Regulation Crowdfunding (RegCF)",
+      },
+      {
+        label: "Offering Type",
+        value: "Revenue Sharing Agreement",
+      },
+      {
+        label: "Security Type",
+        value: "Debt",
+      },
+      {
+        label: "Target Offering",
+        value: "$250,000",
+      },
+      {
+        label: "Max Offering",
+        value: "$2,000,000",
+      },
+      {
+        label: "Min Investment",
+        value: "$100",
+      },
+      {
+        label: "Max Investment",
+        value: "$50,000",
+      },
+      {
+        label: "Minimum Hold Period",
+        value: "36 months",
+      },
+      {
+        label: "Closing Date",
+        value: "Feb 28, 2025 12:59 AM GMT-3",
+      },
+    ]),
+    getDocuments: ref([
+      {
+        id: 1,
+        title: "Form C",
+        filename: "FileName_GoesHere.pdf",
+      },
+      {
+        id: 2,
+        title: "Custodian and Voting Agreement",
+        filename: "FileName_GoesHere.pdf",
+      },
+      {
+        id: 3,
+        title: "Future Proof Convertible Note",
+        filename: "FileName_GoesHere.pdf",
+      },
+      {
+        id: 4,
+        title: "Future Proof Convertible Note",
+        filename: "FileName_GoesHere.pdf",
+      },
+      {
+        id: 5,
+        title: "Future Proof Convertible Note",
+        filename: "FileName_GoesHere.pdf",
+      },
+    ]),
+    loadData: vi.fn(),
   }),
+}));
+
+vi.mock("@/features/investment/ui/InvestmentCards.vue", () => ({
+  default: {
+    name: "InvestmentCards",
+    props: ["offeringTerms", "documents", "loading"],
+    template: `
+      <div class="investment-cards-mock">
+        <div class="offering-terms-mock">
+          <h2>Offering Terms</h2>
+          <div v-if="loading" class="loading-state">
+            <div class="loading-item">Loading offering terms...</div>
+          </div>
+          <div v-else>
+            <div v-for="term in offeringTerms" :key="term.label">
+              <h3>{{ term.label }}</h3>
+              <p>{{ term.value }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="documents-mock">
+          <h2>Documents</h2>
+          <div v-if="loading" class="loading-state">
+            <div class="loading-item">Loading documents...</div>
+          </div>
+          <div v-else>
+            <div v-for="doc in documents" :key="doc.id">
+              <h3>{{ doc.title }}</h3>
+              <p>{{ doc.filename }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+  },
 }));
 
 const mountInvestmentDetails = () => {
@@ -35,7 +122,6 @@ const mountInvestmentDetails = () => {
 
 describe("InvestmentDetails", () => {
   beforeEach(() => {
-    setActivePinia(createPinia());
     vi.clearAllMocks();
   });
 
@@ -44,96 +130,69 @@ describe("InvestmentDetails", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("should display the main title", () => {
+  it("should display navigation links", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Investment Details");
+    expect(wrapper.text()).toContain("Offering Terms and Documents");
+    expect(wrapper.text()).toContain("Team");
+    expect(wrapper.text()).toContain("Marketing Plan");
+    expect(wrapper.text()).toContain("FAQ");
   });
 
-  it("should display funding progress section", () => {
+  it("should display offering terms card", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Funding Progress");
+    expect(wrapper.text()).toContain("Offering Terms");
   });
 
-  it("should display minimum investment section", () => {
+  it("should display documents card", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Minimum Investment");
-    expect(wrapper.text()).toContain("$100.00");
+    expect(wrapper.text()).toContain("Documents");
   });
 
-  it("should display days remaining section", () => {
+  it("should display offering terms data", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Days Remaining");
-    expect(wrapper.text()).toContain("213");
-  });
-
-  it("should display total investors section", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Total Investors");
-    expect(wrapper.text()).toContain("157");
-  });
-
-  it("should display revenue share duration section", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Revenue Share Duration");
-    expect(wrapper.text()).toContain("36 months");
-  });
-
-  it("should display security type section", () => {
-    const wrapper = mountInvestmentDetails();
+    expect(wrapper.text()).toContain("Regulation");
+    expect(wrapper.text()).toContain("Regulation Crowdfunding (RegCF)");
+    expect(wrapper.text()).toContain("Offering Type");
+    expect(wrapper.text()).toContain("Revenue Sharing Agreement");
     expect(wrapper.text()).toContain("Security Type");
-    expect(wrapper.text()).toContain("Revenue Share Agreement");
+    expect(wrapper.text()).toContain("Debt");
   });
 
-  it("should display company information section", () => {
+  it("should display documents data", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Company Information");
-    expect(wrapper.text()).toContain("Kore");
+    expect(wrapper.text()).toContain("Form C");
+    expect(wrapper.text()).toContain("FileName_GoesHere.pdf");
+    expect(wrapper.text()).toContain("Custodian and Voting Agreement");
+    expect(wrapper.text()).toContain("Future Proof Convertible Note");
   });
 
-  it("should display investment terms section", () => {
+  it("should have proper navigation structure", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Investment Terms");
+    const nav = wrapper.find("nav");
+    expect(nav.exists()).toBe(true);
+    expect(nav.classes()).toContain("flex");
+    expect(nav.classes()).toContain("flex-col");
+    expect(nav.classes()).toContain("gap-4");
   });
 
-  it("should display risk disclosure section", () => {
+  it("should have proper card structure", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Risk Disclosure");
+    const investmentCards = wrapper.findComponent({ name: "InvestmentCards" });
+    expect(investmentCards.exists()).toBe(true);
   });
 
-  it("should display company description", () => {
+  it("should have proper layout structure", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Lorem ipsum dolor sit");
+    const mainContainer = wrapper.find(".min-h-screen");
+    expect(mainContainer.exists()).toBe(true);
+    expect(mainContainer.classes()).toContain("bg-white");
+    expect(mainContainer.classes()).toContain("pt-[93px]");
+    expect(mainContainer.classes()).toContain("px-40");
   });
 
-  it("should display company website", () => {
+  it("should pass loading state to InvestmentCards", () => {
     const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("https://site.com");
-  });
-
-  it("should display categories", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Fintech");
-    expect(wrapper.text()).toContain("Investments");
-  });
-
-  it("should display deadline", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("Feb, 2025");
-  });
-
-  it("should display funding goal", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("$250,000.00");
-  });
-
-  it("should display funds raised", () => {
-    const wrapper = mountInvestmentDetails();
-    expect(wrapper.text()).toContain("$300,000.00");
-  });
-
-  it("should have proper funding progress calculation", () => {
-    const wrapper = mountInvestmentDetails();
-    // With 300,000 raised and 250,000 goal, progress should be 120% (capped at 100%)
-    expect(wrapper.text()).toContain("100%");
+    const investmentCards = wrapper.findComponent({ name: "InvestmentCards" });
+    expect(investmentCards.props("loading")).toBe(false);
   });
 });
