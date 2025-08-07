@@ -93,6 +93,65 @@ export class InvestmentAPI {
           filename: "FileName_GoesHere.pdf",
         },
       ],
+      teamMembers: [
+        {
+          id: 1,
+          name: "Jane Smith",
+          position: "Director of Product Marketing",
+          image:
+            "https://i.postimg.cc/KvMRHGh4/73350dca466c03ce4e13b8398184ca610f015d69.png",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          socialLinks: {
+            facebook: "#",
+            linkedin: "#",
+            twitter: "#",
+          },
+        },
+        {
+          id: 2,
+          name: "Dr. Carlos Nguyen",
+          position: "Lead Game Designer",
+          image:
+            "https://i.postimg.cc/t4GY0K9k/9f0f3cb05cfe27298de8750b0852c4baea79a752.png",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          socialLinks: {
+            facebook: "#",
+            linkedin: "#",
+            twitter: "#",
+          },
+        },
+        {
+          id: 3,
+          name: "David Lee",
+          position: "Data Scientist",
+          image:
+            "https://i.postimg.cc/t4GY0K9k/9f0f3cb05cfe27298de8750b0852c4baea79a752.png",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          socialLinks: {
+            facebook: "#",
+            linkedin: "#",
+            twitter: "#",
+          },
+        },
+        {
+          id: 4,
+          name: "Alicia Brown",
+          position: "Esports & Community Manager",
+          image:
+            "https://i.postimg.cc/KvMRHGh4/73350dca466c03ce4e13b8398184ca610f015d69.png",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          socialLinks: {
+            facebook: "#",
+            linkedin: "#",
+            twitter: "#",
+          },
+        },
+      ],
+      teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at libero auctor hendrerit.",
     };
 
     return mockData;

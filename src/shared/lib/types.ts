@@ -13,6 +13,21 @@ export interface Document {
   filename: string;
 }
 
+export interface SocialLinks {
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
+export interface TeamMember {
+  id: number;
+  name: string;
+  position: string;
+  image: string;
+  description: string;
+  socialLinks: SocialLinks;
+}
+
 export interface InvestmentBannerData {
   daysLeft: number;
   totalInvestors: number;
@@ -28,4 +43,6 @@ export interface InvestmentBannerData {
   website: string;
   offeringTerms: OfferingTerm[];
   documents: Document[];
+  teamMembers: TeamMember[];
+  teamDescription: string;
 }

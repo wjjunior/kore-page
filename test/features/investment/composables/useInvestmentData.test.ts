@@ -92,6 +92,9 @@ describe("useInvestmentData", () => {
             filename: "FileName_GoesHere.pdf",
           },
         ],
+        teamMembers: [],
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -149,6 +152,9 @@ describe("useInvestmentData", () => {
         website: "https://site.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -180,6 +186,9 @@ describe("useInvestmentData", () => {
         website: "https://site.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -230,6 +239,9 @@ describe("useInvestmentData", () => {
             filename: "FileName_GoesHere.pdf",
           },
         ],
+        teamMembers: [],
+        teamDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");

@@ -73,6 +73,21 @@ vi.mock("@/features/investment/composables/useInvestmentData", () => ({
         filename: "FileName_GoesHere.pdf",
       },
     ]),
+    getTeamMembers: ref([
+      {
+        id: 1,
+        name: "Jane Smith",
+        position: "Director of Product Marketing",
+        image: "https://example.com/jane.jpg",
+        description: "Lorem ipsum dolor sit amet",
+        socialLinks: {
+          facebook: "#",
+          linkedin: "#",
+          twitter: "#",
+        },
+      },
+    ]),
+    getTeamDescription: ref("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
     loadData: vi.fn(),
   }),
 }));

@@ -25,7 +25,11 @@
           />
 
           <div class="mt-8">
-            <InvestmentTeam />
+            <InvestmentTeam
+              :team-members="getTeamMembers"
+              :team-description="getTeamDescription"
+              :loading="loading"
+            />
           </div>
         </div>
       </div>
@@ -44,8 +48,14 @@ interface NavigationLink {
   text: string;
 }
 
-const { getOfferingTerms, getDocuments, loadData, loading } =
-  useInvestmentData();
+const {
+  getOfferingTerms,
+  getDocuments,
+  getTeamMembers,
+  getTeamDescription,
+  loadData,
+  loading,
+} = useInvestmentData();
 
 const navigationLinks: NavigationLink[] = [
   { href: "#offering-terms", text: "Offering Terms and Documents" },

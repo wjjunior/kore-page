@@ -21,14 +21,24 @@ vi.mock("@/features/investment/composables/useInvestmentData", () => ({
     getCompanyName: ref("Kore"),
     getCompanyDescription: ref("Lorem ipsum dolor sit"),
     getWebsite: ref("https://site.com"),
+    getOfferingTerms: ref([]),
+    getDocuments: ref([]),
+    getTeamMembers: ref([]),
     retryLoad: vi.fn(),
   }),
 }));
 
+const MockNuxtImg = {
+  name: "NuxtImg",
+  template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
+};
+
 const mountInvestmentOverview = () => {
   return mount(InvestmentOverview, {
     global: {
-      components: {},
+      components: {
+        NuxtImg: MockNuxtImg,
+      },
     },
   });
 };
@@ -44,14 +54,14 @@ describe("InvestmentOverview", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("should display the main title", () => {
+  it("should display the company name", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Investment Details");
+    expect(wrapper.text()).toContain("Kore");
   });
 
-  it("should display funding progress section", () => {
+  it("should display the back button", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Funding Progress");
+    expect(wrapper.text()).toContain("Back");
   });
 
   it("should display minimum investment section", () => {
@@ -62,7 +72,7 @@ describe("InvestmentOverview", () => {
 
   it("should display days remaining section", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Days Remaining");
+    expect(wrapper.text()).toContain("Days Left");
     expect(wrapper.text()).toContain("213");
   });
 
@@ -80,24 +90,8 @@ describe("InvestmentOverview", () => {
 
   it("should display security type section", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Security Type");
+    expect(wrapper.text()).toContain("Type of Security");
     expect(wrapper.text()).toContain("Revenue Share Agreement");
-  });
-
-  it("should display company information section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Company Information");
-    expect(wrapper.text()).toContain("Kore");
-  });
-
-  it("should display investment terms section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Investment Terms");
-  });
-
-  it("should display risk disclosure section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Risk Disclosure");
   });
 
   it("should display company description", () => {
@@ -131,9 +125,25 @@ describe("InvestmentOverview", () => {
     expect(wrapper.text()).toContain("$300,000.00");
   });
 
-  it("should have proper funding progress calculation", () => {
+  it("should display invest now button", () => {
     const wrapper = mountInvestmentOverview();
-    // With 300,000 raised and 250,000 goal, progress should be 120% (capped at 100%)
-    expect(wrapper.text()).toContain("100%");
+    expect(wrapper.text()).toContain("Invest Now");
+  });
+
+  it("should display view offering circular button", () => {
+    const wrapper = mountInvestmentOverview();
+    expect(wrapper.text()).toContain("View Offering Circular");
+  });
+
+  it("should display risk disclosure text", () => {
+    const wrapper = mountInvestmentOverview();
+    expect(wrapper.text()).toContain(
+      "Purchased securities are not currently tradeable"
+    );
+  });
+
+  it("should display share this deal section", () => {
+    const wrapper = mountInvestmentOverview();
+    expect(wrapper.text()).toContain("Share This Deal");
   });
 });

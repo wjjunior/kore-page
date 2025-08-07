@@ -10,15 +10,30 @@
       <p
         class="text-[20px] font-normal text-black leading-[28px] tracking-[0px] mb-4"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc luctus
-        erat velit, non interdum lorem efficitur eu. Etiam hendrerit tortor at
-        libero auctor hendrerit. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Nunc luctus erat velit, non interdum lorem efficitur
-        eu. Etiam hendrerit tortor at libero auctor hendrerit.
+        {{ teamDescription }}
       </p>
     </div>
 
-    <div class="flex flex-wrap gap-6">
+    <div v-if="loading" class="flex flex-wrap gap-6">
+      <div
+        v-for="i in 4"
+        :key="i"
+        class="bg-white rounded-lg border border-primary-200 p-6 w-[430px] text-center animate-pulse"
+      >
+        <div class="w-24 h-24 mx-auto rounded-full mb-4 bg-gray-200"></div>
+        <div class="h-6 bg-gray-200 rounded mb-1 w-32 mx-auto"></div>
+        <div class="h-4 bg-gray-200 rounded mb-4 w-40 mx-auto"></div>
+        <div class="h-4 bg-gray-200 rounded mb-4 w-full"></div>
+        <div class="h-4 bg-gray-200 rounded mb-4 w-full"></div>
+        <div class="flex justify-center space-x-6">
+          <div class="w-16 h-4 bg-gray-200 rounded"></div>
+          <div class="w-16 h-4 bg-gray-200 rounded"></div>
+          <div class="w-8 h-4 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="flex flex-wrap gap-6">
       <div
         v-for="member in teamMembers"
         :key="member.id"
@@ -29,21 +44,25 @@
           :alt="member.name"
           class="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
         />
+
         <h3
           class="font-bold text-[24px] leading-[100%] tracking-[1%] text-primary-200 mb-1"
         >
           {{ member.name }}
         </h3>
+
         <p
           class="font-medium text-[13px] leading-[20px] tracking-[0px] text-center text-gray-6 mb-4"
         >
           {{ member.position }}
         </p>
+
         <p
           class="font-normal text-[16px] leading-[20px] tracking-[0px] text-gray-6 mb-4 text-left"
         >
           {{ member.description }}
         </p>
+
         <div class="flex justify-center space-x-6 text-sm">
           <a
             v-if="member.socialLinks.linkedin"
@@ -82,82 +101,19 @@ import {
   faLinkedinIn,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import type { TeamMember } from "@/shared/lib/types";
 
 defineOptions({
   name: "InvestmentTeam",
 });
 
-interface SocialLinks {
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
+interface InvestmentTeamProps {
+  teamMembers: TeamMember[];
+  teamDescription: string;
+  loading?: boolean;
 }
 
-interface TeamMember {
-  id: number;
-  name: string;
-  position: string;
-  image: string;
-  description: string;
-  socialLinks: SocialLinks;
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    id: 1,
-    name: "Jane Smith",
-    position: "Director of Product Marketing",
-    image:
-      "https://i.postimg.cc/KvMRHGh4/73350dca466c03ce4e13b8398184ca610f015d69.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    socialLinks: {
-      facebook: "#",
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    id: 2,
-    name: "Dr. Carlos Nguyen",
-    position: "Lead Game Designer",
-    image:
-      "https://i.postimg.cc/t4GY0K9k/9f0f3cb05cfe27298de8750b0852c4baea79a752.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    socialLinks: {
-      facebook: "#",
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    id: 3,
-    name: "David Lee",
-    position: "Data Scientist",
-    image:
-      "https://i.postimg.cc/t4GY0K9k/9f0f3cb05cfe27298de8750b0852c4baea79a752.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    socialLinks: {
-      facebook: "#",
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    id: 4,
-    name: "Alicia Brown",
-    position: "Esports & Community Manager",
-    image:
-      "https://i.postimg.cc/KvMRHGh4/73350dca466c03ce4e13b8398184ca610f015d69.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    socialLinks: {
-      facebook: "#",
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-];
+withDefaults(defineProps<InvestmentTeamProps>(), {
+  loading: false,
+});
 </script>

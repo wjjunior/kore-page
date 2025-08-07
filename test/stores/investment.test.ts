@@ -51,6 +51,8 @@ describe("useInvestmentStore", () => {
       expect(store.getWebsite).toBe("");
       expect(store.getOfferingTerms).toEqual([]);
       expect(store.getDocuments).toEqual([]);
+      expect(store.getTeamMembers).toEqual([]);
+      expect(store.getTeamDescription).toBe("");
     });
 
     it("should return correct values when bannerData is loaded", () => {
@@ -89,6 +91,8 @@ describe("useInvestmentStore", () => {
             filename: "FileName_GoesHere.pdf",
           },
         ],
+        teamMembers: [],
+        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const store = useInvestmentStore();
@@ -109,6 +113,8 @@ describe("useInvestmentStore", () => {
       expect(store.getWebsite).toBe("https://site.com");
       expect(store.getOfferingTerms).toEqual(mockData.offeringTerms);
       expect(store.getDocuments).toEqual(mockData.documents);
+      expect(store.getTeamMembers).toEqual(mockData.teamMembers);
+      expect(store.getTeamDescription).toBe(mockData.teamDescription);
     });
 
     it("should handle partial bannerData with undefined values", () => {
@@ -138,6 +144,8 @@ describe("useInvestmentStore", () => {
             filename: "test.pdf",
           },
         ],
+        teamMembers: [],
+        teamDescription: "Test team description",
       };
 
       const store = useInvestmentStore();
@@ -158,6 +166,8 @@ describe("useInvestmentStore", () => {
       expect(store.getWebsite).toBe("https://test.com");
       expect(store.getOfferingTerms).toEqual(partialData.offeringTerms);
       expect(store.getDocuments).toEqual(partialData.documents);
+      expect(store.getTeamMembers).toEqual(partialData.teamMembers);
+      expect(store.getTeamDescription).toBe(partialData.teamDescription);
     });
   });
 
@@ -189,6 +199,8 @@ describe("useInvestmentStore", () => {
             filename: "FileName_GoesHere.pdf",
           },
         ],
+        teamMembers: [],
+        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -277,6 +289,8 @@ describe("useInvestmentStore", () => {
         website: "https://site.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -311,6 +325,8 @@ describe("useInvestmentStore", () => {
         website: "https://site.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const { investmentAPI } = await import("@/shared/lib/api");
@@ -352,6 +368,8 @@ describe("useInvestmentStore", () => {
         website: "https://site.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       };
 
       const store = useInvestmentStore();
@@ -385,6 +403,8 @@ describe("useInvestmentStore", () => {
         website: "https://test.com",
         offeringTerms: [],
         documents: [],
+        teamMembers: [],
+        teamDescription: "Test team description",
       };
 
       store.bannerData = mockData;

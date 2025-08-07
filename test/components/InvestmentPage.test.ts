@@ -21,20 +21,37 @@ vi.mock("@/features/investment", () => ({
     getCompanyName: { value: "Kore" },
     getCompanyDescription: { value: "Lorem ipsum dolor sit" },
     getWebsite: { value: "https://site.com" },
+    getOfferingTerms: { value: [] },
+    getDocuments: { value: [] },
+    getTeamMembers: { value: [] },
     retryLoad: vi.fn(),
   }),
 }));
 
-const MockNuxtImg = {
-  name: "NuxtImg",
-  template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
+const MockInvestmentOverview = {
+  name: "InvestmentOverview",
+  template:
+    '<div class="investment-overview-mock">Investment Overview Component</div>',
+};
+
+const MockInvestmentDetails = {
+  name: "InvestmentDetails",
+  template:
+    '<div class="investment-details-mock">Investment Details Component</div>',
+};
+
+const MockHeader = {
+  name: "Header",
+  template: '<header class="header-mock">Header Component</header>',
 };
 
 const mountInvestmentPage = () => {
   return mount(InvestmentPage, {
     global: {
       components: {
-        NuxtImg: MockNuxtImg,
+        InvestmentOverview: MockInvestmentOverview,
+        InvestmentDetails: MockInvestmentDetails,
+        Header: MockHeader,
       },
     },
   });
@@ -45,36 +62,28 @@ describe("InvestmentPage", () => {
     setActivePinia(createPinia());
   });
 
-  it("renders the main heading correctly", () => {
+  it("renders the component correctly", () => {
     const wrapper = mountInvestmentPage();
-
-    expect(wrapper.find("h1").text()).toBe("Investment Page");
+    expect(wrapper.exists()).toBe(true);
   });
 
-  it("renders the main container with correct styling", () => {
+  it("renders the header component", () => {
     const wrapper = mountInvestmentPage();
-
-    const mainContainer = wrapper.find(".min-h-screen");
-    expect(mainContainer.exists()).toBe(true);
-    expect(mainContainer.classes()).toContain("bg-gradient-to-br");
-    expect(mainContainer.classes()).toContain("from-blue-50");
-    expect(mainContainer.classes()).toContain("to-indigo-100");
+    expect(wrapper.findComponent({ name: "Header" }).exists()).toBe(true);
   });
 
-  it("renders the content card with proper styling", () => {
+  it("renders the investment overview component", () => {
     const wrapper = mountInvestmentPage();
+    expect(wrapper.findComponent({ name: "InvestmentOverview" }).exists()).toBe(
+      true
+    );
+  });
 
-    // Busca especificamente pelo div do card, não pelo botão
-    const contentCard = wrapper.find("div.bg-white.rounded-lg");
-    expect(contentCard.exists()).toBe(true);
-
-    // Verifica as classes do card principal da página
-    const cardClasses = contentCard.classes();
-    expect(cardClasses).toContain("bg-white");
-    expect(cardClasses).toContain("rounded-lg");
-    expect(cardClasses).toContain("shadow-xl");
-    expect(cardClasses).toContain("p-8");
-    expect(cardClasses).toContain("max-w-md");
+  it("renders the investment details component", () => {
+    const wrapper = mountInvestmentPage();
+    expect(wrapper.findComponent({ name: "InvestmentDetails" }).exists()).toBe(
+      true
+    );
   });
 
   it("has the proper page structure", () => {
@@ -82,7 +91,11 @@ describe("InvestmentPage", () => {
 
     // Verifica se a estrutura básica da página está presente
     expect(wrapper.findComponent({ name: "Header" }).exists()).toBe(true);
-    expect(wrapper.find("h1").exists()).toBe(true);
-    expect(wrapper.find(".min-h-screen").exists()).toBe(true);
+    expect(wrapper.findComponent({ name: "InvestmentOverview" }).exists()).toBe(
+      true
+    );
+    expect(wrapper.findComponent({ name: "InvestmentDetails" }).exists()).toBe(
+      true
+    );
   });
 });
