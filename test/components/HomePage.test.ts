@@ -1,6 +1,29 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
+import { createPinia, setActivePinia } from "pinia";
 import HomePage from "@/components/home";
+
+vi.mock("@/features/home", () => ({
+  useInvestmentData: () => ({
+    loadData: vi.fn().mockResolvedValue(undefined),
+    loading: { value: false },
+    error: { value: null },
+    isDataReady: { value: true },
+    getDaysLeft: { value: 213 },
+    getTotalInvestors: { value: 157 },
+    getFundingGoal: { value: 250000 },
+    getFundsRaised: { value: 300000 },
+    getMinimumInvestment: { value: 100 },
+    getDeadline: { value: "Feb, 2025" },
+    getTypeOfSecurity: { value: "Revenue Share Agreement" },
+    getRevenueShareDuration: { value: 36 },
+    getCategories: { value: ["Fintech", "Investments"] },
+    getCompanyName: { value: "Kore" },
+    getCompanyDescription: { value: "Lorem ipsum dolor sit" },
+    getWebsite: { value: "https://site.com" },
+    retryLoad: vi.fn(),
+  }),
+}));
 
 const MockNuxtImg = {
   name: "NuxtImg",
@@ -18,6 +41,10 @@ const mountHomePage = () => {
 };
 
 describe("HomePage", () => {
+  beforeEach(() => {
+    setActivePinia(createPinia());
+  });
+
   it("renders the main heading correctly", () => {
     const wrapper = mountHomePage();
 

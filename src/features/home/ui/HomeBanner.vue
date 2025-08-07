@@ -47,7 +47,7 @@
         </div>
 
         <div
-          class="flex items-start justify-start lg:justify-start gap-2 lg:gap-3"
+          class="flex items-center justify-start lg:justify-start gap-2 lg:gap-3"
         >
           <span
             class="font-normal text-xs lg:text-[14px] leading-[40px] tracking-[0px]"
