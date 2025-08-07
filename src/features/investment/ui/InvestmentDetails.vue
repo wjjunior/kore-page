@@ -33,7 +33,10 @@
           </div>
 
           <div class="mt-10">
-            <InvestmentMarketingPlan :loading="loading" />
+            <InvestmentMarketingPlan
+              :marketing-plan="getMarketingPlan"
+              :loading="loading"
+            />
           </div>
         </div>
       </div>
@@ -57,6 +60,7 @@ const {
   getDocuments,
   getTeamMembers,
   getTeamDescription,
+  getMarketingPlan,
   loadData,
   loading,
 } = useInvestmentData();

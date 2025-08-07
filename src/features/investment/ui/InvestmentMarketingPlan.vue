@@ -25,26 +25,23 @@
     </div>
 
     <div v-else class="flex flex-col gap-6 max-w-4xl">
-      <div v-html="marketingPlan"></div>
+      <div v-html="props.marketingPlan"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useInvestmentData } from "../composables/useInvestmentData";
-
 defineOptions({
   name: "InvestmentMarketingPlan",
 });
 
 interface InvestmentMarketingPlanProps {
   loading?: boolean;
+  marketingPlan?: string;
 }
 
-withDefaults(defineProps<InvestmentMarketingPlanProps>(), {
+const props = withDefaults(defineProps<InvestmentMarketingPlanProps>(), {
   loading: false,
+  marketingPlan: "",
 });
-
-const { getMarketingPlan } = useInvestmentData();
-const marketingPlan = getMarketingPlan;
 </script>
