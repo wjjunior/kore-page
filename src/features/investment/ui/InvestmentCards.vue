@@ -85,13 +85,13 @@
 import { FileIcon } from "@/shared/ui";
 import type { OfferingTerm, Document } from "@/shared/lib/types";
 
-interface Props {
+interface InvestmentCardsProps {
   offeringTerms: OfferingTerm[];
   documents: Document[];
   loading?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<InvestmentCardsProps>(), {
   loading: false,
 });
 </script>

@@ -25,16 +25,7 @@
           />
 
           <div class="mt-8">
-            <div class="bg-white rounded-lg border border-blue-400 p-6">
-              <h2
-                class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6 mb-4"
-              >
-                Additional Content
-              </h2>
-              <p class="text-gray-600">
-                This area is reserved for additional content you want to add.
-              </p>
-            </div>
+            <InvestmentTeam />
           </div>
         </div>
       </div>
@@ -45,7 +36,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useInvestmentData } from "../composables";
-import { InvestmentCards } from "./";
+import { InvestmentCards, InvestmentTeam } from "./";
 
 // Types
 interface NavigationLink {
