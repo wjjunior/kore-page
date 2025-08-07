@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto">
       <div class="flex space-x-6">
         <div class="w-[190px] flex-shrink-0">
-          <div class="w-[143px]">
+          <div class="w-[143px] sticky top-[120px]">
             <nav class="flex flex-col gap-4">
               <a
                 v-for="link in navigationLinks"
@@ -17,11 +17,26 @@
           </div>
         </div>
 
-        <InvestmentCards
-          :offering-terms="getOfferingTerms"
-          :documents="getDocuments"
-          :loading="loading"
-        />
+        <div class="w-[906px] flex-shrink-0">
+          <InvestmentCards
+            :offering-terms="getOfferingTerms"
+            :documents="getDocuments"
+            :loading="loading"
+          />
+
+          <div class="mt-8">
+            <div class="bg-white rounded-lg border border-blue-400 p-6">
+              <h2
+                class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6 mb-4"
+              >
+                Additional Content
+              </h2>
+              <p class="text-gray-600">
+                This area is reserved for additional content you want to add.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

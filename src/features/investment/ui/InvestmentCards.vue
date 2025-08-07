@@ -2,9 +2,9 @@
   <div class="flex space-x-6">
     <div class="w-[441px] flex-shrink-0">
       <div
-        class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full flex flex-col"
+        class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full"
       >
-        <div class="p-4 flex-1">
+        <div class="p-4">
           <div class="border-b border-blue-400 mb-4 pb-4">
             <h2
               class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6"
@@ -36,9 +36,9 @@
 
     <div class="w-[441px] flex-shrink-0">
       <div
-        class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full flex flex-col"
+        class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full"
       >
-        <div class="p-4 flex-1">
+        <div class="p-4">
           <div class="border-b border-blue-400 mb-4 pb-4">
             <h2
               class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6"
