@@ -19,7 +19,9 @@
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/vue-fontawesome": "^3.1.1",
+    "@pinia/nuxt": "^0.11.2",
     "nuxt": "^4.0.3",
+    "pinia": "^3.0.3",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1",
     "vue-tsc": "^3.0.5"

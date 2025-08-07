@@ -15,11 +15,18 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { Header } from "@/widgets/header";
-import HomeBanner from "../../../features/home/ui/HomeBanner.vue";
+import HomeBanner from "@/features/home/ui/HomeBanner.vue";
+import { useInvestmentData } from "@/features/home";
 
 defineOptions({
   name: "HomePage",
 });
-</script>
 
+const { loadData } = useInvestmentData();
+
+onMounted(async () => {
+  await loadData();
+});
+</script>

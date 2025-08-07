@@ -1,0 +1,1 @@
+export { useInvestmentData } from "./useInvestmentData"; 
