@@ -1,12 +1,12 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center"
+    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-200 text-white flex items-center justify-center"
   >
     <div class="text-center">
       <div
-        class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"
+        class="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"
       ></div>
-      <p class="text-lg">{{ message }}</p>
+      <p class="text-xl font-semibold">Loading...</p>
     </div>
   </div>
 </template>

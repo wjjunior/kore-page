@@ -1,16 +1,16 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center"
+    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-200 text-white flex items-center justify-center"
   >
     <div class="text-center">
-      <p class="text-lg mb-4">{{ title }}</p>
-      <p class="text-sm mb-4">{{ message }}</p>
+      <div class="text-6xl mb-4">⚠️</div>
+      <h1 class="text-2xl font-bold mb-2">{{ title }}</h1>
+      <p class="text-lg mb-6">{{ message }}</p>
       <button
-        v-if="showRetryButton"
         @click="$emit('retry')"
-        class="bg-white text-primary-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+        class="bg-white text-primary-200 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
       >
-        {{ retryButtonText }}
+        Try Again
       </button>
     </div>
   </div>

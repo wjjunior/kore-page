@@ -5,7 +5,7 @@
 
   <div
     v-else-if="isDataReady"
-    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-600 text-white px-3 sm:px-6 md:px-12 lg:px-16 xl:px-[120px] pt-4 lg:pt-10"
+    class="min-h-screen bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-12 lg:px-16 xl:px-[120px] pt-4 lg:pt-10"
   >
     <button class="flex items-center gap-2 p-0 text-white rounded-lg">
       <FontAwesomeIcon
@@ -146,11 +146,11 @@
               <span class="block text-base lg:text-[20px] text-neutral-212121">
                 ${{ formatCurrency(getFundingGoal) }}
               </span>
-              <span class="block text-base lg:text-[20px] text-primary-600">
+              <span class="block text-base lg:text-[20px] text-primary-200">
                 Funds Raised
               </span>
               <span
-                class="mb-3 lg:mb-4 block font-hanken-grotesk text-xl lg:text-[32px] font-bold leading-[100%] tracking-[1%] align-middle text-primary-600"
+                class="mb-3 lg:mb-4 block font-hanken-grotesk text-xl lg:text-[32px] font-bold leading-[100%] tracking-[1%] align-middle text-primary-200"
               >
                 ${{ formatCurrency(getFundsRaised) }}
               </span>
@@ -201,13 +201,13 @@
             <div class="flex flex-col gap-3 pt-4 mt-3">
               <button
                 @click="investNow"
-                class="font-lato w-full lg:w-[357px] h-11 lg:h-[46px] px-[14px] rounded-button bg-primary-600 hover:bg-primary-500 text-white text-sm lg:text-lg font-bold flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
+                class="font-lato w-full lg:w-[357px] h-11 lg:h-[46px] px-[14px] rounded-button bg-primary-200 hover:bg-primary-500 text-white text-sm lg:text-lg font-bold flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Invest Now
               </button>
               <button
                 @click="viewOffering"
-                class="font-lato text-neutral-212121 w-full bg-transparent border-none cursor-pointer py-2 font-normal text-xs lg:text-base text-center underline"
+                class="font-lato text-neutral-212121 w-full bg-transparent border-none cursor-pointer py-2 font-normal text-xs lg:text-base text-center underline underline-offset-4"
               >
                 View Offering Circular
               </button>
