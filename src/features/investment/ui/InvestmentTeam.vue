@@ -39,10 +39,12 @@
         :key="member.id"
         class="bg-white rounded-lg border border-primary-200 p-6 w-[430px] text-center"
       >
-        <img
+        <NuxtImg
           :src="member.image"
           :alt="member.name"
           class="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
+          loading="lazy"
+          format="webp"
         />
 
         <h3

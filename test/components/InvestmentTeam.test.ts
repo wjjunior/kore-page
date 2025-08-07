@@ -10,6 +10,13 @@ const MockFontAwesomeIcon = {
   props: ["icon", "class"],
 };
 
+const MockNuxtImg = {
+  name: "NuxtImg",
+  template:
+    '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" :loading="$attrs.loading" :format="$attrs.format" />',
+  inheritAttrs: false,
+};
+
 const mountInvestmentTeam = (props: {
   teamMembers: TeamMember[];
   teamDescription: string;
@@ -20,6 +27,7 @@ const mountInvestmentTeam = (props: {
     global: {
       components: {
         FontAwesomeIcon: MockFontAwesomeIcon,
+        NuxtImg: MockNuxtImg,
       },
     },
   });
@@ -142,10 +150,16 @@ describe("InvestmentTeam", () => {
 
     expect(images[0]!.attributes("src")).toBe("/images/john-doe.jpg");
     expect(images[0]!.attributes("alt")).toBe("John Doe");
+    expect(images[0]!.attributes("loading")).toBe("lazy");
+    expect(images[0]!.attributes("format")).toBe("webp");
     expect(images[1]!.attributes("src")).toBe("/images/jane-smith.jpg");
     expect(images[1]!.attributes("alt")).toBe("Jane Smith");
+    expect(images[1]!.attributes("loading")).toBe("lazy");
+    expect(images[1]!.attributes("format")).toBe("webp");
     expect(images[2]!.attributes("src")).toBe("/images/bob-johnson.jpg");
     expect(images[2]!.attributes("alt")).toBe("Bob Johnson");
+    expect(images[2]!.attributes("loading")).toBe("lazy");
+    expect(images[2]!.attributes("format")).toBe("webp");
   });
 
   it("should display LinkedIn links when available", () => {
@@ -203,7 +217,7 @@ describe("InvestmentTeam", () => {
 
     expect(wrapper.text()).not.toContain("LinkedIn");
     expect(wrapper.text()).not.toContain("Facebook");
-    // Check that no social link elements are rendered
+
     expect(wrapper.findAll('a[href*="linkedin.com"]')).toHaveLength(0);
     expect(wrapper.findAll('a[href*="facebook.com"]')).toHaveLength(0);
     expect(wrapper.findAll('a[href*="twitter.com"]')).toHaveLength(0);
@@ -216,11 +230,9 @@ describe("InvestmentTeam", () => {
       loading: true,
     });
 
-    // Check for skeleton elements
     const skeletonCards = wrapper.findAll(".animate-pulse");
     expect(skeletonCards.length).toBeGreaterThan(0);
 
-    // Should not display actual team members
     expect(wrapper.text()).not.toContain("John Doe");
     expect(wrapper.text()).not.toContain("Jane Smith");
   });
@@ -305,7 +317,6 @@ describe("InvestmentTeam", () => {
       teamDescription: "Our experienced team",
     });
 
-    // Find position elements by looking for paragraphs that contain only position text (not descriptions)
     const positionElements = wrapper
       .findAll("p")
       .filter(

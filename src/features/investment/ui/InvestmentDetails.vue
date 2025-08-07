@@ -24,12 +24,16 @@
             :loading="loading"
           />
 
-          <div class="mt-8">
+          <div class="mt-10">
             <InvestmentTeam
               :team-members="getTeamMembers"
               :team-description="getTeamDescription"
               :loading="loading"
             />
+          </div>
+
+          <div class="mt-10">
+            <InvestmentMarketingPlan :loading="loading" />
           </div>
         </div>
       </div>
@@ -40,7 +44,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useInvestmentData } from "../composables";
-import { InvestmentCards, InvestmentTeam } from "./";
+import { InvestmentCards, InvestmentTeam, InvestmentMarketingPlan } from "./";
 
 // Types
 interface NavigationLink {
