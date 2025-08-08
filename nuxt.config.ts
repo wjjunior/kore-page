@@ -20,12 +20,7 @@ export default defineNuxtConfig({
       meta: [{ name: "format-detection", content: "telephone=no" }],
     },
   },
-  modules: [
-    "@nuxt/image",
-    "@nuxtjs/google-fonts",
-    "@nuxt/test-utils",
-    "@pinia/nuxt",
-  ],
+  modules: ["@nuxt/image", "@nuxtjs/google-fonts", "@pinia/nuxt"],
   css: ["./assets/css/main.css"],
   typescript: {
     strict: true,
