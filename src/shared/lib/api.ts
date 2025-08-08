@@ -28,6 +28,8 @@ export class InvestmentAPI {
       companyName: "Kore",
       companyDescription: "Lorem ipsum dolor sit",
       website: "https://site.com",
+      logoSrc: "https://i.postimg.cc/mZPSBdPJ/kore-Logo-2024.png",
+      thumbnailSrc: "https://i.postimg.cc/C1PnWVC5/Thumb-Nail.png",
       offeringTerms: [
         {
           label: "Regulation",

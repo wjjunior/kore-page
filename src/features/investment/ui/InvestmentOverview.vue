@@ -29,7 +29,7 @@
             class="pt-2 lg:pt-5 pb-2 lg:pb-[18.78px] pl-2 lg:pl-3 pr-2 lg:pr-[10.67px] bg-white rounded-xl shadow-sm flex-shrink-0"
           >
             <NuxtImg
-              src="/images/kore-logo.svg"
+              :src="investmentData.logoSrc"
               alt="Kore Logo"
               class="w-[70px] h-[25px] sm:w-[90px] sm:h-[35px] lg:w-[104.33px] lg:h-[40.22px]"
             />
@@ -114,9 +114,9 @@
             class="h-[200px] sm:h-[250px] md:h-[300px] lg:h-[375px] border border-border-c9d6df shadow-lg mb-3 lg:mb-[17px] rounded-lg overflow-hidden"
           >
             <NuxtImg
-              src="/images/thumbnail.svg"
+              :src="investmentData.thumbnailSrc"
               alt="Video thumbnail"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover hover:cursor-pointer"
             />
           </div>
           <div

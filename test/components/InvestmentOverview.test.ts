@@ -22,6 +22,8 @@ const mockInvestmentData: InvestmentBannerData = {
   companyName: "Kore",
   companyDescription: "Lorem ipsum dolor sit",
   website: "https://site.com",
+  logoSrc: "/images/kore-logo.svg",
+  thumbnailSrc: "/images/thumbnail.svg",
   offeringTerms: [],
   documents: [],
   teamMembers: [],
@@ -60,6 +62,15 @@ describe("InvestmentOverview", () => {
   it("should display the company name", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("Kore");
+  });
+
+  it("should use API-provided logo and thumbnail src", () => {
+    const wrapper = mountInvestmentOverview();
+    const imgs = wrapper.findAll("img");
+    const logo = imgs.find((i) => i.attributes("alt") === "Kore Logo");
+    const thumb = imgs.find((i) => i.attributes("alt") === "Video thumbnail");
+    expect(logo?.attributes("src")).toBe("/images/kore-logo.svg");
+    expect(thumb?.attributes("src")).toBe("/images/thumbnail.svg");
   });
 
   it("should display the back button", () => {
@@ -156,17 +167,17 @@ describe("InvestmentOverview", () => {
   });
 
   it("should show error state when error is provided", () => {
-    const wrapper = mountInvestmentOverview({ 
-      error: "Failed to load data" 
+    const wrapper = mountInvestmentOverview({
+      error: "Failed to load data",
     });
     expect(wrapper.text()).toContain("Failed to load data");
   });
 
   it("should emit retry event when retry button is clicked", async () => {
-    const wrapper = mountInvestmentOverview({ 
-      error: "Failed to load data" 
+    const wrapper = mountInvestmentOverview({
+      error: "Failed to load data",
     });
-    
+
     const retryButton = wrapper.find('[data-testid="retry-button"]');
     if (retryButton.exists()) {
       await retryButton.trigger("click");

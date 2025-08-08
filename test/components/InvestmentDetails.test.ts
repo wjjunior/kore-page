@@ -16,6 +16,8 @@ const mockInvestmentData: InvestmentBannerData = {
   companyName: "Kore",
   companyDescription: "Lorem ipsum dolor sit",
   website: "https://site.com",
+  logoSrc: "/images/kore-logo.svg",
+  thumbnailSrc: "/images/thumbnail.svg",
   offeringTerms: [
     {
       label: "Regulation",

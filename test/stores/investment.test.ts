@@ -49,6 +49,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("");
       expect(store.getCompanyDescription).toBe("");
       expect(store.getWebsite).toBe("");
+      expect(store.getLogoSrc).toBe("");
+      expect(store.getThumbnailSrc).toBe("");
       expect(store.getOfferingTerms).toEqual([]);
       expect(store.getDocuments).toEqual([]);
       expect(store.getTeamMembers).toEqual([]);
@@ -69,6 +71,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        logoSrc: "/images/kore-logo.svg",
+        thumbnailSrc: "/images/thumbnail.svg",
         offeringTerms: [
           {
             label: "Regulation",
@@ -115,6 +119,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("Kore");
       expect(store.getCompanyDescription).toBe("Lorem ipsum dolor sit");
       expect(store.getWebsite).toBe("https://site.com");
+      expect(store.getLogoSrc).toBe("/images/kore-logo.svg");
+      expect(store.getThumbnailSrc).toBe("/images/thumbnail.svg");
       expect(store.getOfferingTerms).toEqual(mockData.offeringTerms);
       expect(store.getDocuments).toEqual(mockData.documents);
       expect(store.getTeamMembers).toEqual(mockData.teamMembers);
@@ -135,6 +141,8 @@ describe("useInvestmentStore", () => {
         companyName: "Test Company",
         companyDescription: "Test description",
         website: "https://test.com",
+        logoSrc: "/img/logo.svg",
+        thumbnailSrc: "/img/thumb.svg",
         offeringTerms: [
           {
             label: "Test Term",
@@ -171,6 +179,8 @@ describe("useInvestmentStore", () => {
       expect(store.getCompanyName).toBe("Test Company");
       expect(store.getCompanyDescription).toBe("Test description");
       expect(store.getWebsite).toBe("https://test.com");
+      expect(store.getLogoSrc).toBe("/img/logo.svg");
+      expect(store.getThumbnailSrc).toBe("/img/thumb.svg");
       expect(store.getOfferingTerms).toEqual(partialData.offeringTerms);
       expect(store.getDocuments).toEqual(partialData.documents);
       expect(store.getTeamMembers).toEqual(partialData.teamMembers);
@@ -193,6 +203,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        logoSrc: "/images/kore-logo.svg",
+        thumbnailSrc: "/images/thumbnail.svg",
         offeringTerms: [
           {
             label: "Regulation",
@@ -298,6 +310,8 @@ describe("useInvestmentStore", () => {
         companyName: "Kore",
         companyDescription: "Lorem ipsum dolor sit",
         website: "https://site.com",
+        logoSrc: "/images/kore-logo.svg",
+        thumbnailSrc: "/images/thumbnail.svg",
         offeringTerms: [],
         documents: [],
         teamMembers: [],
@@ -424,6 +438,8 @@ describe("useInvestmentStore", () => {
         companyName: "Test Company",
         companyDescription: "Test description",
         website: "https://test.com",
+        logoSrc: "/img/logo.svg",
+        thumbnailSrc: "/img/thumb.svg",
         offeringTerms: [],
         documents: [],
         teamMembers: [],

@@ -47,6 +47,8 @@ export interface InvestmentBannerData {
   companyName: string;
   companyDescription: string;
   website: string;
+  logoSrc?: string;
+  thumbnailSrc?: string;
   offeringTerms: OfferingTerm[];
   documents: Document[];
   teamMembers: TeamMember[];

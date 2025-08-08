@@ -93,6 +93,8 @@ describe("useInvestmentDataSSR", () => {
       companyName: "Kore",
       companyDescription: "Lorem ipsum dolor sit",
       website: "https://site.com",
+      logoSrc: "/images/kore-logo.svg",
+      thumbnailSrc: "/images/thumbnail.svg",
       offeringTerms: [
         { label: "Regulation", value: "Regulation Crowdfunding (RegCF)" },
       ],
@@ -131,6 +133,8 @@ describe("useInvestmentDataSSR", () => {
       companyName: "Kore",
       companyDescription: "Lorem ipsum dolor sit",
       website: "https://site.com",
+      logoSrc: "/images/kore-logo.svg",
+      thumbnailSrc: "/images/thumbnail.svg",
       offeringTerms: [
         { label: "Regulation", value: "Regulation Crowdfunding (RegCF)" },
       ],
@@ -212,6 +216,8 @@ describe("useInvestmentDataSSR", () => {
       companyName: "",
       companyDescription: "",
       website: "",
+      logoSrc: "",
+      thumbnailSrc: "",
       offeringTerms: [],
       documents: [],
       teamMembers: [],

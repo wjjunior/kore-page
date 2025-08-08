@@ -48,6 +48,8 @@ export function useInvestmentDataSSR() {
       companyName: data?.companyName ?? "",
       companyDescription: data?.companyDescription ?? "",
       website: data?.website ?? "",
+      logoSrc: data?.logoSrc ?? "",
+      thumbnailSrc: data?.thumbnailSrc ?? "",
       offeringTerms: data?.offeringTerms ?? [],
       documents: data?.documents ?? [],
       teamMembers: data?.teamMembers ?? [],
