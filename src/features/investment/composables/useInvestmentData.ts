@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
-import { useInvestmentStore } from "@/stores";
+import { useInvestmentStore } from "@/app/providers/store";
 
 export function useInvestmentData() {
   const investmentStore = useInvestmentStore();

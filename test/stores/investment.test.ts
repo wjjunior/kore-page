@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { createPinia, setActivePinia } from "pinia";
-import { useInvestmentStore } from "@/stores/investment";
+import { useInvestmentStore } from "@/app/providers/store/investment";
 import type { InvestmentBannerData } from "@/shared/lib/types";
 
 vi.mock("@/shared/lib/api", () => ({

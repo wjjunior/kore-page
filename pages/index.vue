@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import InvestmentPage from "@/components/investment";
+import { InvestmentPage } from "@/pages/investment";
 </script>

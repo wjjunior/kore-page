@@ -1,6 +1,2 @@
-export const NavItems = {
-  INVEST: "invest",
-  FAQ: "faq",
-  CONTACT: "contact",
-  EDUCATION: "education",
-};
+// Re-export navigation constants from entities layer
+export { NavItems } from "@/entities/navigation";

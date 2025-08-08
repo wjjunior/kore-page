@@ -1,9 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
-import InvestmentPage from "@/components/investment";
+import { InvestmentPage } from "@/pages/investment";
 
 vi.mock("@/features/investment", () => ({
+  InvestmentOverview: {
+    name: "InvestmentOverview",
+    template:
+      '<div class="investment-overview-mock">Investment Overview Component</div>',
+  },
+  InvestmentDetails: {
+    name: "InvestmentDetails",
+    template:
+      '<div class="investment-details-mock">Investment Details Component</div>',
+  },
   useInvestmentData: () => ({
     loadData: vi.fn().mockResolvedValue(undefined),
     loading: { value: false },
@@ -28,33 +38,22 @@ vi.mock("@/features/investment", () => ({
   }),
 }));
 
-const MockInvestmentOverview = {
-  name: "InvestmentOverview",
-  template:
-    '<div class="investment-overview-mock">Investment Overview Component</div>',
-};
+vi.mock("@/widgets/header", () => ({
+  Header: {
+    name: "Header",
+    template: '<header class="header-mock">Header Component</header>',
+  },
+}));
 
-const MockInvestmentDetails = {
-  name: "InvestmentDetails",
-  template:
-    '<div class="investment-details-mock">Investment Details Component</div>',
-};
-
-const MockHeader = {
-  name: "Header",
-  template: '<header class="header-mock">Header Component</header>',
-};
+vi.mock("@/widgets/footer", () => ({
+  Footer: {
+    name: "Footer",
+    template: '<footer class="footer-mock">Footer Component</footer>',
+  },
+}));
 
 const mountInvestmentPage = () => {
-  return mount(InvestmentPage, {
-    global: {
-      components: {
-        InvestmentOverview: MockInvestmentOverview,
-        InvestmentDetails: MockInvestmentDetails,
-        Header: MockHeader,
-      },
-    },
-  });
+  return mount(InvestmentPage);
 };
 
 describe("InvestmentPage", () => {
