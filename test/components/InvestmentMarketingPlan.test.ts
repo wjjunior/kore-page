@@ -33,9 +33,10 @@ describe("InvestmentMarketingPlan", () => {
     const skeletonItems = wrapper.findAll(".animate-pulse");
     expect(skeletonItems).toHaveLength(3);
 
-    expect(wrapper.find(".h-8.bg-gray-200.rounded.mb-4.w-48").exists()).toBe(
-      true
-    );
+    const hasSkeletonHeading = wrapper
+      .find(".bg-gray-200.rounded.mb-4")
+      .exists();
+    expect(hasSkeletonHeading).toBe(true);
     expect(wrapper.find(".h-4.bg-gray-200.rounded").exists()).toBe(true);
   });
 
@@ -48,15 +49,21 @@ describe("InvestmentMarketingPlan", () => {
 
     expect(wrapper.find(".animate-pulse").exists()).toBe(false);
 
-    expect(wrapper.find(".flex.flex-col.gap-6.max-w-4xl").exists()).toBe(true);
+    const hasResponsiveContainer = wrapper
+      .find(".flex.flex-col.gap-6")
+      .exists();
+    expect(hasResponsiveContainer).toBe(true);
     expect(wrapper.html()).toContain(marketingPlanContent);
   });
 
   it("should render empty marketing plan when no content is provided", () => {
     const wrapper = mountInvestmentMarketingPlan({ loading: false });
 
-    expect(wrapper.find(".flex.flex-col.gap-6.max-w-4xl").exists()).toBe(true);
-    expect(wrapper.find(".flex.flex-col.gap-6.max-w-4xl").text()).toBe("");
+    const hasResponsiveContainer = wrapper
+      .find(".flex.flex-col.gap-6")
+      .exists();
+    expect(hasResponsiveContainer).toBe(true);
+    expect(wrapper.find(".flex.flex-col.gap-6").text()).toBe("");
   });
 
   it("should render complex HTML content in marketing plan", () => {
@@ -96,9 +103,7 @@ describe("InvestmentMarketingPlan", () => {
 
     const skeletonItems = wrapper.findAll(".animate-pulse");
     skeletonItems.forEach((item, index) => {
-      expect(item.find(".h-8.bg-gray-200.rounded.mb-4.w-48").exists()).toBe(
-        true
-      );
+      expect(item.find(".bg-gray-200.rounded.mb-4").exists()).toBe(true);
       expect(item.find(".space-y-3").exists()).toBe(true);
     });
   });
@@ -109,7 +114,10 @@ describe("InvestmentMarketingPlan", () => {
       marketingPlan: "Test content",
     });
 
-    expect(wrapper.find(".flex.flex-col.gap-6.max-w-4xl").exists()).toBe(true);
+    const hasResponsiveContainer = wrapper
+      .find(".flex.flex-col.gap-6")
+      .exists();
+    expect(hasResponsiveContainer).toBe(true);
   });
 
   it("should render title with correct styling classes", () => {

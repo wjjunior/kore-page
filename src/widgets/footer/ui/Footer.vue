@@ -1,77 +1,81 @@
 <template>
-  <footer class="bg-brand-300 text-white py-10">
-    <div class="max-w-7xl mx-auto">
+  <footer class="bg-brand-300 text-white py-8 md:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-8">
       <div
-        class="grid grid-cols-1 lg:grid-cols-[477px_minmax(214px,1fr)_1fr] gap-12 lg:gap-x-[200px] lg:gap-y-12"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_minmax(180px,1fr)_1fr] xl:grid-cols-[477px_minmax(214px,1fr)_1fr] gap-8 md:gap-12 lg:gap-x-[150px] xl:gap-x-[200px] lg:gap-y-12"
       >
-        <div>
+        <div class="md:col-span-2 lg:col-span-1">
           <KoreLogo
             width="129.69"
             height="50"
             textColor="white"
             symbolColor="#204496"
             backgroundColor="white"
-            class="mb-6"
+            class="mb-4 md:mb-6"
           />
 
-          <p class="text-base mb-6">
+          <p class="text-sm md:text-base mb-4 md:mb-6">
             Join our newsletter to stay up to date on features and releases.
           </p>
 
           <form @submit.prevent="handleSubscribe" class="space-y-4">
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="flex-1">
-                <label
-                  for="first-name"
-                  class="mb-2 block text-white/95 text-base"
-                  >First Name</label
-                >
-                <input
-                  id="first-name"
-                  name="firstName"
-                  v-model="firstName"
-                  type="text"
-                  required
-                  class="h-[45px] w-full px-4 py-3 rounded bg-white text-gray-900 border border-primary shadow-sm"
-                />
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-1">
+                  <label
+                    for="first-name"
+                    class="mb-2 block text-white/95 text-sm md:text-base"
+                    >First Name</label
+                  >
+                  <input
+                    id="first-name"
+                    name="firstName"
+                    v-model="firstName"
+                    type="text"
+                    required
+                    class="h-[45px] w-full px-4 py-3 rounded bg-white text-gray-900 border border-primary shadow-sm text-sm md:text-base"
+                  />
+                </div>
+                <div class="flex-1">
+                  <label
+                    for="last-name"
+                    class="mb-2 block text-white/95 text-sm md:text-base"
+                    >Last Name</label
+                  >
+                  <input
+                    id="last-name"
+                    name="lastName"
+                    v-model="lastName"
+                    type="text"
+                    required
+                    class="h-[45px] w-full px-4 py-3 rounded bg-white text-gray-900 border border-primary shadow-sm text-sm md:text-base"
+                  />
+                </div>
               </div>
-              <div class="flex-1">
-                <label
-                  for="last-name"
-                  class="mb-2 block text-white/95 text-base"
-                  >Last Name</label
-                >
-                <input
-                  id="last-name"
-                  name="lastName"
-                  v-model="lastName"
-                  type="text"
-                  required
-                  class="h-[45px] w-full px-4 py-3 rounded bg-white text-gray-900 border border-primary shadow-sm"
-                />
-              </div>
-            </div>
 
-            <div
-              class="inline-flex w-full max-w-3xl overflow-hidden rounded-lg shadow-sm"
-            >
-              <input
-                v-model="email"
-                type="email"
-                placeholder="Enter your email"
-                class="flex-1 h-[45px] px-4 rounded-l bg-white text-gray-900 placeholder-gray-400 focus:outline-none"
-                required
-              />
-              <button
-                type="submit"
-                class="h-[45px] px-6 shrink-0 rounded-r text-white font-semibold transition-colors bg-primary-400 hover:bg-primary-500"
+              <div
+                class="flex flex-col sm:flex-row overflow-hidden rounded-lg shadow-sm"
               >
-                Subscribe
-              </button>
+                <input
+                  v-model="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  class="flex-1 h-[45px] px-4 rounded-l-lg sm:rounded-r-none rounded-r-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none text-sm md:text-base"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="h-[45px] px-4 sm:px-6 shrink-0 rounded-r-lg sm:rounded-l-none rounded-l-lg text-white font-semibold transition-colors bg-primary-400 hover:bg-primary-500 text-sm md:text-base"
+                >
+                  Subscribe
+                </button>
+              </div>
             </div>
           </form>
 
-          <p class="text-[10px] text-white/80 mt-4">
+          <p
+            class="text-[10px] md:text-[10px] text-white/80 mt-4 leading-relaxed"
+          >
             By subscribing you agree to with our
             <button
               @click="openPrivacyPolicy"
@@ -86,33 +90,33 @@
         <div>
           <h3
             id="platform-title"
-            class="font-bold font-hanken-grotesk text-base mb-4"
+            class="font-bold font-hanken-grotesk text-sm md:text-base lg:text-sm xl:text-base mb-3 md:mb-4"
           >
             The All-in-One Platform
           </h3>
 
           <nav
-            class="grid grid-cols-2 gap-x-8 min-w-[214px] whitespace-nowrap"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 md:gap-x-6 lg:gap-x-4 xl:gap-x-8 gap-y-2 sm:gap-y-0 lg:min-w-[180px] xl:min-w-[214px]"
             aria-labelledby="platform-title"
           >
-            <ul class="flex flex-col gap-y-4">
+            <ul class="flex flex-col gap-y-2 md:gap-y-4">
               <li v-for="link in platformLinksLeft" :key="link.path">
                 <a
                   href="#"
                   @click.prevent="navigateTo(link.path)"
-                  class="hover:text-white/80 transition-colors text-sm"
+                  class="hover:text-white/80 transition-colors text-xs md:text-sm lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
                 </a>
               </li>
             </ul>
 
-            <ul class="space-y-4">
+            <ul class="flex flex-col gap-y-2 md:gap-y-4">
               <li v-for="link in platformLinksRight" :key="link.path">
                 <a
                   href="#"
                   @click.prevent="navigateTo(link.path)"
-                  class="hover:text-white/80 transition-colors text-sm"
+                  class="hover:text-white/80 transition-colors text-xs md:text-sm lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
                 </a>
@@ -122,16 +126,26 @@
         </div>
 
         <div>
-          <h3 class="font-roboto font-semibold text-base mb-4">Follow Us</h3>
-          <ul class="space-y-4">
+          <h3
+            class="font-roboto font-semibold text-sm md:text-base lg:text-sm xl:text-base mb-3 md:mb-4"
+          >
+            Follow Us
+          </h3>
+          <ul class="space-y-2 md:space-y-4 lg:space-y-3 xl:space-y-4">
             <li v-for="social in socialLinks" :key="social.path">
               <a
                 href="#"
                 @click.prevent="navigateTo(social.path)"
                 class="flex items-center gap-2 hover:text-white/80 transition-colors"
               >
-                <FontAwesomeIcon :icon="social.icon" class="w-6 h-6" />
-                <span class="font-lato text-sm">{{ social.label }}</span>
+                <FontAwesomeIcon
+                  :icon="social.icon"
+                  class="w-5 h-5 md:w-6 md:h-6 lg:w-5 lg:h-5 xl:w-6 xl:h-6"
+                />
+                <span
+                  class="font-lato text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >{{ social.label }}</span
+                >
               </a>
             </li>
           </ul>
@@ -139,19 +153,21 @@
       </div>
     </div>
 
-    <div class="border-t border-white mt-12">
+    <div class="border-t border-white mt-8 md:mt-12">
       <div
-        class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 text-sm text-white/80 mt-10"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 flex flex-col lg:flex-row justify-between items-center gap-4 text-white/80 mt-6 md:mt-10"
       >
-        <div class="font-hanken-grotesk font-medium text-[13px]">
+        <div
+          class="font-hanken-grotesk font-medium text-xs md:text-[13px] text-center lg:text-left"
+        >
           © 2016-2025 KoreConX Inc.
         </div>
-        <div class="flex gap-6">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 text-center">
           <button
             v-for="link in footerLinks"
             :key="link.label"
             @click="link.handler"
-            class="font-hanken-grotesk text-[14px] underline underline-offset-2 hover:text-white"
+            class="font-hanken-grotesk text-xs md:text-[14px] lg:text-xs xl:text-[14px] underline underline-offset-2 hover:text-white"
           >
             {{ link.label }}
           </button>

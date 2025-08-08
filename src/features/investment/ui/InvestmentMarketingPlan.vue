@@ -1,14 +1,16 @@
 <template>
   <div>
     <h2
-      class="font-hanken-grotesk font-bold text-[32px] leading-[100%] tracking-[1%] text-primary-200 mb-6"
+      class="font-hanken-grotesk font-bold text-2xl md:text-3xl lg:text-[30px] xl:text-[32px] leading-[100%] tracking-[1%] text-primary-200 mb-6"
     >
       Performance Marketing Plan
     </h2>
 
     <div v-if="loading" class="space-y-8">
       <div v-for="i in 3" :key="i" class="animate-pulse">
-        <div class="h-8 bg-gray-200 rounded mb-4 w-48"></div>
+        <div
+          class="h-6 md:h-7 lg:h-[30px] xl:h-8 bg-gray-200 rounded mb-4 w-32 md:w-40 lg:w-44 xl:w-48"
+        ></div>
         <div class="space-y-3">
           <div class="h-4 bg-gray-200 rounded w-full"></div>
           <div
@@ -24,8 +26,14 @@
       </div>
     </div>
 
-    <div v-else class="flex flex-col gap-6 max-w-4xl">
-      <div v-html="props.marketingPlan"></div>
+    <div
+      v-else
+      class="flex flex-col gap-6 max-w-full lg:max-w-3xl xl:max-w-4xl"
+    >
+      <div
+        v-html="props.marketingPlan"
+        class="prose prose-sm md:prose prose-gray max-w-none break-words"
+      ></div>
     </div>
   </div>
 </template>

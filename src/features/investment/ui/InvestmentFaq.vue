@@ -1,14 +1,16 @@
 <template>
   <div>
     <h2
-      class="font-hanken-grotesk font-bold text-[32px] leading-[100%] tracking-[1%] text-primary-200 mb-6"
+      class="font-hanken-grotesk font-bold text-2xl md:text-3xl lg:text-[30px] xl:text-[32px] leading-[100%] tracking-[1%] text-primary-200 mb-6"
     >
       FAQ
     </h2>
 
     <div v-if="loading" class="space-y-4">
       <div v-for="i in 4" :key="i" class="animate-pulse">
-        <div class="h-12 bg-gray-200 rounded border border-primary-200"></div>
+        <div
+          class="h-12 md:h-12 bg-gray-200 rounded border border-primary-200"
+        ></div>
       </div>
     </div>
 
@@ -20,6 +22,7 @@
         :content="item.answer"
         :is-open="openItems[index]"
         @toggle="toggleAccordion(index)"
+        class="w-full"
       />
     </div>
   </div>

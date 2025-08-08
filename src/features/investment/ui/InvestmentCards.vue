@@ -1,6 +1,8 @@
 <template>
-  <div class="flex space-x-6">
-    <div class="w-[441px] flex-shrink-0">
+  <div
+    class="flex flex-col lg:flex-row lg:space-x-4 xl:space-x-6 space-y-6 lg:space-y-0"
+  >
+    <div class="w-full lg:w-[400px] xl:w-[441px] lg:flex-shrink-0">
       <div
         class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full"
       >
@@ -34,7 +36,7 @@
       </div>
     </div>
 
-    <div class="w-[441px] flex-shrink-0">
+    <div class="w-full lg:w-[400px] xl:w-[441px] lg:flex-shrink-0">
       <div
         class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full"
       >
@@ -68,7 +70,7 @@
                 <FileIcon />
                 <a
                   href="#"
-                  class="text-base font-bold text-gray-6 leading-5 align-middle underline underline-offset-4"
+                  class="text-base font-bold text-gray-6 leading-5 align-middle underline underline-offset-4 break-words"
                 >
                   {{ document.filename }}
                 </a>

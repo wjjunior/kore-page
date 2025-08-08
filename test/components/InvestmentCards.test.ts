@@ -147,7 +147,7 @@ describe("InvestmentCards", () => {
       documents: mockDocuments,
     });
 
-    const container = wrapper.find(".flex.space-x-6");
+    const container = wrapper.find(".flex.flex-col.lg\\:flex-row");
     expect(container.exists()).toBe(true);
   });
 

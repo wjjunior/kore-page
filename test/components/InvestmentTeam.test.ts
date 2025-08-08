@@ -277,10 +277,20 @@ describe("InvestmentTeam", () => {
       teamDescription: "Our experienced team",
     });
 
-    const cards = wrapper.findAll(
-      ".bg-white.rounded-lg.border.border-primary-200.p-6"
+    const cardsWithBasicClasses = wrapper.findAll(
+      ".bg-white.rounded-lg.border.border-primary-200"
     );
-    expect(cards).toHaveLength(3);
+    expect(cardsWithBasicClasses).toHaveLength(3);
+
+    const hasResponsivePadding = cardsWithBasicClasses.some((card) =>
+      card
+        .classes()
+        .some(
+          (cls) =>
+            cls.includes("p-4") || cls.includes("p-5") || cls.includes("p-6")
+        )
+    );
+    expect(hasResponsivePadding).toBe(true);
   });
 
   it("should apply correct CSS classes to team member images", () => {
