@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-brand-300 text-white py-[40px]">
+  <footer class="bg-brand-300 text-white py-10">
     <div class="max-w-7xl mx-auto">
       <div
         class="grid grid-cols-1 lg:grid-cols-[477px_minmax(214px,1fr)_1fr] gap-12 lg:gap-x-[200px] lg:gap-y-12"
@@ -11,10 +11,10 @@
             textColor="white"
             symbolColor="#204496"
             backgroundColor="white"
-            className="mb-6"
+            class="mb-6"
           />
 
-          <p class="font-normal text-base leading-[150%] tracking-[0%] mb-6">
+          <p class="text-base mb-6">
             Join our newsletter to stay up to date on features and releases.
           </p>
 
@@ -23,7 +23,7 @@
               <div class="flex-1">
                 <label
                   for="first-name"
-                  class="mb-2 block text-white/95 font-normal text-base leading-6 tracking-[0px] align-middle"
+                  class="mb-2 block text-white/95 text-base"
                   >First Name</label
                 >
                 <input
@@ -38,7 +38,7 @@
               <div class="flex-1">
                 <label
                   for="last-name"
-                  class="mb-2 block text-white/95 font-normal text-base leading-6 tracking-[0px] align-middle"
+                  class="mb-2 block text-white/95 text-base"
                   >Last Name</label
                 >
                 <input
@@ -71,9 +71,7 @@
             </div>
           </form>
 
-          <p
-            class="text-[10px] font-normal leading-[150%] tracking-[0%] text-white/80 mt-4"
-          >
+          <p class="text-[10px] text-white/80 mt-4">
             By subscribing you agree to with our
             <button
               @click="openPrivacyPolicy"
@@ -88,80 +86,35 @@
         <div>
           <h3
             id="platform-title"
-            class="font-bold font-hanken-grotesk text-base leading-[150%] tracking-[0%] mb-4"
+            class="font-bold font-hanken-grotesk text-base mb-4"
           >
             The All-in-One Platform
           </h3>
 
           <nav
-            class="grid grid-cols-2 gap-x-[32px] min-w-[214px] whitespace-nowrap"
+            class="grid grid-cols-2 gap-x-8 min-w-[214px] whitespace-nowrap"
             aria-labelledby="platform-title"
           >
             <ul class="flex flex-col gap-y-4">
-              <li>
+              <li v-for="link in platformLinksLeft" :key="link.path">
                 <a
                   href="#"
-                  @click.prevent="navigateTo('/about')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
+                  @click.prevent="navigateTo(link.path)"
+                  class="hover:text-white/80 transition-colors text-sm"
                 >
-                  About us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  @click.prevent="navigateTo('/team')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
-                >
-                  KoreTeam
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  @click.prevent="navigateTo('/partners')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
-                >
-                  KorePartners
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  @click.prevent="navigateTo('/media')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
-                >
-                  Media
+                  {{ link.label }}
                 </a>
               </li>
             </ul>
 
             <ul class="space-y-4">
-              <li>
+              <li v-for="link in platformLinksRight" :key="link.path">
                 <a
                   href="#"
-                  @click.prevent="navigateTo('/gdpr')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
+                  @click.prevent="navigateTo(link.path)"
+                  class="hover:text-white/80 transition-colors text-sm"
                 >
-                  GPDR Compliance
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  @click.prevent="navigateTo('/contact')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  @click.prevent="navigateTo('/pricing')"
-                  class="hover:text-white/80 transition-colors font-normal text-sm leading-none tracking-[0%]"
-                >
-                  Pricing
+                  {{ link.label }}
                 </a>
               </li>
             </ul>
@@ -169,62 +122,16 @@
         </div>
 
         <div>
-          <h3
-            class="font-roboto font-semibold text-base leading-[150%] tracking-[0%] mb-4"
-          >
-            Follow Us
-          </h3>
+          <h3 class="font-roboto font-semibold text-base mb-4">Follow Us</h3>
           <ul class="space-y-4">
-            <li class="flex items-center gap-2">
+            <li v-for="social in socialLinks" :key="social.path">
               <a
                 href="#"
-                @click.prevent="navigateTo('/facebook')"
+                @click.prevent="navigateTo(social.path)"
                 class="flex items-center gap-2 hover:text-white/80 transition-colors"
               >
-                <FontAwesomeIcon :icon="faFacebookF" class="w-6 h-6" />
-                <span
-                  class="font-lato font-normal text-sm leading-[150%] tracking-[0%]"
-                  >Facebook</span
-                >
-              </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <a
-                href="#"
-                @click.prevent="navigateTo('/instagram')"
-                class="flex items-center gap-2 hover:text-white/80 transition-colors"
-              >
-                <FontAwesomeIcon :icon="faInstagram" class="w-6 h-6" />
-                <span
-                  class="font-lato font-normal text-sm leading-[150%] tracking-[0%]"
-                  >Instagram</span
-                >
-              </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <a
-                href="#"
-                @click.prevent="navigateTo('/twitter')"
-                class="flex items-center gap-2 hover:text-white/80 transition-colors"
-              >
-                <FontAwesomeIcon :icon="faXTwitter" class="w-6 h-6" />
-                <span
-                  class="font-lato font-normal text-sm leading-[150%] tracking-[0%]"
-                  >X</span
-                >
-              </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <a
-                href="#"
-                @click.prevent="navigateTo('/linkedin')"
-                class="flex items-center gap-2 hover:text-white/80 transition-colors"
-              >
-                <FontAwesomeIcon :icon="faLinkedinIn" class="w-6 h-6" />
-                <span
-                  class="font-lato font-normal text-sm leading-[150%] tracking-[0%]"
-                  >LinkedIn</span
-                >
+                <FontAwesomeIcon :icon="social.icon" class="w-6 h-6" />
+                <span class="font-lato text-sm">{{ social.label }}</span>
               </a>
             </li>
           </ul>
@@ -236,29 +143,17 @@
       <div
         class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 text-sm text-white/80 mt-10"
       >
-        <div
-          class="font-hanken-grotesk font-medium text-[13px] leading-[20px] tracking-[0px]"
-        >
+        <div class="font-hanken-grotesk font-medium text-[13px]">
           © 2016-2025 KoreConX Inc.
         </div>
         <div class="flex gap-6">
           <button
-            @click="openPrivacyPolicy"
-            class="font-hanken-grotesk font-normal text-[14px] leading-[150%] tracking-[0%] underline decoration-solid decoration-0 underline-offset-2 hover:text-white"
+            v-for="link in footerLinks"
+            :key="link.label"
+            @click="link.handler"
+            class="font-hanken-grotesk text-[14px] underline underline-offset-2 hover:text-white"
           >
-            Privacy Policy
-          </button>
-          <button
-            @click="openTermsOfService"
-            class="font-hanken-grotesk font-normal text-[14px] leading-[150%] tracking-[0%] underline decoration-solid decoration-0 underline-offset-2 hover:text-white"
-          >
-            Terms of Service
-          </button>
-          <button
-            @click="openCookiesSettings"
-            class="font-hanken-grotesk font-normal text-[14px] leading-[150%] tracking-[0%] underline decoration-solid decoration-0 underline-offset-2 hover:text-white"
-          >
-            Cookies Settings
+            {{ link.label }}
           </button>
         </div>
       </div>
@@ -277,13 +172,37 @@ import {
   faLinkedinIn,
 } from "@fortawesome/free-brands-svg-icons";
 
-defineOptions({ name: "Footer" });
-
 const firstName = ref("");
 const lastName = ref("");
 const email = ref("");
 
-const handleSubscribe = () => {
+const platformLinksLeft = [
+  { label: "About us", path: "/about" },
+  { label: "KoreTeam", path: "/team" },
+  { label: "KorePartners", path: "/partners" },
+  { label: "Media", path: "/media" },
+];
+
+const platformLinksRight = [
+  { label: "GPDR Compliance", path: "/gdpr" },
+  { label: "Contact", path: "/contact" },
+  { label: "Pricing", path: "/pricing" },
+];
+
+const socialLinks = [
+  { label: "Facebook", path: "/facebook", icon: faFacebookF },
+  { label: "Instagram", path: "/instagram", icon: faInstagram },
+  { label: "X", path: "/twitter", icon: faXTwitter },
+  { label: "LinkedIn", path: "/linkedin", icon: faLinkedinIn },
+];
+
+const footerLinks = [
+  { label: "Privacy Policy", handler: openPrivacyPolicy },
+  { label: "Terms of Service", handler: openTermsOfService },
+  { label: "Cookies Settings", handler: openCookiesSettings },
+];
+
+function handleSubscribe() {
   if (!firstName.value || !lastName.value || !email.value) return;
 
   console.log("Newsletter subscription:", {
@@ -295,14 +214,23 @@ const handleSubscribe = () => {
   firstName.value = "";
   lastName.value = "";
   email.value = "";
+
   alert("Thank you for subscribing to our newsletter!");
-};
+}
 
-const navigateTo = (path: string) => {
+function navigateTo(path: string) {
   console.log(`Navigate to: ${path}`);
-};
+}
 
-const openPrivacyPolicy = () => console.log("Open Privacy Policy");
-const openTermsOfService = () => console.log("Open Terms of Service");
-const openCookiesSettings = () => console.log("Open Cookies Settings");
+function openPrivacyPolicy() {
+  console.log("Open Privacy Policy");
+}
+
+function openTermsOfService() {
+  console.log("Open Terms of Service");
+}
+
+function openCookiesSettings() {
+  console.log("Open Cookies Settings");
+}
 </script>
