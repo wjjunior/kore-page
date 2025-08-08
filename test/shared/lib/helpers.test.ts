@@ -10,7 +10,6 @@ describe("scrollToSection", () => {
       value: mockScrollTo,
       writable: true,
     });
-
     mockScrollTo.mockClear();
   });
 
@@ -19,118 +18,59 @@ describe("scrollToSection", () => {
   });
 
   it("should scroll to the correct section with default header offset", () => {
-    const mockElement = {
-      offsetTop: 500,
-    } as HTMLElement;
-
-    const sectionRef = ref(mockElement);
-
-    const sectionMap = {
-      "#test-section": sectionRef,
-    };
+    const mockElement = { offsetTop: 500 } as HTMLElement;
+    const sectionMap = { "#test-section": ref(mockElement) };
 
     scrollToSection("#test-section", sectionMap);
-
-    expect(mockScrollTo).toHaveBeenCalledWith({
-      top: 380,
-      behavior: "smooth",
-    });
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: 380, behavior: "smooth" });
   });
 
   it("should scroll to the correct section with custom header offset", () => {
-    const mockElement = {
-      offsetTop: 600,
-    } as HTMLElement;
-
-    const sectionRef = ref(mockElement);
-    const sectionMap = {
-      "#custom-section": sectionRef,
-    };
+    const mockElement = { offsetTop: 600 } as HTMLElement;
+    const sectionMap = { "#custom-section": ref(mockElement) };
 
     scrollToSection("#custom-section", sectionMap, 100);
-
-    expect(mockScrollTo).toHaveBeenCalledWith({
-      top: 500,
-      behavior: "smooth",
-    });
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: 500, behavior: "smooth" });
   });
 
   it("should not scroll when section ref is null", () => {
-    const sectionRef = ref(null);
-    const sectionMap = {
-      "#null-section": sectionRef,
-    };
-
+    const sectionMap = { "#null-section": ref(null) };
     scrollToSection("#null-section", sectionMap);
-
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
 
   it("should not scroll when section ref value is null", () => {
-    const sectionRef = ref<HTMLElement | null>(null);
-    const sectionMap = {
-      "#empty-section": sectionRef,
-    };
-
+    const sectionMap = { "#empty-section": ref<HTMLElement | null>(null) };
     scrollToSection("#empty-section", sectionMap);
-
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
 
   it("should not scroll when href is not found in section map", () => {
-    const mockElement = {
-      offsetTop: 300,
-    } as HTMLElement;
-
-    const sectionRef = ref(mockElement);
     const sectionMap = {
-      "#existing-section": sectionRef,
+      "#existing-section": ref({ offsetTop: 300 } as HTMLElement),
     };
-
     scrollToSection("#non-existing-section", sectionMap);
-
     expect(mockScrollTo).not.toHaveBeenCalled();
   });
 
   it("should handle multiple sections in section map", () => {
-    const mockElement1 = { offsetTop: 200 } as HTMLElement;
-    const mockElement2 = { offsetTop: 800 } as HTMLElement;
-
-    const sectionRef1 = ref(mockElement1);
-    const sectionRef2 = ref(mockElement2);
-
     const sectionMap = {
-      "#section-1": sectionRef1,
-      "#section-2": sectionRef2,
+      "#section-1": ref({ offsetTop: 200 } as HTMLElement),
+      "#section-2": ref({ offsetTop: 800 } as HTMLElement),
     };
 
     scrollToSection("#section-1", sectionMap);
-    expect(mockScrollTo).toHaveBeenCalledWith({
-      top: 80,
-      behavior: "smooth",
-    });
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: 80, behavior: "smooth" });
 
     mockScrollTo.mockClear();
 
     scrollToSection("#section-2", sectionMap);
-    expect(mockScrollTo).toHaveBeenCalledWith({
-      top: 680,
-      behavior: "smooth",
-    });
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: 680, behavior: "smooth" });
   });
 
   it("should handle zero offsetTop correctly", () => {
-    const mockElement = {
-      offsetTop: 0,
-    } as HTMLElement;
-
-    const sectionRef = ref(mockElement);
-    const sectionMap = {
-      "#top-section": sectionRef,
-    };
-
+    const sectionMap = { "#top-section": ref({ offsetTop: 0 } as HTMLElement) };
     scrollToSection("#top-section", sectionMap);
-
     expect(mockScrollTo).toHaveBeenCalledWith({
       top: -120,
       behavior: "smooth",
@@ -138,21 +78,9 @@ describe("scrollToSection", () => {
   });
 
   it("should handle negative calculated scroll position", () => {
-    const mockElement = {
-      offsetTop: 50,
-    } as HTMLElement;
-
-    const sectionRef = ref(mockElement);
-    const sectionMap = {
-      "#near-top": sectionRef,
-    };
-
+    const sectionMap = { "#near-top": ref({ offsetTop: 50 } as HTMLElement) };
     scrollToSection("#near-top", sectionMap, 100);
-
-    expect(mockScrollTo).toHaveBeenCalledWith({
-      top: -50,
-      behavior: "smooth",
-    });
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: -50, behavior: "smooth" });
   });
 });
 
@@ -162,18 +90,17 @@ describe("extractErrorMessage", () => {
   });
 
   it("returns the message when input is an Error instance", () => {
-    const err = new Error("Boom");
-    expect(extractErrorMessage(err)).toBe("Boom");
+    expect(extractErrorMessage(new Error("Boom"))).toBe("Boom");
   });
 
   it("falls back when message is undefined on an object", () => {
-    const err = { message: undefined } as unknown as Error;
-    expect(extractErrorMessage(err)).toBe("An error occurred");
+    expect(extractErrorMessage({ message: undefined } as any)).toBe(
+      "An error occurred"
+    );
   });
 
   it("stringifies non-string messages", () => {
-    const err = { message: 404 } as unknown as Error;
-    expect(extractErrorMessage(err)).toBe("404");
+    expect(extractErrorMessage({ message: 404 } as any)).toBe("404");
   });
 
   it("returns null when input is a number", () => {

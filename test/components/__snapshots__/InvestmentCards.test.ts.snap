@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InvestmentCards > should match snapshot 1`] = `
+"<div class="flex flex-col lg:flex-row lg:space-x-4 xl:space-x-6 space-y-6 lg:space-y-0">
+  <div class="w-full lg:w-[400px] xl:w-[441px] lg:flex-shrink-0">
+    <div class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full">
+      <div class="p-4">
+        <div class="border-b border-blue-400 mb-4 pb-4">
+          <h2 class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6"> Offering Terms </h2>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div>
+            <h3 class="text-xs font-medium mb-1 text-primary-200 leading-5">Regulation</h3>
+            <p class="font-bold text-base leading-5 text-gray-6">Regulation Crowdfunding (RegCF)</p>
+          </div>
+          <div>
+            <h3 class="text-xs font-medium mb-1 text-primary-200 leading-5">Offering Type</h3>
+            <p class="font-bold text-base leading-5 text-gray-6">Revenue Sharing Agreement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full lg:w-[400px] xl:w-[441px] lg:flex-shrink-0">
+    <div class="bg-white rounded-lg border border-blue-400 overflow-hidden h-full">
+      <div class="p-4">
+        <div class="border-b border-blue-400 mb-4 pb-4">
+          <h2 class="text-xl font-bold text-primary-200 font-hanken-grotesk leading-6"> Documents </h2>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div>
+            <h3 class="text-xs font-medium text-primary-200 mb-2 leading-5 align-middle">Form C: </h3>
+            <div class="flex items-center space-x-2"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-5 text-neutral-400">
+                <path d="M15.903 6.586C15.854 6.48 15.793 6.379 15.707 6.293L9.707 0.293C9.621 0.207 9.52 0.146 9.414 0.0969999C9.384 0.0829999 9.352 0.0749999 9.32 0.0639999C9.236 0.0359999 9.15 0.018 9.061 0.013C9.04 0.011 9.021 0 9 0H2C0.897 0 0 0.897 0 2V18C0 19.103 0.897 20 2 20H14C15.103 20 16 19.103 16 18V7C16 6.979 15.989 6.96 15.987 6.938C15.982 6.849 15.965 6.763 15.936 6.679C15.926 6.647 15.917 6.616 15.903 6.586ZM12.586 6H10V3.414L12.586 6ZM2 18V2H8V7C8 7.553 8.447 8 9 8H14L14.002 18H2Z" fill="currentColor"></path>
+                <path d="M4 10H12V12H4V10ZM4 14H12V16H4V14ZM4 6H6V8H4V6Z" fill="currentColor"></path>
+              </svg><a href="#" class="text-base font-bold text-gray-6 leading-5 align-middle underline underline-offset-4 break-words">FileName_GoesHere.pdf</a></div>
+          </div>
+          <div>
+            <h3 class="text-xs font-medium text-primary-200 mb-2 leading-5 align-middle">Custodian and Voting Agreement: </h3>
+            <div class="flex items-center space-x-2"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-5 text-neutral-400">
+                <path d="M15.903 6.586C15.854 6.48 15.793 6.379 15.707 6.293L9.707 0.293C9.621 0.207 9.52 0.146 9.414 0.0969999C9.384 0.0829999 9.352 0.0749999 9.32 0.0639999C9.236 0.0359999 9.15 0.018 9.061 0.013C9.04 0.011 9.021 0 9 0H2C0.897 0 0 0.897 0 2V18C0 19.103 0.897 20 2 20H14C15.103 20 16 19.103 16 18V7C16 6.979 15.989 6.96 15.987 6.938C15.982 6.849 15.965 6.763 15.936 6.679C15.926 6.647 15.917 6.616 15.903 6.586ZM12.586 6H10V3.414L12.586 6ZM2 18V2H8V7C8 7.553 8.447 8 9 8H14L14.002 18H2Z" fill="currentColor"></path>
+                <path d="M4 10H12V12H4V10ZM4 14H12V16H4V14ZM4 6H6V8H4V6Z" fill="currentColor"></path>
+              </svg><a href="#" class="text-base font-bold text-gray-6 leading-5 align-middle underline underline-offset-4 break-words">FileName_GoesHere.pdf</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

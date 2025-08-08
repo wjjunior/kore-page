@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { createPinia, setActivePinia } from "pinia";
 import { useInvestmentData } from "@/features/investment";
 import { useInvestmentStore } from "@/app/providers/store";
+import { mockCompleteInvestmentData } from "../../../mocks";
 
 vi.mock("nuxt/app", () => ({
   useAsyncData: vi.fn(),
@@ -71,39 +72,7 @@ describe("useInvestmentData", () => {
 
   describe("loadData action", () => {
     it("should load data successfully", async () => {
-      const mockData = {
-        daysLeft: 213,
-        totalInvestors: 157,
-        fundingGoal: 250000,
-        fundsRaised: 300000,
-        minimumInvestment: 100,
-        deadline: "Feb, 2025",
-        typeOfSecurity: "Revenue Share Agreement",
-        revenueShareDuration: 36,
-        categories: ["Fintech", "Investments"],
-        companyName: "Kore",
-        companyDescription: "Lorem ipsum dolor sit",
-        website: "https://site.com",
-        offeringTerms: [
-          {
-            label: "Regulation",
-            value: "Regulation Crowdfunding (RegCF)",
-          },
-        ],
-        documents: [
-          {
-            id: 1,
-            title: "Form C",
-            filename: "FileName_GoesHere.pdf",
-          },
-        ],
-        teamMembers: [],
-        teamDescription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        marketingPlan:
-          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
-        faqItems: [],
-      };
+      const mockData = mockCompleteInvestmentData;
 
       const { investmentAPI } = await import("@/shared/lib/api");
       vi.mocked(investmentAPI.fetchInvestmentsData).mockResolvedValue(mockData);
@@ -143,28 +112,7 @@ describe("useInvestmentData", () => {
     });
 
     it("should not load data if already loaded", async () => {
-      const mockData = {
-        daysLeft: 213,
-        totalInvestors: 157,
-        fundingGoal: 250000,
-        fundsRaised: 300000,
-        minimumInvestment: 100,
-        deadline: "Feb, 2025",
-        typeOfSecurity: "Revenue Share Agreement",
-        revenueShareDuration: 36,
-        categories: ["Fintech", "Investments"],
-        companyName: "Kore",
-        companyDescription: "Lorem ipsum dolor sit",
-        website: "https://site.com",
-        offeringTerms: [],
-        documents: [],
-        teamMembers: [],
-        teamDescription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        marketingPlan:
-          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
-        faqItems: [],
-      };
+      const mockData = mockCompleteInvestmentData;
 
       const { investmentAPI } = await import("@/shared/lib/api");
       vi.mocked(investmentAPI.fetchInvestmentsData).mockResolvedValue(mockData);
@@ -180,28 +128,7 @@ describe("useInvestmentData", () => {
 
   describe("retryLoad action", () => {
     it("should retry loading data", async () => {
-      const mockData = {
-        daysLeft: 213,
-        totalInvestors: 157,
-        fundingGoal: 250000,
-        fundsRaised: 300000,
-        minimumInvestment: 100,
-        deadline: "Feb, 2025",
-        typeOfSecurity: "Revenue Share Agreement",
-        revenueShareDuration: 36,
-        categories: ["Fintech", "Investments"],
-        companyName: "Kore",
-        companyDescription: "Lorem ipsum dolor sit",
-        website: "https://site.com",
-        offeringTerms: [],
-        documents: [],
-        teamMembers: [],
-        teamDescription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        marketingPlan:
-          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
-        faqItems: [],
-      };
+      const mockData = mockCompleteInvestmentData;
 
       const { investmentAPI } = await import("@/shared/lib/api");
       vi.mocked(investmentAPI.fetchInvestmentsData).mockResolvedValue(mockData);
@@ -216,48 +143,7 @@ describe("useInvestmentData", () => {
 
   describe("data getters with loaded data", () => {
     beforeEach(async () => {
-      const mockData = {
-        daysLeft: 213,
-        totalInvestors: 157,
-        fundingGoal: 250000,
-        fundsRaised: 300000,
-        minimumInvestment: 100,
-        deadline: "Feb, 2025",
-        typeOfSecurity: "Revenue Share Agreement",
-        revenueShareDuration: 36,
-        categories: ["Fintech", "Investments"],
-        companyName: "Kore",
-        companyDescription: "Lorem ipsum dolor sit",
-        website: "https://site.com",
-        offeringTerms: [
-          {
-            label: "Regulation",
-            value: "Regulation Crowdfunding (RegCF)",
-          },
-          {
-            label: "Offering Type",
-            value: "Revenue Sharing Agreement",
-          },
-        ],
-        documents: [
-          {
-            id: 1,
-            title: "Form C",
-            filename: "FileName_GoesHere.pdf",
-          },
-          {
-            id: 2,
-            title: "Custodian and Voting Agreement",
-            filename: "FileName_GoesHere.pdf",
-          },
-        ],
-        teamMembers: [],
-        teamDescription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        marketingPlan:
-          "Our comprehensive marketing strategy focuses on digital channels and partnerships.",
-        faqItems: [],
-      };
+      const mockData = mockCompleteInvestmentData;
 
       const { investmentAPI } = await import("@/shared/lib/api");
       vi.mocked(investmentAPI.fetchInvestmentsData).mockResolvedValue(mockData);

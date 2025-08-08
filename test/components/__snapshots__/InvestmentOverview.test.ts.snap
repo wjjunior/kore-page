@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InvestmentOverview > matches snapshot 1`] = `
+"<div class="bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-8 lg:px-16 xl:px-[120px] pt-4 lg:pt-10 min-w-0 overflow-hidden"><button class="flex items-center gap-2 p-0 text-white rounded-lg" aria-label="Go back"><svg class="svg-inline--fa fa-chevron-left w-[7.12px] h-[11.41px] text-secondary-50" data-prefix="fas" data-icon="chevron-left" role="img" viewBox="0 0 320 512" aria-hidden="true">
+      <path class="" fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"></path>
+    </svg><span class="font-medium text-sm lg:text-[18px] leading-[24px] tracking-[0px] align-middle">Back</span></button>
+  <div class="pt-3 lg:pt-[10px] pb-4">
+    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 lg:gap-0 min-w-0">
+      <div class="flex flex-col sm:flex-row items-start gap-3 lg:gap-4 min-w-0 flex-1">
+        <div class="pt-2 lg:pt-5 pb-2 lg:pb-[18.78px] pl-2 lg:pl-3 pr-2 lg:pr-[10.67px] bg-white rounded-xl shadow-sm flex-shrink-0"><img src="/images/kore-logo.svg" alt="Kore Logo" class="w-[70px] h-[25px] sm:w-[90px] sm:h-[35px] lg:w-[104.33px] lg:h-[40.22px]"></div>
+        <div class="flex-1 min-w-0">
+          <h1 class="font-hanken-grotesk font-bold text-lg sm:text-xl lg:text-[32px] leading-[100%] tracking-[1%] mb-2 lg:mb-4 break-words">Kore</h1>
+          <h5 class="font-futura-hv font-normal text-sm sm:text-base lg:text-[24px] leading-[100%] tracking-[1%] text-secondary-50 break-words">Lorem ipsum dolor sit</h5>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 lg:gap-3 flex-shrink-0"><span class="font-normal text-xs lg:text-[14px] leading-[40px] tracking-[0px] whitespace-nowrap">Share This Deal:</span>
+        <div class="flex gap-1 lg:gap-2"><button class="w-7 h-7 sm:w-8 sm:h-8 lg:w-6 lg:h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Share on Facebook"><svg class="svg-inline--fa fa-facebook-f w-3 h-3 text-gray-6" data-prefix="fab" data-icon="facebook-f" role="img" viewBox="0 0 320 512" aria-hidden="true">
+              <path class="" fill="currentColor" d="M80 299.3l0 212.7 116 0 0-212.7 86.5 0 18-97.8-104.5 0 0-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2l0-88.7C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4l0 42.1-66 0 0 97.8 66 0z"></path>
+            </svg></button><button class="w-7 h-7 sm:w-8 sm:h-8 lg:w-6 lg:h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Share on LinkedIn"><svg class="svg-inline--fa fa-linkedin-in w-3 h-3 text-gray-6" data-prefix="fab" data-icon="linkedin-in" role="img" viewBox="0 0 448 512" aria-hidden="true">
+              <path class="" fill="currentColor" d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"></path>
+            </svg></button><button class="w-7 h-7 sm:w-8 sm:h-8 lg:w-6 lg:h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Share on X"><svg class="svg-inline--fa fa-x-twitter w-3.5 h-3.5 text-gray-6" data-prefix="fab" data-icon="x-twitter" role="img" viewBox="0 0 448 512" aria-hidden="true">
+              <path class="" fill="currentColor" d="M357.2 48L427.8 48 273.6 224.2 455 464 313 464 201.7 318.6 74.5 464 3.8 464 168.7 275.5-5.2 48 140.4 48 240.9 180.9 357.2 48zM332.4 421.8l39.1 0-252.4-333.8-42 0 255.3 333.8z"></path>
+            </svg></button><button class="w-7 h-7 sm:w-8 sm:h-8 lg:w-6 lg:h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Share on Email"><svg class="svg-inline--fa fa-envelope w-3 h-3 text-gray-6" data-prefix="fas" data-icon="envelope" role="img" viewBox="0 0 512 512" aria-hidden="true">
+              <path class="" fill="currentColor" d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z"></path>
+            </svg></button></div>
+      </div>
+    </div>
+  </div>
+  <div class="pb-4 lg:pb-8 min-w-0">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_405px] gap-4 lg:gap-6 xl:gap-0 mx-auto max-w-7xl min-w-0">
+      <div class="lg:pr-6 xl:pr-[29px] min-w-0">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-0 mb-3 lg:mb-[15px] min-w-0">
+          <div class="flex flex-wrap gap-1 lg:gap-2 min-w-0"><span class="h-7 lg:h-6 pt-[2px] pr-2 lg:pr-4 pb-[2px] pl-2 lg:pl-4 bg-transparent rounded-[37px] text-xs lg:text-[13px] font-semibold leading-[100%] tracking-[0px] text-center border border-white text-white flex items-center flex-shrink-0">Fintech</span><span class="h-7 lg:h-6 pt-[2px] pr-2 lg:pr-4 pb-[2px] pl-2 lg:pl-4 bg-transparent rounded-[37px] text-xs lg:text-[13px] font-semibold leading-[100%] tracking-[0px] text-center border border-white text-white flex items-center flex-shrink-0">Investments</span></div>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-[3px] lg:justify-end">
+            <div class="h-7 lg:h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-1 lg:gap-2 justify-center flex-shrink-0 min-w-0"><svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.83333 9.16667H7.5V10.8333H5.83333V9.16667ZM5.83333 12.5H7.5V14.1667H5.83333V12.5ZM9.16667 9.16667H10.8333V10.8333H9.16667V9.16667ZM9.16667 12.5H10.8333V14.1667H9.16667V12.5ZM12.5 9.16667H14.1667V10.8333H12.5V9.16667ZM12.5 12.5H14.1667V14.1667H12.5V12.5Z" fill="#2F106D"></path>
+                <path d="M4.16667 18.3333H15.8333C16.7525 18.3333 17.5 17.5858 17.5 16.6667V5.00001C17.5 4.08084 16.7525 3.33334 15.8333 3.33334H14.1667V1.66667H12.5V3.33334H7.5V1.66667H5.83333V3.33334H4.16667C3.2475 3.33334 2.5 4.08084 2.5 5.00001V16.6667C2.5 17.5858 3.2475 18.3333 4.16667 18.3333ZM15.8333 6.66667L15.8342 16.6667H4.16667V6.66667H15.8333Z" fill="#2F106D"></path>
+              </svg><span class="text-xs lg:text-base font-normal leading-5 tracking-[0px] text-secondary-800 whitespace-nowrap">213 Days Left</span></div>
+            <div class="h-7 lg:h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-1 lg:gap-2 justify-center flex-shrink-0 min-w-0"><span class="text-xs lg:text-base font-normal leading-5 tracking-[0px] text-secondary-800 whitespace-nowrap">157 Total Investors</span></div>
+          </div>
+        </div>
+        <div class="h-[200px] sm:h-[250px] md:h-[300px] lg:h-[375px] border border-border-c9d6df shadow-lg mb-3 lg:mb-[17px] rounded-lg overflow-hidden"><img src="/images/thumbnail.svg" alt="Video thumbnail" class="w-full h-full object-cover hover:cursor-pointer"></div>
+        <div class="flex items-center gap-2 text-secondary-50 justify-center lg:justify-start min-w-0"><svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM19.931 11H17.167C17.051 8.835 16.437 6.7 15.375 4.757C17.813 5.898 19.582 8.228 19.931 11ZM12.53 4.027C13.565 5.391 14.957 7.807 15.157 11H9.03C9.169 8.404 10.024 5.972 11.481 4.026C11.653 4.016 11.825 4 12 4C12.179 4 12.354 4.016 12.53 4.027ZM8.688 4.727C7.704 6.618 7.136 8.762 7.03 11H4.069C4.421 8.204 6.217 5.857 8.688 4.727ZM4.069 13H7.043C7.179 15.379 7.708 17.478 8.599 19.23C6.174 18.084 4.416 15.762 4.069 13ZM11.45 19.973C10.049 18.275 9.222 15.896 9.041 13H15.154C14.946 15.773 14.037 18.196 12.551 19.972C12.369 19.984 12.187 20 12 20C11.814 20 11.633 19.984 11.45 19.973ZM15.461 19.201C16.416 17.407 16.999 15.3 17.152 13H19.93C19.587 15.739 17.854 18.047 15.461 19.201Z" fill="#F3EFF9"></path>
+          </svg><span class="text-xs lg:text-base font-normal leading-5 tracking-[0px] truncate min-w-0">https://site.com</span></div>
+      </div>
+      <div class="w-full lg:max-w-none min-w-0">
+        <div class="p-3 lg:p-4 bg-white rounded-xl shadow-xl h-fit border border-gray-100 min-w-0">
+          <div class="flex flex-col gap-2 min-w-0">
+            <div class="flex justify-between items-center gap-2 min-w-0"><span class="text-xs lg:text-[13px] font-normal leading-5 tracking-[0px] text-neutral-212121 flex-shrink-0">Funding Goal</span><span class="h-6 pt-[2px] pr-2 lg:pr-4 pb-[2px] pl-2 lg:pl-4 text-gray-600 rounded-[37px] border border-gray-600 text-xs lg:text-[13px] font-normal leading-[100%] tracking-[0px] text-center flex items-center justify-center flex-shrink-0">RegCF</span></div><span class="block text-base lg:text-[20px] text-neutral-212121 break-words"> $250,000.00</span><span class="block text-base lg:text-[20px] text-primary-200"> Funds Raised </span><span class="mb-3 lg:mb-4 block font-hanken-grotesk text-xl lg:text-[32px] font-bold leading-[100%] tracking-[1%] align-middle text-primary-200 break-words"> $300,000.00</span>
+          </div>
+          <hr class="border-gray-2">
+          <div class="min-w-0">
+            <div class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 my-2 min-w-0"><span class="text-lg lg:text-2xl text-neutral-212121 break-words"> $100.00</span><span class="text-sm lg:text-base text-neutral-212121"> Minimum Investment </span></div>
+            <hr class="border-gray-2">
+            <div class="flex flex-col gap-2 mt-2 min-w-0">
+              <div class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"><span class="text-xs lg:text-base text-gray-600"> Deadline: </span><span class="text-base lg:text-xl font-bold text-gray-900 break-words">Feb, 2025</span></div>
+              <div class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"><span class="text-xs lg:text-base text-gray-600"> Type of Security: </span><span class="text-base lg:text-xl font-bold text-gray-900 break-words">Revenue Share Agreement</span></div>
+              <div class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"><span class="text-xs lg:text-base text-gray-600"> Revenue Share Duration: </span><span class="text-base lg:text-xl font-bold text-gray-900 break-words">36 months </span></div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-3 pt-4 mt-3 min-w-0"><button class="font-lato w-full h-11 lg:h-[46px] px-3 lg:px-[14px] rounded-button bg-primary-200 hover:bg-primary-500 text-white text-sm lg:text-lg font-bold flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl min-w-0"> Invest Now </button><button class="font-lato text-neutral-212121 w-full bg-transparent border-none cursor-pointer py-2 font-normal text-xs lg:text-base text-center underline underline-offset-4 min-w-0 break-words"> View Offering Circular </button></div>
+        </div>
+        <div class="mt-3 text-xs text-center text-white/80 max-w-lg mx-auto px-2 break-words"> Purchased securities are not currently tradeable. Expect to hold your investment until the company lists on a national exchange or is acquired. </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

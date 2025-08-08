@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InvestmentMarketingPlan > matches snapshot 1`] = `
+"<div>
+  <h2 class="font-hanken-grotesk font-bold text-2xl md:text-3xl lg:text-[30px] xl:text-[32px] leading-[100%] tracking-[1%] text-primary-200 mb-6"> Performance Marketing Plan </h2>
+  <div class="flex flex-col gap-6 max-w-full lg:max-w-3xl xl:max-w-4xl">
+    <div class="prose prose-sm md:prose prose-gray max-w-none break-words">
+      <p>Snapshot content</p>
+    </div>
+  </div>
+</div>"
+`;

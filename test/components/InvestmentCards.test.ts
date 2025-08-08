@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import InvestmentCards from "@/features/investment/ui/InvestmentCards.vue";
-import type { OfferingTerm, Document } from "@/shared/lib/types";
+import { mockOfferingTerms, mockDocuments } from "../mocks";
 
 const mountInvestmentCards = (
   props: {
-    offeringTerms?: OfferingTerm[];
-    documents?: Document[];
+    offeringTerms?: typeof mockOfferingTerms;
+    documents?: typeof mockDocuments;
     loading?: boolean;
   } = {}
 ) => {
@@ -19,146 +19,111 @@ const mountInvestmentCards = (
 
   return mount(InvestmentCards, {
     props: defaultProps,
-    global: {
-      components: {},
-    },
   });
 };
 
 describe("InvestmentCards", () => {
-  const mockOfferingTerms = [
-    {
-      label: "Regulation",
-      value: "Regulation Crowdfunding (RegCF)",
-    },
-    {
-      label: "Offering Type",
-      value: "Revenue Sharing Agreement",
-    },
-  ];
-
-  const mockDocuments = [
-    {
-      id: 1,
-      title: "Form C",
-      filename: "FileName_GoesHere.pdf",
-    },
-    {
-      id: 2,
-      title: "Custodian and Voting Agreement",
-      filename: "FileName_GoesHere.pdf",
-    },
-  ];
-
-  it("should render the component", () => {
+  it("should display 'Offering Terms' and 'Documents' titles", () => {
     const wrapper = mountInvestmentCards({
       offeringTerms: mockOfferingTerms,
       documents: mockDocuments,
     });
-    expect(wrapper.exists()).toBe(true);
+
+    const titles = wrapper.findAll("h2");
+    const titleTexts = titles.map((h2) => h2.text());
+
+    expect(titleTexts).toContain("Offering Terms");
+    expect(titleTexts).toContain("Documents");
   });
 
-  it("should display offering terms card", () => {
+  it("should render offering terms data when not loading", () => {
     const wrapper = mountInvestmentCards({
       offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
+      loading: false,
     });
-    expect(wrapper.text()).toContain("Offering Terms");
-  });
 
-  it("should display documents card", () => {
-    const wrapper = mountInvestmentCards({
-      offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
+    mockOfferingTerms.forEach(({ label, value }) => {
+      expect(wrapper.text()).toContain(label);
+      expect(wrapper.text()).toContain(value);
     });
-    expect(wrapper.text()).toContain("Documents");
   });
 
-  it("should display offering terms data when not loading", () => {
+  it("should render documents data when not loading", () => {
     const wrapper = mountInvestmentCards({
-      offeringTerms: mockOfferingTerms,
       documents: mockDocuments,
       loading: false,
     });
-    expect(wrapper.text()).toContain("Regulation");
-    expect(wrapper.text()).toContain("Regulation Crowdfunding (RegCF)");
-    expect(wrapper.text()).toContain("Offering Type");
-    expect(wrapper.text()).toContain("Revenue Sharing Agreement");
+
+    mockDocuments.forEach(({ title, filename }) => {
+      expect(wrapper.text()).toContain(title);
+      expect(wrapper.text()).toContain(filename);
+    });
   });
 
-  it("should display documents data when not loading", () => {
+  it("should render document filenames as links", () => {
+    const wrapper = mountInvestmentCards({
+      documents: mockDocuments,
+    });
+
+    const links = wrapper.findAll("a");
+    expect(links.length).toBe(mockDocuments.length);
+
+    links.forEach((link, index) => {
+      expect(link.text()).toContain(mockDocuments[index]?.filename);
+    });
+  });
+
+  it("should not render offering terms when loading is true", () => {
     const wrapper = mountInvestmentCards({
       offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
-      loading: false,
+      loading: true,
     });
-    expect(wrapper.text()).toContain("Form C");
-    expect(wrapper.text()).toContain("FileName_GoesHere.pdf");
-    expect(wrapper.text()).toContain("Custodian and Voting Agreement");
+
+    mockOfferingTerms.forEach(({ label, value }) => {
+      expect(wrapper.text()).not.toContain(label);
+      expect(wrapper.text()).not.toContain(value);
+    });
   });
 
-  it("should show loading state for offering terms when loading", () => {
+  it("should not render documents when loading is true", () => {
+    const wrapper = mountInvestmentCards({
+      documents: mockDocuments,
+      loading: true,
+    });
+
+    mockDocuments.forEach(({ title, filename }) => {
+      expect(wrapper.text()).not.toContain(title);
+      expect(wrapper.text()).not.toContain(filename);
+    });
+  });
+
+  it("should show skeleton elements when loading is true", () => {
     const wrapper = mountInvestmentCards({
       offeringTerms: mockOfferingTerms,
       documents: mockDocuments,
       loading: true,
     });
 
-    // Check that loading skeleton elements are present
-    const loadingElements = wrapper.findAll(".animate-pulse");
-    expect(loadingElements.length).toBeGreaterThan(0);
-
-    // Check that actual data is not displayed
-    expect(wrapper.text()).not.toContain("Regulation");
-    expect(wrapper.text()).not.toContain("Regulation Crowdfunding (RegCF)");
+    const skeletons = wrapper.findAll(".animate-pulse");
+    expect(skeletons.length).toBeGreaterThan(0);
   });
 
-  it("should show loading state for documents when loading", () => {
+  it("should render nothing for offeringTerms and documents when empty", () => {
     const wrapper = mountInvestmentCards({
-      offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
-      loading: true,
+      offeringTerms: [],
+      documents: [],
     });
 
-    // Check that loading skeleton elements are present
-    const loadingElements = wrapper.findAll(".animate-pulse");
-    expect(loadingElements.length).toBeGreaterThan(0);
-
-    // Check that actual data is not displayed
-    expect(wrapper.text()).not.toContain("Form C");
-    expect(wrapper.text()).not.toContain("FileName_GoesHere.pdf");
+    expect(wrapper.findAll("h3").length).toBe(0);
+    expect(wrapper.findAll("a").length).toBe(0);
   });
 
-  it("should have proper card structure", () => {
+  it("should match snapshot", () => {
     const wrapper = mountInvestmentCards({
       offeringTerms: mockOfferingTerms,
       documents: mockDocuments,
     });
 
-    const cards = wrapper.findAll(
-      ".bg-white.rounded-lg.border.border-blue-400"
-    );
-    expect(cards).toHaveLength(2);
-  });
-
-  it("should have proper layout structure", () => {
-    const wrapper = mountInvestmentCards({
-      offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
-    });
-
-    const container = wrapper.find(".flex.flex-col.lg\\:flex-row");
-    expect(container.exists()).toBe(true);
-  });
-
-  it("should default loading to false", () => {
-    const wrapper = mountInvestmentCards({
-      offeringTerms: mockOfferingTerms,
-      documents: mockDocuments,
-    });
-
-    // Should display actual data since loading defaults to false
-    expect(wrapper.text()).toContain("Regulation");
-    expect(wrapper.text()).toContain("Form C");
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });

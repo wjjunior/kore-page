@@ -2,48 +2,15 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import InvestmentOverview from "@/features/investment/ui/InvestmentOverview.vue";
-import type { InvestmentBannerData } from "@/shared/lib/types";
-
-const MockNuxtImg = {
-  name: "NuxtImg",
-  template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
-};
-
-const mockInvestmentData: InvestmentBannerData = {
-  daysLeft: 213,
-  totalInvestors: 157,
-  fundingGoal: 250000,
-  fundsRaised: 300000,
-  minimumInvestment: 100,
-  deadline: "Feb, 2025",
-  typeOfSecurity: "Revenue Share Agreement",
-  revenueShareDuration: 36,
-  categories: ["Fintech", "Investments"],
-  companyName: "Kore",
-  companyDescription: "Lorem ipsum dolor sit",
-  website: "https://site.com",
-  logoSrc: "/images/kore-logo.svg",
-  thumbnailSrc: "/images/thumbnail.svg",
-  offeringTerms: [],
-  documents: [],
-  teamMembers: [],
-  teamDescription: "",
-  marketingPlan: "",
-  faqItems: [],
-};
+import { mockInvestmentBannerData } from "../mocks";
 
 const mountInvestmentOverview = (props = {}) => {
   return mount(InvestmentOverview, {
     props: {
-      investmentData: mockInvestmentData,
+      investmentData: mockInvestmentBannerData,
       loading: false,
       error: null,
       ...props,
-    },
-    global: {
-      components: {
-        NuxtImg: MockNuxtImg,
-      },
     },
   });
 };
@@ -54,134 +21,84 @@ describe("InvestmentOverview", () => {
     vi.clearAllMocks();
   });
 
-  it("should render the component", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.exists()).toBe(true);
-  });
-
-  it("should display the company name", () => {
+  it("renders company info", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("Kore");
+    expect(wrapper.text()).toContain("Lorem ipsum dolor sit");
+    expect(wrapper.text()).toContain("https://site.com");
   });
 
-  it("should use API-provided logo and thumbnail src", () => {
+  it("renders share buttons and labels", () => {
     const wrapper = mountInvestmentOverview();
-    const imgs = wrapper.findAll("img");
-    const logo = imgs.find((i) => i.attributes("alt") === "Kore Logo");
-    const thumb = imgs.find((i) => i.attributes("alt") === "Video thumbnail");
-    expect(logo?.attributes("src")).toBe("/images/kore-logo.svg");
-    expect(thumb?.attributes("src")).toBe("/images/thumbnail.svg");
+    expect(wrapper.text()).toContain("Share This Deal");
+    const shareButtons = wrapper.findAll("button[aria-label^='Share on']");
+    expect(shareButtons.length).toBe(4);
   });
 
-  it("should display the back button", () => {
+  it("renders company stats and financials", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Back");
-  });
-
-  it("should display minimum investment section", () => {
-    const wrapper = mountInvestmentOverview();
+    expect(wrapper.text()).toContain("213");
+    expect(wrapper.text()).toContain("157");
+    expect(wrapper.text()).toContain("Feb, 2025");
+    expect(wrapper.text()).toContain("Revenue Share Agreement");
+    expect(wrapper.text()).toContain("36 months");
+    expect(wrapper.text()).toContain("$250,000.00");
+    expect(wrapper.text()).toContain("$300,000.00");
     expect(wrapper.text()).toContain("Minimum Investment");
     expect(wrapper.text()).toContain("$100.00");
   });
 
-  it("should display days remaining section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Days Left");
-    expect(wrapper.text()).toContain("213");
-  });
-
-  it("should display total investors section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Total Investors");
-    expect(wrapper.text()).toContain("157");
-  });
-
-  it("should display revenue share duration section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Revenue Share Duration");
-    expect(wrapper.text()).toContain("36 months");
-  });
-
-  it("should display security type section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Type of Security");
-    expect(wrapper.text()).toContain("Revenue Share Agreement");
-  });
-
-  it("should display company description", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Lorem ipsum dolor sit");
-  });
-
-  it("should display company website", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("https://site.com");
-  });
-
-  it("should display categories", () => {
+  it("renders company category badges", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("Fintech");
     expect(wrapper.text()).toContain("Investments");
   });
 
-  it("should display deadline", () => {
+  it("renders logo and thumbnail", () => {
     const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Feb, 2025");
+    const imgs = wrapper.findAll("img");
+    expect(
+      imgs.find((i) => i.attributes("alt") === "Kore Logo")?.attributes("src")
+    ).toBe("/images/kore-logo.svg");
+    expect(
+      imgs
+        .find((i) => i.attributes("alt") === "Video thumbnail")
+        ?.attributes("src")
+    ).toBe("/images/thumbnail.svg");
   });
 
-  it("should display funding goal", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("$250,000.00");
-  });
-
-  it("should display funds raised", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("$300,000.00");
-  });
-
-  it("should display invest now button", () => {
+  it("renders action buttons", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("Invest Now");
-  });
-
-  it("should display view offering circular button", () => {
-    const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("View Offering Circular");
   });
 
-  it("should display risk disclosure text", () => {
+  it("renders disclosure text", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain(
       "Purchased securities are not currently tradeable"
     );
   });
 
-  it("should display share this deal section", () => {
-    const wrapper = mountInvestmentOverview();
-    expect(wrapper.text()).toContain("Share This Deal");
-  });
-
-  it("should show loading state when loading is true", () => {
+  it("displays loading state", () => {
     const wrapper = mountInvestmentOverview({ loading: true });
-    expect(wrapper.text()).toContain("Loading");
+    expect(wrapper.text()).toContain("Loading...");
   });
 
-  it("should show error state when error is provided", () => {
-    const wrapper = mountInvestmentOverview({
-      error: "Failed to load data",
-    });
-    expect(wrapper.text()).toContain("Failed to load data");
+  it("displays error state", () => {
+    const wrapper = mountInvestmentOverview({ error: "Failed to load" });
+    expect(wrapper.text()).toContain("Failed to load");
   });
 
-  it("should emit retry event when retry button is clicked", async () => {
-    const wrapper = mountInvestmentOverview({
-      error: "Failed to load data",
-    });
+  it("emits retry when ErrorMessage emits retry", async () => {
+    const wrapper = mountInvestmentOverview({ error: "Failed to load" });
+    wrapper.findComponent({ name: "ErrorMessage" }).vm.$emit("retry");
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted("retry")).toBeTruthy();
+  });
 
-    const retryButton = wrapper.find('[data-testid="retry-button"]');
-    if (retryButton.exists()) {
-      await retryButton.trigger("click");
-      expect(wrapper.emitted("retry")).toBeTruthy();
-    }
+  it("matches snapshot", () => {
+    const wrapper = mountInvestmentOverview();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });

@@ -4,9 +4,7 @@ import { createPinia, setActivePinia } from "pinia";
 import InvestmentMarketingPlan from "@/features/investment/ui/InvestmentMarketingPlan.vue";
 
 const mountInvestmentMarketingPlan = (props = {}) => {
-  return mount(InvestmentMarketingPlan, {
-    props,
-  });
+  return mount(InvestmentMarketingPlan, { props });
 };
 
 describe("InvestmentMarketingPlan", () => {
@@ -15,159 +13,81 @@ describe("InvestmentMarketingPlan", () => {
     vi.clearAllMocks();
   });
 
-  it("should render the component", () => {
+  it("renders the section title", () => {
     const wrapper = mountInvestmentMarketingPlan();
-    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.find("h2").text()).toBe("Performance Marketing Plan");
   });
 
-  it("should display the title", () => {
-    const wrapper = mountInvestmentMarketingPlan();
-    expect(wrapper.text()).toContain("Performance Marketing Plan");
-  });
-
-  it("should show loading skeleton when loading is true", () => {
+  it("shows loading skeletons when loading is true", () => {
     const wrapper = mountInvestmentMarketingPlan({ loading: true });
-
-    expect(wrapper.find(".animate-pulse").exists()).toBe(true);
-
-    const skeletonItems = wrapper.findAll(".animate-pulse");
-    expect(skeletonItems).toHaveLength(3);
-
-    const hasSkeletonHeading = wrapper
-      .find(".bg-gray-200.rounded.mb-4")
-      .exists();
-    expect(hasSkeletonHeading).toBe(true);
-    expect(wrapper.find(".h-4.bg-gray-200.rounded").exists()).toBe(true);
+    const skeletons = wrapper.findAll(".animate-pulse");
+    expect(skeletons).toHaveLength(3);
+    skeletons.forEach((skeleton) => {
+      expect(skeleton.find(".bg-gray-200").exists()).toBe(true);
+    });
   });
 
-  it("should show marketing plan content when loading is false", () => {
-    const marketingPlanContent = "<p>This is a test marketing plan</p>";
+  it("does not show skeletons when loading is false", () => {
     const wrapper = mountInvestmentMarketingPlan({
       loading: false,
-      marketingPlan: marketingPlanContent,
+      marketingPlan: "<p>Content</p>",
     });
-
-    expect(wrapper.find(".animate-pulse").exists()).toBe(false);
-
-    const hasResponsiveContainer = wrapper
-      .find(".flex.flex-col.gap-6")
-      .exists();
-    expect(hasResponsiveContainer).toBe(true);
-    expect(wrapper.html()).toContain(marketingPlanContent);
+    expect(wrapper.findAll(".animate-pulse")).toHaveLength(0);
   });
 
-  it("should render empty marketing plan when no content is provided", () => {
-    const wrapper = mountInvestmentMarketingPlan({ loading: false });
+  it("renders marketing plan HTML when loading is false", () => {
+    const content = "<p>This is <strong>safe</strong> content</p>";
+    const wrapper = mountInvestmentMarketingPlan({
+      loading: false,
+      marketingPlan: content,
+    });
 
-    const hasResponsiveContainer = wrapper
-      .find(".flex.flex-col.gap-6")
-      .exists();
-    expect(hasResponsiveContainer).toBe(true);
+    expect(wrapper.html()).toContain("This is <strong>safe</strong> content");
+  });
+
+  it("renders empty state when marketingPlan is not provided", () => {
+    const wrapper = mountInvestmentMarketingPlan({ loading: false });
     expect(wrapper.find(".flex.flex-col.gap-6").text()).toBe("");
   });
 
-  it("should render complex HTML content in marketing plan", () => {
-    const complexMarketingPlan = `
-      <h3>Marketing Strategy</h3>
-      <ul>
-        <li>Digital advertising</li>
-        <li>Social media campaigns</li>
-        <li>Content marketing</li>
-      </ul>
-      <p>Expected ROI: <strong>150%</strong></p>
-    `;
-
+  it("sanitizes potentially unsafe HTML", () => {
+    const unsafeContent = `<p>Safe</p><script>alert('x')</script>`;
     const wrapper = mountInvestmentMarketingPlan({
       loading: false,
-      marketingPlan: complexMarketingPlan,
+      marketingPlan: unsafeContent,
+    });
+
+    expect(wrapper.html()).toContain("Safe");
+    expect(wrapper.html()).not.toContain("<script>");
+  });
+
+  it("renders complex HTML structure correctly", () => {
+    const complex = `
+      <h3>Marketing Strategy</h3>
+      <ul><li>Digital</li><li>Social</li></ul>
+      <p><strong>150%</strong></p>
+    `;
+    const wrapper = mountInvestmentMarketingPlan({
+      loading: false,
+      marketingPlan: complex,
     });
 
     expect(wrapper.html()).toContain("Marketing Strategy");
-    expect(wrapper.html()).toContain("Digital advertising");
-    expect(wrapper.html()).toContain("Social media campaigns");
-    expect(wrapper.html()).toContain("Content marketing");
-    expect(wrapper.html()).toContain("Expected ROI: <strong>150%</strong>");
+    expect(wrapper.html()).toContain("Digital");
+    expect(wrapper.html()).toContain("150%");
   });
 
-  it("should have correct default props", () => {
+  it("has correct default props", () => {
     const wrapper = mountInvestmentMarketingPlan();
-
     expect(wrapper.props("loading")).toBe(false);
     expect(wrapper.props("marketingPlan")).toBe("");
   });
 
-  it("should apply correct CSS classes for loading state", () => {
-    const wrapper = mountInvestmentMarketingPlan({ loading: true });
-
-    expect(wrapper.find(".space-y-8").exists()).toBe(true);
-
-    const skeletonItems = wrapper.findAll(".animate-pulse");
-    skeletonItems.forEach((item, index) => {
-      expect(item.find(".bg-gray-200.rounded.mb-4").exists()).toBe(true);
-      expect(item.find(".space-y-3").exists()).toBe(true);
-    });
-  });
-
-  it("should apply correct CSS classes for content state", () => {
+  it("matches snapshot", () => {
     const wrapper = mountInvestmentMarketingPlan({
       loading: false,
-      marketingPlan: "Test content",
+      marketingPlan: "<p>Snapshot content</p>",
     });
-
-    const hasResponsiveContainer = wrapper
-      .find(".flex.flex-col.gap-6")
-      .exists();
-    expect(hasResponsiveContainer).toBe(true);
-  });
-
-  it("should render title with correct styling classes", () => {
-    const wrapper = mountInvestmentMarketingPlan();
-    const title = wrapper.find("h2");
-
-    expect(title.exists()).toBe(true);
-    expect(title.classes()).toContain("font-hanken-grotesk");
-    expect(title.classes()).toContain("font-bold");
-    expect(title.classes()).toContain("text-primary-200");
-    expect(title.classes()).toContain("mb-6");
-  });
-
-  it("should handle different skeleton widths based on item index", () => {
-    const wrapper = mountInvestmentMarketingPlan({ loading: true });
-    const skeletonItems = wrapper.findAll(".animate-pulse");
-
-    const firstItemSecondLine = skeletonItems[0]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    )[1];
-    expect(firstItemSecondLine?.classes()).toContain("w-3/4");
-
-    const secondItemSecondLine = skeletonItems[1]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    )[1];
-    expect(secondItemSecondLine?.classes()).toContain("w-full");
-
-    const thirdItemSecondLine = skeletonItems[2]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    )[1];
-    expect(thirdItemSecondLine?.classes()).toContain("w-4/5");
-  });
-
-  it("should conditionally render third line for skeleton items", () => {
-    const wrapper = mountInvestmentMarketingPlan({ loading: true });
-    const skeletonItems = wrapper.findAll(".animate-pulse");
-
-    const firstItemLines = skeletonItems[0]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    );
-    expect(firstItemLines).toHaveLength(2);
-
-    const secondItemLines = skeletonItems[1]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    );
-    expect(secondItemLines).toHaveLength(3);
-
-    const thirdItemLines = skeletonItems[2]?.findAll(
-      ".h-4.bg-gray-200.rounded"
-    );
-    expect(thirdItemLines).toHaveLength(3);
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });

@@ -28,65 +28,63 @@ describe("Header", () => {
     consoleSpy.mockRestore();
   });
 
-  it("renders correctly with default props", () => {
-    const wrapper = mountHeader();
+  describe("Basic rendering", () => {
+    it("renders the header wrapper", () => {
+      const wrapper = mountHeader();
+      expect(wrapper.find("header").exists()).toBe(true);
+    });
 
-    expect(wrapper.find("header").exists()).toBe(true);
-    expect(wrapper.find("nav").exists()).toBe(true);
-    expect(wrapper.find("svg").exists()).toBe(true);
+    it("renders navigation links", () => {
+      const wrapper = mountHeader();
+      const text = wrapper.text();
+      expect(text).toContain("INVEST");
+      expect(text).toContain("FAQ");
+      expect(text).toContain("CONTACT US");
+      expect(text).toContain("EDUCATION");
+    });
+
+    it("renders auth buttons", () => {
+      const wrapper = mountHeader();
+      const text = wrapper.text();
+      expect(text).toContain("Login");
+      expect(text).toContain("Sign Up");
+    });
   });
 
-  it("renders navigation links", () => {
-    const wrapper = mountHeader();
+  describe("Button interaction", () => {
+    it("handles login button click", async () => {
+      const wrapper = mountHeader();
+      const loginButton = wrapper
+        .findAll("button")
+        .find((b) => b.text().includes("Login"));
+      expect(loginButton).toBeTruthy();
+      await loginButton!.trigger("click");
+      expect(consoleSpy).toHaveBeenCalledWith("Login clicked");
+    });
 
-    expect(wrapper.text()).toContain("INVEST");
-    expect(wrapper.text()).toContain("FAQ");
-    expect(wrapper.text()).toContain("CONTACT US");
-    expect(wrapper.text()).toContain("EDUCATION");
+    it("handles signup button click", async () => {
+      const wrapper = mountHeader();
+      const signupButton = wrapper
+        .findAll("button")
+        .find((b) => b.text().includes("Sign Up"));
+      expect(signupButton).toBeTruthy();
+      await signupButton!.trigger("click");
+      expect(consoleSpy).toHaveBeenCalledWith("Sign Up clicked");
+    });
   });
 
-  it("renders auth buttons", () => {
-    const wrapper = mountHeader();
+  describe("Mobile menu", () => {
+    it("is hidden by default", () => {
+      const wrapper = mountHeader();
+      expect(wrapper.find(".md\\:hidden.border-t").exists()).toBe(false);
+    });
 
-    expect(wrapper.text()).toContain("Login");
-    expect(wrapper.text()).toContain("Sign Up");
-  });
-
-  it("handles login button click", async () => {
-    const wrapper = mountHeader();
-
-    const loginButtons = wrapper.findAll("button");
-    const loginButton = loginButtons.find((button) =>
-      button.text().includes("Login")
-    );
-    expect(loginButton).toBeTruthy();
-    await loginButton!.trigger("click");
-
-    expect(consoleSpy).toHaveBeenCalledWith("Login clicked");
-  });
-
-  it("handles signup button click", async () => {
-    const wrapper = mountHeader();
-
-    const signupButtons = wrapper.findAll("button");
-    const signupButton = signupButtons.find((button) =>
-      button.text().includes("Sign Up")
-    );
-    expect(signupButton).toBeTruthy();
-    await signupButton!.trigger("click");
-
-    expect(consoleSpy).toHaveBeenCalledWith("Sign Up clicked");
-  });
-
-  it("toggles mobile menu when hamburger button is clicked", async () => {
-    const wrapper = mountHeader();
-
-    expect(wrapper.find(".md\\:hidden.border-t").exists()).toBe(false);
-
-    const mobileMenuButton = wrapper.find(".md\\:hidden button");
-    expect(mobileMenuButton.exists()).toBe(true);
-    await mobileMenuButton.trigger("click");
-
-    expect(wrapper.find(".md\\:hidden.border-t").exists()).toBe(true);
+    it("toggles mobile menu when button is clicked", async () => {
+      const wrapper = mountHeader();
+      const mobileMenuButton = wrapper.find(".md\\:hidden button");
+      expect(mobileMenuButton.exists()).toBe(true);
+      await mobileMenuButton.trigger("click");
+      expect(wrapper.find(".md\\:hidden.border-t").exists()).toBe(true);
+    });
   });
 });

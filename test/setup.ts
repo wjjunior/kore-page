@@ -1,21 +1,21 @@
-import { beforeEach, afterEach } from "vitest";
+import { beforeEach, afterEach, vi } from "vitest";
 import { config } from "@vue/test-utils";
+import { globalComponentStubs } from "./mocks";
 
 beforeEach(() => {
   document.body.innerHTML = "";
+
+  Object.defineProperty(window, "scrollTo", {
+    value: vi.fn(),
+    writable: true,
+  });
 });
 
 afterEach(() => {
   document.body.innerHTML = "";
 });
 
-const NuxtLinkStub = {
-  name: "NuxtLink",
-  props: ["to"],
-  template: '<a :href="to"><slot /></a>',
-};
-
 config.global.components = {
   ...(config.global?.components || {}),
-  NuxtLink: NuxtLinkStub,
+  ...globalComponentStubs,
 };

@@ -46,12 +46,9 @@ export function useInvestmentData(ssrDataAvailable = false) {
   };
 
   return {
-    // State
     loading,
     error,
     isDataReady,
-
-    // Data getters
     getDaysLeft,
     getTotalInvestors,
     getFundingGoal,
@@ -72,8 +69,6 @@ export function useInvestmentData(ssrDataAvailable = false) {
     getTeamDescription,
     getMarketingPlan,
     getFaqItems,
-
-    // Actions
     loadData,
     retryLoad,
   };

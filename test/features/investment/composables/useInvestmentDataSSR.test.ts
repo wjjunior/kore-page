@@ -120,32 +120,7 @@ describe("useInvestmentDataSSR", () => {
     expect(error.value).toBeNull();
     expect(isDataReady.value).toBe(true);
     expect(investmentData.value).toEqual(mockData);
-    expect(investmentInfo.value).toEqual({
-      daysLeft: 213,
-      totalInvestors: 157,
-      fundingGoal: 250000,
-      fundsRaised: 300000,
-      minimumInvestment: 100,
-      deadline: "Feb, 2025",
-      typeOfSecurity: "Revenue Share Agreement",
-      revenueShareDuration: 36,
-      categories: ["Fintech", "Investments"],
-      companyName: "Kore",
-      companyDescription: "Lorem ipsum dolor sit",
-      website: "https://site.com",
-      logoSrc: "/images/kore-logo.svg",
-      thumbnailSrc: "/images/thumbnail.svg",
-      offeringTerms: [
-        { label: "Regulation", value: "Regulation Crowdfunding (RegCF)" },
-      ],
-      documents: [
-        { id: 1, title: "Form C", filename: "FileName_GoesHere.pdf" },
-      ],
-      teamMembers: [],
-      teamDescription: "Lorem ipsum",
-      marketingPlan: "Plan",
-      faqItems: [],
-    });
+    expect(investmentInfo.value).toEqual(mockData);
   });
 
   it("does not refetch when state already has data", async () => {

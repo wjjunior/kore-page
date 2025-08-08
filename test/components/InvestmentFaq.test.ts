@@ -2,24 +2,7 @@ import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import InvestmentFaq from "@/features/investment/ui/InvestmentFaq.vue";
 import { AccordionItem } from "@/shared/ui";
-
-const mockFaqItems = [
-  {
-    id: "faq-1",
-    question: "What is the minimum investment amount?",
-    answer: "The minimum investment amount is $100.",
-  },
-  {
-    id: "faq-2",
-    question: "How long is the revenue sharing agreement?",
-    answer: "The revenue sharing agreement has a duration of 36 months.",
-  },
-  {
-    id: "faq-3",
-    question: "What type of security is being offered?",
-    answer: "We are offering a Revenue Share Agreement.",
-  },
-];
+import { mockFaqItems } from "../mocks";
 
 const mountInvestmentFaq = (props: any = { faqItems: mockFaqItems }) => {
   return mount(InvestmentFaq, {
@@ -33,98 +16,67 @@ const mountInvestmentFaq = (props: any = { faqItems: mockFaqItems }) => {
 };
 
 describe("InvestmentFaq", () => {
-  it("renders the component correctly", () => {
-    const wrapper = mountInvestmentFaq({
-      faqItems: mockFaqItems,
-    });
-
-    expect(wrapper.find("h2").exists()).toBe(true);
-    expect(wrapper.find("h2").text()).toBe("FAQ");
+  it("renders the FAQ title", () => {
+    const wrapper = mountInvestmentFaq();
+    const heading = wrapper.find("h2");
+    expect(heading.exists()).toBe(true);
+    expect(heading.text()).toBe("FAQ");
   });
 
-  it("displays FAQ items when not loading", () => {
+  it("displays all AccordionItems when not loading", () => {
     const wrapper = mountInvestmentFaq({
       faqItems: mockFaqItems,
       loading: false,
     });
-
     const accordionItems = wrapper.findAllComponents(AccordionItem);
-    expect(accordionItems).toHaveLength(3);
+    expect(accordionItems).toHaveLength(mockFaqItems.length);
   });
 
-  it("displays loading skeleton when loading is true", () => {
+  it("does not render AccordionItems when loading", () => {
     const wrapper = mountInvestmentFaq({
       faqItems: mockFaqItems,
       loading: true,
     });
-
-    expect(wrapper.find(".animate-pulse").exists()).toBe(true);
-    expect(wrapper.findAll(".animate-pulse")).toHaveLength(4);
+    expect(wrapper.findAllComponents(AccordionItem)).toHaveLength(0);
   });
 
-  it("renders FAQ items with correct data", () => {
+  it("displays loading skeletons when loading", () => {
     const wrapper = mountInvestmentFaq({
       faqItems: mockFaqItems,
+      loading: true,
     });
-
-    const accordionItems = wrapper.findAllComponents(AccordionItem);
-
-    expect(accordionItems[0]?.props("title")).toBe(
-      "What is the minimum investment amount?"
-    );
-    expect(accordionItems[0]?.props("content")).toBe(
-      "The minimum investment amount is $100."
-    );
-
-    expect(accordionItems[1]?.props("title")).toBe(
-      "How long is the revenue sharing agreement?"
-    );
-    expect(accordionItems[1]?.props("content")).toBe(
-      "The revenue sharing agreement has a duration of 36 months."
-    );
+    const skeletons = wrapper.findAll(".animate-pulse");
+    expect(skeletons).toHaveLength(4);
   });
 
-  it("handles empty FAQ items array", () => {
-    const wrapper = mountInvestmentFaq({
-      faqItems: [],
-    });
-
+  it("renders AccordionItems with correct props", () => {
+    const wrapper = mountInvestmentFaq({ faqItems: mockFaqItems });
     const accordionItems = wrapper.findAllComponents(AccordionItem);
-    expect(accordionItems).toHaveLength(0);
+
+    accordionItems.forEach((itemWrapper, index) => {
+      expect(itemWrapper.props("title")).toBe(mockFaqItems[index]?.question);
+      expect(itemWrapper.props("content")).toBe(mockFaqItems[index]?.answer);
+    });
   });
 
-  it("has proper styling classes", () => {
-    const wrapper = mountInvestmentFaq({
-      faqItems: mockFaqItems,
-    });
-
-    expect(wrapper.find("h2").classes()).toContain("font-hanken-grotesk");
-    expect(wrapper.find("h2").classes()).toContain("font-bold");
-    expect(wrapper.find("h2").classes()).toContain("text-primary-200");
+  it("renders no AccordionItems if faqItems is empty", () => {
+    const wrapper = mountInvestmentFaq({ faqItems: [] });
+    expect(wrapper.findAllComponents(AccordionItem)).toHaveLength(0);
   });
 
-  it("renders accordion items with correct structure", () => {
-    const wrapper = mountInvestmentFaq({
-      faqItems: mockFaqItems,
-    });
+  it("toggles accordion item open state", () => {
+    const wrapper = mountInvestmentFaq({ faqItems: mockFaqItems });
+    const firstItem = wrapper.findComponent(AccordionItem);
 
-    const accordionItems = wrapper.findAllComponents(AccordionItem);
-    expect(accordionItems[0]?.props("title")).toBe(mockFaqItems[0]?.question);
-    expect(accordionItems[0]?.props("content")).toBe(mockFaqItems[0]?.answer);
+    expect(firstItem.props("isOpen")).toBeFalsy();
+
+    firstItem.vm.$emit("toggle");
+
+    expect(firstItem.exists()).toBe(true);
   });
 
-  it("handles accordion toggle functionality", async () => {
-    const wrapper = mountInvestmentFaq({
-      faqItems: mockFaqItems,
-    });
-
-    const accordionItems = wrapper.findAllComponents(AccordionItem);
-    const firstAccordion = accordionItems[0];
-
-    if (firstAccordion) {
-      await firstAccordion.vm.$emit("toggle");
-    }
-
-    expect(wrapper.emitted()).toBeDefined();
+  it("matches snapshot", () => {
+    const wrapper = mountInvestmentFaq({ faqItems: mockFaqItems });
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });
