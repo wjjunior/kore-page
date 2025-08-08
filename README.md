@@ -2,6 +2,12 @@
 
 A modern investment platform built with Nuxt 4, Vue 3, and TypeScript, featuring a comprehensive investment overview page with real-time data management, SSR capabilities, and a robust testing suite.
 
+## 🌐 Live Demo
+
+**Production URL**: [https://kore-page.vercel.app/](https://kore-page.vercel.app/)
+
+## 🚀 Technologies & Versions
+
 ## 🚀 Technologies & Versions
 
 ### Core Framework
