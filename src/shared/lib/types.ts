@@ -56,3 +56,26 @@ export interface InvestmentBannerData {
   marketingPlan: string;
   faqItems: FaqItem[];
 }
+
+export interface InvestmentGetters {
+  getDaysLeft: { value: number };
+  getTotalInvestors: { value: number };
+  getFundingGoal: { value: number };
+  getFundsRaised: { value: number };
+  getMinimumInvestment: { value: number };
+  getDeadline: { value: string };
+  getTypeOfSecurity: { value: string };
+  getRevenueShareDuration: { value: number };
+  getCategories: { value: string[] };
+  getCompanyName: { value: string };
+  getCompanyDescription: { value: string };
+  getWebsite: { value: string };
+  getLogoSrc: { value: string | undefined };
+  getThumbnailSrc: { value: string | undefined };
+  getOfferingTerms: { value: OfferingTerm[] };
+  getDocuments: { value: Document[] };
+  getTeamMembers: { value: TeamMember[] };
+  getTeamDescription: { value: string };
+  getMarketingPlan: { value: string };
+  getFaqItems: { value: FaqItem[] };
+}

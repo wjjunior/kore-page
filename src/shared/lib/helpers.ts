@@ -17,10 +17,18 @@ export const scrollToSection = (
   }
 };
 
+interface ErrorWithMessage {
+  message: unknown;
+}
+
+function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
+  return typeof error === "object" && error !== null && "message" in error;
+}
+
 export const extractErrorMessage = (err: unknown): string | null => {
   if (typeof err === "string") return err;
-  if (err && typeof err === "object" && "message" in err) {
-    return String((err as any).message ?? "An error occurred");
+  if (isErrorWithMessage(err)) {
+    return typeof err.message === "string" ? err.message : "An error occurred";
   }
   return null;
 };

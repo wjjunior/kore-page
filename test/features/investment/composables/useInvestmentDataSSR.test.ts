@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { ref, type Ref } from "vue";
 import { useInvestmentDataSSR } from "@/features/investment";
+import type { InvestmentBannerData } from "@/shared/lib/types";
 
 vi.mock("nuxt/app", () => ({
   useAsyncData: vi.fn(),
@@ -19,7 +20,7 @@ const flushPromises = async () => {
 };
 
 describe("useInvestmentDataSSR", () => {
-  let stateMap: Map<string, Ref<any>>;
+  let stateMap: Map<string, Ref<InvestmentBannerData | null>>;
 
   beforeEach(async () => {
     vi.clearAllMocks();
@@ -27,15 +28,15 @@ describe("useInvestmentDataSSR", () => {
 
     const { useState, useAsyncData } = await import("nuxt/app");
 
-    vi.mocked(useState).mockImplementation(((key?: any, init?: any) => {
+    vi.mocked(useState).mockImplementation(((key?: string | (() => InvestmentBannerData | null), init?: InvestmentBannerData | null) => {
       const name: string = typeof key === "string" ? key : "mock-state-key";
-      let initializer: any;
+      let initializer: (() => InvestmentBannerData | null) | InvestmentBannerData | null;
       if (typeof key === "string") {
-        initializer = init;
+        initializer = init ?? null;
       } else if (typeof key === "function") {
         initializer = key;
       } else {
-        initializer = () => undefined;
+        initializer = () => null;
       }
 
       if (!stateMap.has(name)) {
@@ -43,36 +44,38 @@ describe("useInvestmentDataSSR", () => {
           typeof initializer === "function" ? initializer() : initializer;
         stateMap.set(name, ref(initialValue));
       }
-      return stateMap.get(name) as Ref<any>;
-    }) as any);
+      return stateMap.get(name) as Ref<InvestmentBannerData | null>;
+    }) as typeof useState);
 
     vi.mocked(useAsyncData).mockImplementation(((
-      _key: any,
-      handler: any,
-      options?: any
+      _key: unknown,
+      handler: unknown,
+      options?: unknown
     ) => {
       const pending = ref(true);
-      const error = ref<any>(null);
+      const error = ref<Error | null>(null);
       const refresh = vi.fn(async () => {
         pending.value = true;
         try {
-          await handler();
+          if (typeof handler === "function") {
+            await handler();
+          }
           error.value = null;
         } catch (e) {
-          error.value = e;
+          error.value = e as Error;
         } finally {
           pending.value = false;
         }
       });
 
-      if (!options || options.lazy === false) {
+      if (!options || (options as { lazy?: boolean }).lazy === false) {
         void refresh();
       } else {
         pending.value = false;
       }
 
-      return { pending, error, refresh } as any;
-    }) as any);
+      return { pending, error, refresh };
+    }) as unknown as typeof useAsyncData);
   });
 
   afterEach(() => {
@@ -124,7 +127,7 @@ describe("useInvestmentDataSSR", () => {
   });
 
   it("does not refetch when state already has data", async () => {
-    const existingData = ref({ companyName: "Existing" } as any);
+    const existingData = ref({ companyName: "Existing" } as InvestmentBannerData);
     stateMap.set("investment-data", existingData);
 
     const { investmentAPI } = await import("@/shared/lib/api");
@@ -155,8 +158,8 @@ describe("useInvestmentDataSSR", () => {
   });
 
   it("exposes refresh to refetch data when cache cleared", async () => {
-    const first = { companyName: "First", daysLeft: 1 } as any;
-    const second = { companyName: "Second", daysLeft: 2 } as any;
+    const first = { companyName: "First", daysLeft: 1 } as InvestmentBannerData;
+    const second = { companyName: "Second", daysLeft: 2 } as InvestmentBannerData;
     const { investmentAPI } = await import("@/shared/lib/api");
     vi.mocked(investmentAPI.fetchInvestmentsData).mockResolvedValueOnce(first);
 
@@ -173,7 +176,7 @@ describe("useInvestmentDataSSR", () => {
   });
 
   it("provides default values in investmentInfo when fields missing", async () => {
-    stateMap.set("investment-data", ref({} as any));
+    stateMap.set("investment-data", ref({} as InvestmentBannerData));
 
     const { investmentInfo } = useInvestmentDataSSR();
     await flushPromises();

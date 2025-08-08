@@ -1,5 +1,5 @@
 import { useInvestmentStore } from "@/app";
-import type { InvestmentBannerData } from "@/shared/lib/types";
+import type { InvestmentBannerData, InvestmentGetters } from "@/shared/lib/types";
 import { computed, watch } from "vue";
 import { useInvestmentDataSSR, useInvestmentData } from "../composables";
 import { extractErrorMessage } from "@/shared/lib/helpers";
@@ -30,7 +30,7 @@ export function getDefaultInvestmentData(): InvestmentBannerData {
 }
 
 export function mapClientInvestmentData(
-  getters: Record<string, any>
+  getters: InvestmentGetters
 ): InvestmentBannerData {
   return {
     daysLeft: getters.getDaysLeft.value,

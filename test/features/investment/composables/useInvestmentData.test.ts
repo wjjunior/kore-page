@@ -16,7 +16,7 @@ vi.mock("@/shared/lib/api", () => ({
 }));
 
 describe("useInvestmentData", () => {
-  let pinia: any;
+  let pinia: ReturnType<typeof createPinia>;
 
   beforeEach(() => {
     pinia = createPinia();

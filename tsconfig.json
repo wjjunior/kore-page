@@ -5,6 +5,7 @@
     "strict": true,
     "skipLibCheck": true,
     "types": [],
+    "noImplicitAny": true,
 
     "allowImportingTsExtensions": true,
     "moduleDetection": "force",

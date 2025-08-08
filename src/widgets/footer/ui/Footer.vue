@@ -242,9 +242,7 @@ function handleSubscribe() {
   alert("Thank you for subscribing to our newsletter!");
 }
 
-function navigateTo(path: string) {
-  console.log(`Navigate to: ${path}`);
-}
+
 
 function openPrivacyPolicy() {
   console.log("Open Privacy Policy");

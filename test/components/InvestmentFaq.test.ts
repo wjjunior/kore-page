@@ -3,8 +3,16 @@ import { mount } from "@vue/test-utils";
 import InvestmentFaq from "@/features/investment/ui/InvestmentFaq.vue";
 import { AccordionItem } from "@/shared/ui";
 import { mockFaqItems } from "../mocks";
+import type { FaqItem } from "@/shared/lib/types";
 
-const mountInvestmentFaq = (props: any = { faqItems: mockFaqItems }) => {
+interface InvestmentFaqProps {
+  loading?: boolean;
+  faqItems: FaqItem[];
+}
+
+const mountInvestmentFaq = (
+  props: InvestmentFaqProps = { faqItems: mockFaqItems }
+) => {
   return mount(InvestmentFaq, {
     props,
     global: {
