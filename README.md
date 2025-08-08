@@ -30,15 +30,8 @@ A modern investment platform built with Nuxt 4, Vue 3, and TypeScript, featuring
 ### Setup
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd kore-page
-
 # Install dependencies
 yarn install
-
-# Prepare Nuxt
-yarn postinstall
 ```
 
 ## 🏃‍♂️ Execution
