@@ -129,22 +129,6 @@ kore-page/
 - **Reactive State**: Vue's reactivity system
 - **Store Subscriptions**: Pinia store subscriptions
 
-### State Management Architecture
-
-#### Pinia Store Structure
-
-```typescript
-// Investment Store
-interface InvestmentState {
-  bannerData: InvestmentBannerData | null;
-  loading: boolean;
-  error: string | null;
-}
-
-// Getters for computed values
-// Actions for async operations
-```
-
 #### Data Flow
 
 1. **SSR First**: Attempt server-side data fetching
