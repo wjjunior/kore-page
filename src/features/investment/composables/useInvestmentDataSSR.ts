@@ -18,9 +18,14 @@ export function useInvestmentDataSSR() {
     async () => {
       if (investmentData.value) return investmentData.value;
 
-      const data = await investmentAPI.fetchInvestmentsData();
-      investmentData.value = data;
-      return data;
+      try {
+        const data = await investmentAPI.fetchInvestmentsData();
+        investmentData.value = data;
+        return data;
+      } catch (err) {
+        console.error("Error fetching investment data:", err);
+        throw err;
+      }
     },
     {
       server: true,

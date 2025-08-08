@@ -4,35 +4,22 @@ import { defineNuxtConfig } from "nuxt/config";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-
-  // SSR Configuration
   ssr: true,
   nitro: {
     prerender: {
       routes: ["/"],
       crawlLinks: false,
     },
-    storage: {
-      redis: {
-        driver: "memory",
-      },
-    },
     compressPublicAssets: true,
   },
-
-  // Performance optimizations
   experimental: {
     payloadExtraction: false,
-    renderJsonPayloads: true,
   },
-
-  // Hydration and rendering optimization
   app: {
     head: {
       meta: [{ name: "format-detection", content: "telephone=no" }],
     },
   },
-
   modules: [
     "@nuxt/image",
     "@nuxtjs/google-fonts",
@@ -106,8 +93,6 @@ export default defineNuxtConfig({
     prefetch: true,
     preconnect: true,
   },
-
-  // Image optimization
   image: {
     quality: 80,
     format: ["webp", "jpg", "png"],
