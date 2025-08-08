@@ -1,1 +1,1 @@
-export { default as NavigationLink } from "./NavigationLink.vue";
+// NavigationLink component was removed and integrated into Header.vue

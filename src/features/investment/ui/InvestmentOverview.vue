@@ -163,7 +163,9 @@
             <hr class="border-gray-2" />
 
             <div class="min-w-0">
-              <div class="flex flex-col gap-1 my-2 min-w-0">
+              <div
+                class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 my-2 min-w-0"
+              >
                 <span
                   class="text-lg lg:text-2xl text-neutral-212121 break-words"
                 >
@@ -177,7 +179,9 @@
               <hr class="border-gray-2" />
 
               <div class="flex flex-col gap-2 mt-2 min-w-0">
-                <div class="flex flex-col gap-1 min-w-0">
+                <div
+                  class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"
+                >
                   <span class="text-xs lg:text-base text-gray-600">
                     Deadline:
                   </span>
@@ -187,7 +191,9 @@
                     {{ getDeadline }}
                   </span>
                 </div>
-                <div class="flex flex-col gap-1 min-w-0">
+                <div
+                  class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"
+                >
                   <span class="text-xs lg:text-base text-gray-600">
                     Type of Security:
                   </span>
@@ -197,7 +203,9 @@
                     {{ getTypeOfSecurity }}
                   </span>
                 </div>
-                <div class="flex flex-col gap-1 min-w-0">
+                <div
+                  class="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 min-w-0"
+                >
                   <span class="text-xs lg:text-base text-gray-600">
                     Revenue Share Duration:
                   </span>

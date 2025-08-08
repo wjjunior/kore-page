@@ -1,1 +1,1 @@
-export { default as AuthButton } from "./AuthButton.vue";
+// AuthButton component was removed and integrated into Header.vue

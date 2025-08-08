@@ -10,30 +10,36 @@
           </div>
 
           <nav class="hidden md:flex items-center gap-8 h-full">
-            <NavigationLink
+            <a
               :href="ROUTES.INVEST"
-              :is-active="activeNavItem === NavItems.INVEST"
+              :class="
+                getNavLinkClasses(activeNavItem === NavItems.INVEST, false)
+              "
             >
               INVEST
-            </NavigationLink>
-            <NavigationLink
+            </a>
+            <a
               :href="ROUTES.FAQ"
-              :is-active="activeNavItem === NavItems.FAQ"
+              :class="getNavLinkClasses(activeNavItem === NavItems.FAQ, false)"
             >
               FAQ
-            </NavigationLink>
-            <NavigationLink
+            </a>
+            <a
               :href="ROUTES.CONTACT"
-              :is-active="activeNavItem === NavItems.CONTACT"
+              :class="
+                getNavLinkClasses(activeNavItem === NavItems.CONTACT, false)
+              "
             >
               CONTACT US
-            </NavigationLink>
-            <NavigationLink
+            </a>
+            <a
               :href="ROUTES.EDUCATION"
-              :is-active="activeNavItem === NavItems.EDUCATION"
+              :class="
+                getNavLinkClasses(activeNavItem === NavItems.EDUCATION, false)
+              "
             >
               EDUCATION
-            </NavigationLink>
+            </a>
           </nav>
         </div>
 
@@ -47,55 +53,63 @@
         </div>
 
         <div class="hidden md:flex items-center gap-4">
-          <AuthButton variant="login" @click="handleLogin"> Login </AuthButton>
-          <AuthButton variant="signup" @click="handleSignUp">
+          <button
+            @click="handleLogin"
+            :class="getAuthButtonClasses('login', false)"
+          >
+            Login
+          </button>
+          <button
+            @click="handleSignUp"
+            :class="getAuthButtonClasses('signup', false)"
+          >
             Sign Up
-          </AuthButton>
+          </button>
         </div>
       </div>
 
       <div v-if="isMobileMenuOpen" class="md:hidden border-t border-gray-100">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
-          <NavigationLink
+          <a
             :href="ROUTES.INVEST"
-            :is-active="activeNavItem === NavItems.INVEST"
-            :is-mobile="true"
+            :class="getNavLinkClasses(activeNavItem === NavItems.INVEST, true)"
           >
             INVEST
-          </NavigationLink>
-          <NavigationLink
+          </a>
+          <a
             :href="ROUTES.FAQ"
-            :is-active="activeNavItem === NavItems.FAQ"
-            :is-mobile="true"
+            :class="getNavLinkClasses(activeNavItem === NavItems.FAQ, true)"
           >
             FAQ
-          </NavigationLink>
-          <NavigationLink
+          </a>
+          <a
             :href="ROUTES.CONTACT"
-            :is-active="activeNavItem === NavItems.CONTACT"
-            :is-mobile="true"
+            :class="getNavLinkClasses(activeNavItem === NavItems.CONTACT, true)"
           >
             CONTACT US
-          </NavigationLink>
-          <NavigationLink
+          </a>
+          <a
             :href="ROUTES.EDUCATION"
-            :is-active="activeNavItem === NavItems.EDUCATION"
-            :is-mobile="true"
+            :class="
+              getNavLinkClasses(activeNavItem === NavItems.EDUCATION, true)
+            "
           >
             EDUCATION
-          </NavigationLink>
+          </a>
 
           <div class="pt-4 space-y-2">
-            <AuthButton variant="login" :is-mobile="true" @click="handleLogin">
+            <button
+              @click="handleLogin"
+              :class="getAuthButtonClasses('login', true)"
+            >
               Login
-            </AuthButton>
-            <AuthButton
-              variant="signup"
-              :is-mobile="true"
+            </button>
+            <button
               @click="handleSignUp"
+              :class="getAuthButtonClasses('signup', true)"
             >
               Sign Up
-            </AuthButton>
+            </button>
           </div>
         </div>
       </div>
@@ -106,8 +120,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { NavItems, MobileMenuIcon, ROUTES, KoreLogo } from "@/shared";
-import { NavigationLink } from "@/features/navigation/ui";
-import { AuthButton } from "@/features/auth/ui";
 
 interface Props {
   activeNavItem?: string;
@@ -129,5 +141,42 @@ const handleLogin = () => {
 
 const handleSignUp = () => {
   console.log("Sign Up clicked");
+};
+
+const getNavLinkClasses = (isActive: boolean, isMobile: boolean) => {
+  if (isMobile) {
+    const baseClasses =
+      "px-3 py-2 font-medium transition-colors duration-200 h-12 flex items-center";
+    const activeClasses =
+      "text-primary-200 border-l-2 border-primary-200 bg-blue-50";
+    const inactiveClasses = "text-primary-200 hover:text-blue-800";
+
+    return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+  } else {
+    const baseClasses =
+      "font-medium transition-colors duration-200 h-full flex items-center";
+    const activeClasses = "text-primary-200 border-b-2 border-primary-200";
+    const inactiveClasses = "text-primary-200 hover:text-blue-800";
+
+    return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+  }
+};
+
+const getAuthButtonClasses = (
+  variant: "login" | "signup",
+  isMobile: boolean
+) => {
+  const baseClasses =
+    "font-bold leading-[120%] text-center transition-all duration-200 flex items-center justify-center";
+
+  if (isMobile) {
+    return variant === "login"
+      ? `${baseClasses} w-full h-[46px] p-3 border-2 border-primary-200 text-primary-200 rounded-button hover:bg-primary-200 hover:text-white bg-white`
+      : `${baseClasses} w-full h-[46px] pt-3 pr-[14px] pb-3 pl-[14px] bg-primary-200 rounded-button text-white`;
+  } else {
+    return variant === "login"
+      ? `${baseClasses} w-[68px] h-[46px] p-3 border-2 border-primary-200 text-primary-200 rounded-button hover:bg-primary-200 hover:text-white bg-white`
+      : `${baseClasses} w-[90px] h-[46px] pt-3 pr-[14px] pb-3 pl-[14px] bg-primary-200 rounded-button text-white`;
+  }
 };
 </script>
