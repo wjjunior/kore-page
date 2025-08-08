@@ -94,13 +94,15 @@ describe("extractErrorMessage", () => {
   });
 
   it("falls back when message is undefined on an object", () => {
-    expect(extractErrorMessage({ message: undefined } as { message: undefined })).toBe(
-      "An error occurred"
-    );
+    expect(
+      extractErrorMessage({ message: undefined } as { message: undefined })
+    ).toBe("An error occurred");
   });
 
-  it("stringifies non-string messages", () => {
-    expect(extractErrorMessage({ message: 404 } as { message: number })).toBe("404");
+  it("returns generic error for non-string messages", () => {
+    expect(extractErrorMessage({ message: 404 } as { message: number })).toBe(
+      "An error occurred"
+    );
   });
 
   it("returns null when input is a number", () => {

@@ -28,7 +28,8 @@ function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
 export const extractErrorMessage = (err: unknown): string | null => {
   if (typeof err === "string") return err;
   if (isErrorWithMessage(err)) {
-    return typeof err.message === "string" ? err.message : "An error occurred";
+    if (typeof err.message === "string") return err.message;
+    return "An error occurred";
   }
   return null;
 };
