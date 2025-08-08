@@ -8,8 +8,6 @@ A modern investment platform built with Nuxt 4, Vue 3, and TypeScript, featuring
 
 ## 🚀 Technologies & Versions
 
-## 🚀 Technologies & Versions
-
 ### Core Framework
 
 - **Nuxt**: ^4.0.3
