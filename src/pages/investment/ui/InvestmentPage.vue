@@ -40,8 +40,8 @@
 </template>
 
 <script setup lang="ts">
+import { defineAsyncComponent } from "vue";
 import { Header } from "@/widgets/header";
-import { Footer } from "@/widgets/footer";
 import { LoadingSpinner, ErrorMessage } from "@/shared/ui";
 import {
   InvestmentOverview,
@@ -53,4 +53,9 @@ defineOptions({ name: "InvestmentPage" });
 
 const { loading, errorMessage, isDataReady, investmentData, refresh } =
   useInvestmentPageController();
+
+const Footer = defineAsyncComponent({
+  loader: () => import("@/widgets/footer/ui/Footer.vue"),
+  suspensible: false,
+});
 </script>

@@ -84,6 +84,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: "InvestmentCards" });
 import { FileIcon } from "@/shared/ui";
 import type { OfferingTerm, Document } from "@/shared/lib/types";
 

@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: "InvestmentFaq" });
 import { ref } from "vue";
 import { AccordionItem } from "@/shared/ui";
 

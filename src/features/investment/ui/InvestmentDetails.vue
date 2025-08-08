@@ -56,14 +56,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineAsyncComponent } from "vue";
 import { scrollToSection } from "@/shared/lib";
-import {
-  InvestmentCards,
-  InvestmentTeam,
-  InvestmentMarketingPlan,
-  InvestmentFaq,
-} from "./";
+const InvestmentCards = defineAsyncComponent({
+  loader: () => import("./InvestmentCards.vue"),
+  suspensible: false,
+});
+const InvestmentTeam = defineAsyncComponent({
+  loader: () => import("./InvestmentTeam.vue"),
+  suspensible: false,
+});
+const InvestmentMarketingPlan = defineAsyncComponent({
+  loader: () => import("./InvestmentMarketingPlan.vue"),
+  suspensible: false,
+});
+const InvestmentFaq = defineAsyncComponent({
+  loader: () => import("./InvestmentFaq.vue"),
+  suspensible: false,
+});
 import type { InvestmentBannerData } from "@/shared/lib/types";
 
 interface Props {
