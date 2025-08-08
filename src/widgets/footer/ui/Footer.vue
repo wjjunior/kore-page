@@ -2,7 +2,7 @@
   <footer class="bg-brand-300 text-white py-8 md:py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 xl:px-8">
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_minmax(180px,1fr)_1fr] xl:grid-cols-[477px_minmax(214px,1fr)_1fr] gap-8 md:gap-12 lg:gap-x-[150px] xl:gap-x-[200px] lg:gap-y-12"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_minmax(180px,1fr)_1fr] xl:grid-cols-[537px_minmax(214px,1fr)_1fr] gap-8 md:gap-12 lg:gap-x-[150px] xl:gap-x-[200px] lg:gap-y-12"
       >
         <div class="md:col-span-2 lg:col-span-1">
           <KoreLogo
@@ -53,22 +53,30 @@
                 </div>
               </div>
 
-              <div
-                class="flex flex-col sm:flex-row overflow-hidden rounded-lg shadow-sm"
-              >
-                <input
-                  v-model="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  class="flex-1 h-[45px] px-4 rounded-l-lg sm:rounded-r-none rounded-r-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none text-sm md:text-base"
-                  required
-                />
-                <button
-                  type="submit"
-                  class="h-[45px] px-4 sm:px-6 shrink-0 rounded-r-lg sm:rounded-l-none rounded-l-lg text-white font-semibold transition-colors bg-primary-400 hover:bg-primary-500 text-sm md:text-base"
+              <div class="flex flex-col">
+                <label
+                  for="email"
+                  class="mb-2 block text-white/95 text-sm md:text-base sm:hidden"
                 >
-                  Subscribe
-                </button>
+                  Email
+                </label>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-0 shadow-sm">
+                  <input
+                    id="email"
+                    name="email"
+                    v-model="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    class="h-[45px] px-4 rounded sm:rounded-none sm:rounded-l sm:flex-1 bg-white text-gray-900 placeholder-transparent sm:placeholder-gray-400 focus:outline-none text-sm md:text-base"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="h-[45px] w-full sm:w-auto px-4 sm:px-6 shrink-0 rounded sm:rounded-none sm:rounded-r text-white font-semibold transition-colors bg-primary-400 hover:bg-primary-500 text-sm md:text-base"
+                  >
+                    Subscribe
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -104,7 +112,7 @@
                 <a
                   href="#"
                   @click.prevent="navigateTo(link.path)"
-                  class="hover:text-white/80 transition-colors text-xs md:text-sm lg:text-xs xl:text-sm"
+                  class="hover:text-white/80 transition-colors whitespace-nowrap text-xs md:text-xs lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
                 </a>
@@ -116,7 +124,7 @@
                 <a
                   href="#"
                   @click.prevent="navigateTo(link.path)"
-                  class="hover:text-white/80 transition-colors text-xs md:text-sm lg:text-xs xl:text-sm"
+                  class="hover:text-white/80 transition-colors whitespace-nowrap text-xs md:text-xs lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
                 </a>

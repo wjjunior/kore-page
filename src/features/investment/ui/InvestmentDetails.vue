@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-white">
+  <div
+    class="bg-white pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-14 lg:pt-[93px] lg:pb-[137px]"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-16">
-      <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 py-8 lg:py-12">
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
         <div class="w-full lg:w-[280px] lg:flex-shrink-0">
           <div class="sticky top-8">
             <nav class="space-y-2">
