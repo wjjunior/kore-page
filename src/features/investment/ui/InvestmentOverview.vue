@@ -1,10 +1,10 @@
 <template>
   <LoadingSpinner v-if="loading" message="Loading investment data..." />
 
-  <ErrorMessage v-else-if="error" :message="error" @retry="retryLoad()" />
+  <ErrorMessage v-else-if="error" :message="error" @retry="$emit('retry')" />
 
   <div
-    v-else-if="isDataReady"
+    v-else-if="investmentData"
     class="bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-8 lg:px-16 xl:px-[120px] pt-4 lg:pt-10 min-w-0 overflow-hidden"
   >
     <button class="flex items-center gap-2 p-0 text-white rounded-lg">
@@ -38,12 +38,12 @@
             <h1
               class="font-hanken-grotesk font-bold text-lg sm:text-xl lg:text-[32px] leading-[100%] tracking-[1%] mb-2 lg:mb-4 break-words"
             >
-              {{ getCompanyName }}
+              {{ investmentData.companyName }}
             </h1>
             <h5
               class="font-futura-hv font-normal text-sm sm:text-base lg:text-[24px] leading-[100%] tracking-[1%] text-secondary-50 break-words"
             >
-              {{ getCompanyDescription }}
+              {{ investmentData.companyDescription }}
             </h5>
           </div>
         </div>
@@ -81,7 +81,7 @@
           >
             <div class="flex flex-wrap gap-1 lg:gap-2 min-w-0">
               <span
-                v-for="category in getCategories"
+                v-for="category in investmentData.categories"
                 :key="category"
                 class="h-7 lg:h-6 pt-[2px] pr-2 lg:pr-4 pb-[2px] pl-2 lg:pl-4 bg-transparent rounded-[37px] text-xs lg:text-[13px] font-semibold leading-[100%] tracking-[0px] text-center border border-white text-white flex items-center flex-shrink-0"
               >
@@ -89,7 +89,7 @@
               </span>
             </div>
             <div
-              class="flex flex-col sm:flex-row gap-2 sm:gap-[3px] lg:justify-end"
+              class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-[3px] lg:justify-end"
             >
               <div
                 class="h-7 lg:h-7 pt-1 pr-2 pb-1 pl-2 bg-white rounded-2xl border border-black flex items-center gap-1 lg:gap-2 justify-center flex-shrink-0 min-w-0"
@@ -97,7 +97,7 @@
                 <CalendarIcon class="flex-shrink-0" />
                 <span
                   class="text-xs lg:text-base font-normal leading-5 tracking-[0px] text-secondary-800 whitespace-nowrap"
-                  >{{ getDaysLeft }} Days Left</span
+                  >{{ investmentData.daysLeft }} Days Left</span
                 >
               </div>
               <div
@@ -105,7 +105,7 @@
               >
                 <span
                   class="text-xs lg:text-base font-normal leading-5 tracking-[0px] text-secondary-800 whitespace-nowrap"
-                  >{{ getTotalInvestors }} Total Investors</span
+                  >{{ investmentData.totalInvestors }} Total Investors</span
                 >
               </div>
             </div>
@@ -125,7 +125,7 @@
             <GlobeIcon class="flex-shrink-0" />
             <span
               class="text-xs lg:text-base font-normal leading-5 tracking-[0px] truncate min-w-0"
-              >{{ getWebsite }}</span
+              >{{ investmentData.website }}</span
             >
           </div>
         </div>
@@ -148,7 +148,7 @@
               <span
                 class="block text-base lg:text-[20px] text-neutral-212121 break-words"
               >
-                ${{ formatCurrency(getFundingGoal) }}
+                ${{ formatCurrency(investmentData.fundingGoal) }}
               </span>
               <span class="block text-base lg:text-[20px] text-primary-200">
                 Funds Raised
@@ -156,7 +156,7 @@
               <span
                 class="mb-3 lg:mb-4 block font-hanken-grotesk text-xl lg:text-[32px] font-bold leading-[100%] tracking-[1%] align-middle text-primary-200 break-words"
               >
-                ${{ formatCurrency(getFundsRaised) }}
+                ${{ formatCurrency(investmentData.fundsRaised) }}
               </span>
             </div>
 
@@ -169,7 +169,7 @@
                 <span
                   class="text-lg lg:text-2xl text-neutral-212121 break-words"
                 >
-                  ${{ formatCurrency(getMinimumInvestment) }}
+                  ${{ formatCurrency(investmentData.minimumInvestment) }}
                 </span>
                 <span class="text-sm lg:text-base text-neutral-212121">
                   Minimum Investment
@@ -188,7 +188,7 @@
                   <span
                     class="text-base lg:text-xl font-bold text-gray-900 break-words"
                   >
-                    {{ getDeadline }}
+                    {{ investmentData.deadline }}
                   </span>
                 </div>
                 <div
@@ -200,7 +200,7 @@
                   <span
                     class="text-base lg:text-xl font-bold text-gray-900 break-words"
                   >
-                    {{ getTypeOfSecurity }}
+                    {{ investmentData.typeOfSecurity }}
                   </span>
                 </div>
                 <div
@@ -212,7 +212,7 @@
                   <span
                     class="text-base lg:text-xl font-bold text-gray-900 break-words"
                   >
-                    {{ getRevenueShareDuration }} months
+                    {{ investmentData.revenueShareDuration }} months
                   </span>
                 </div>
               </div>
@@ -261,26 +261,15 @@ import {
   LoadingSpinner,
   ErrorMessage,
 } from "@/shared/ui";
-import { useInvestmentData } from "../composables";
+import type { InvestmentBannerData } from "@/shared/lib/types";
 
-const {
-  loading,
-  error,
-  isDataReady,
-  getDaysLeft,
-  getTotalInvestors,
-  getFundingGoal,
-  getFundsRaised,
-  getMinimumInvestment,
-  getDeadline,
-  getTypeOfSecurity,
-  getRevenueShareDuration,
-  getCategories,
-  getCompanyName,
-  getCompanyDescription,
-  getWebsite,
-  retryLoad,
-} = useInvestmentData();
+interface Props {
+  investmentData: InvestmentBannerData;
+  loading: boolean;
+  error: string | null;
+}
+
+defineProps<Props>();
 
 const formatCurrency = (value: number) => {
   return value.toLocaleString("en-US", {

@@ -3,38 +3,81 @@ import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import { InvestmentPage } from "@/pages/investment";
 
-vi.mock("@/features/investment", () => ({
-  InvestmentOverview: {
-    name: "InvestmentOverview",
-    template:
-      '<div class="investment-overview-mock">Investment Overview Component</div>',
-  },
-  InvestmentDetails: {
-    name: "InvestmentDetails",
-    template:
-      '<div class="investment-details-mock">Investment Details Component</div>',
-  },
-  useInvestmentData: () => ({
-    loadData: vi.fn().mockResolvedValue(undefined),
+vi.mock("@/features/investment", async () => {
+  const actual = await vi.importActual<typeof import("@/features/investment")>(
+    "@/features/investment"
+  );
+  return {
+    ...actual,
+    InvestmentOverview: {
+      name: "InvestmentOverview",
+      template:
+        '<div class="investment-overview-mock">Investment Overview Component</div>',
+    },
+    InvestmentDetails: {
+      name: "InvestmentDetails",
+      template:
+        '<div class="investment-details-mock">Investment Details Component</div>',
+    },
+    useInvestmentPageController: () => ({
+      loading: { value: false },
+      errorMessage: "",
+      isDataReady: { value: true },
+      investmentData: {
+        value: {
+          daysLeft: 213,
+          totalInvestors: 157,
+          fundingGoal: 250000,
+          fundsRaised: 300000,
+          minimumInvestment: 100,
+          deadline: "Feb, 2025",
+          typeOfSecurity: "Revenue Share Agreement",
+          revenueShareDuration: 36,
+          categories: ["Fintech", "Investments"],
+          companyName: "Kore",
+          companyDescription: "Lorem ipsum dolor sit",
+          website: "https://site.com",
+          offeringTerms: [],
+          documents: [],
+          teamMembers: [],
+          teamDescription: "",
+          marketingPlan: "",
+          faqItems: [],
+        },
+      },
+      refresh: vi.fn(),
+    }),
+  };
+});
+
+vi.mock("@/features/investment/composables/useInvestmentDataSSR", () => ({
+  useInvestmentDataSSR: () => ({
     loading: { value: false },
     error: { value: null },
     isDataReady: { value: true },
-    getDaysLeft: { value: 213 },
-    getTotalInvestors: { value: 157 },
-    getFundingGoal: { value: 250000 },
-    getFundsRaised: { value: 300000 },
-    getMinimumInvestment: { value: 100 },
-    getDeadline: { value: "Feb, 2025" },
-    getTypeOfSecurity: { value: "Revenue Share Agreement" },
-    getRevenueShareDuration: { value: 36 },
-    getCategories: { value: ["Fintech", "Investments"] },
-    getCompanyName: { value: "Kore" },
-    getCompanyDescription: { value: "Lorem ipsum dolor sit" },
-    getWebsite: { value: "https://site.com" },
-    getOfferingTerms: { value: [] },
-    getDocuments: { value: [] },
-    getTeamMembers: { value: [] },
-    retryLoad: vi.fn(),
+    refresh: vi.fn(),
+    investmentInfo: {
+      value: {
+        daysLeft: 213,
+        totalInvestors: 157,
+        fundingGoal: 250000,
+        fundsRaised: 300000,
+        minimumInvestment: 100,
+        deadline: "Feb, 2025",
+        typeOfSecurity: "Revenue Share Agreement",
+        revenueShareDuration: 36,
+        categories: ["Fintech", "Investments"],
+        companyName: "Kore",
+        companyDescription: "Lorem ipsum dolor sit",
+        website: "https://site.com",
+        offeringTerms: [],
+        documents: [],
+        teamMembers: [],
+        teamDescription: "",
+        marketingPlan: "",
+        faqItems: [],
+      },
+    },
   }),
 }));
 
@@ -52,8 +95,22 @@ vi.mock("@/widgets/footer", () => ({
   },
 }));
 
+// Mock ClientOnly component
+vi.mock("#app", () => ({
+  ClientOnly: {
+    name: "ClientOnly",
+    template: "<div><slot /></div>",
+  },
+}));
+
 const mountInvestmentPage = () => {
-  return mount(InvestmentPage);
+  return mount(InvestmentPage, {
+    global: {
+      stubs: {
+        ClientOnly: { template: "<div><slot /></div>" },
+      },
+    },
+  });
 };
 
 describe("InvestmentPage", () => {

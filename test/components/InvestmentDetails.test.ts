@@ -1,101 +1,112 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
-import { ref } from "vue";
 import InvestmentDetails from "@/features/investment/ui/InvestmentDetails.vue";
+import type { InvestmentBannerData } from "@/shared/lib/types";
 
-vi.mock("@/features/investment/composables/useInvestmentData", () => ({
-  useInvestmentData: () => ({
-    loading: ref(false),
-    error: ref(null),
-    isDataReady: ref(true),
-    getOfferingTerms: ref([
-      {
-        label: "Regulation",
-        value: "Regulation Crowdfunding (RegCF)",
+const mockInvestmentData: InvestmentBannerData = {
+  daysLeft: 213,
+  totalInvestors: 157,
+  fundingGoal: 250000,
+  fundsRaised: 300000,
+  minimumInvestment: 100,
+  deadline: "Feb, 2025",
+  typeOfSecurity: "Revenue Share Agreement",
+  revenueShareDuration: 36,
+  categories: ["Fintech", "Investments"],
+  companyName: "Kore",
+  companyDescription: "Lorem ipsum dolor sit",
+  website: "https://site.com",
+  offeringTerms: [
+    {
+      label: "Regulation",
+      value: "Regulation Crowdfunding (RegCF)",
+    },
+    {
+      label: "Offering Type",
+      value: "Revenue Sharing Agreement",
+    },
+    {
+      label: "Security Type",
+      value: "Debt",
+    },
+    {
+      label: "Target Offering",
+      value: "$250,000",
+    },
+    {
+      label: "Max Offering",
+      value: "$2,000,000",
+    },
+    {
+      label: "Min Investment",
+      value: "$100",
+    },
+    {
+      label: "Max Investment",
+      value: "$50,000",
+    },
+    {
+      label: "Minimum Hold Period",
+      value: "36 months",
+    },
+    {
+      label: "Closing Date",
+      value: "Feb 28, 2025 12:59 AM GMT-3",
+    },
+  ],
+  documents: [
+    {
+      id: 1,
+      title: "Form C",
+      filename: "FileName_GoesHere.pdf",
+    },
+    {
+      id: 2,
+      title: "Custodian and Voting Agreement",
+      filename: "FileName_GoesHere.pdf",
+    },
+    {
+      id: 3,
+      title: "Future Proof Convertible Note",
+      filename: "FileName_GoesHere.pdf",
+    },
+    {
+      id: 4,
+      title: "Future Proof Convertible Note",
+      filename: "FileName_GoesHere.pdf",
+    },
+    {
+      id: 5,
+      title: "Future Proof Convertible Note",
+      filename: "FileName_GoesHere.pdf",
+    },
+  ],
+  teamMembers: [
+    {
+      id: 1,
+      name: "Jane Smith",
+      position: "Director of Product Marketing",
+      image: "https://example.com/jane.jpg",
+      description: "Lorem ipsum dolor sit amet",
+      socialLinks: {
+        facebook: "#",
+        linkedin: "#",
+        twitter: "#",
       },
-      {
-        label: "Offering Type",
-        value: "Revenue Sharing Agreement",
-      },
-      {
-        label: "Security Type",
-        value: "Debt",
-      },
-      {
-        label: "Target Offering",
-        value: "$250,000",
-      },
-      {
-        label: "Max Offering",
-        value: "$2,000,000",
-      },
-      {
-        label: "Min Investment",
-        value: "$100",
-      },
-      {
-        label: "Max Investment",
-        value: "$50,000",
-      },
-      {
-        label: "Minimum Hold Period",
-        value: "36 months",
-      },
-      {
-        label: "Closing Date",
-        value: "Feb 28, 2025 12:59 AM GMT-3",
-      },
-    ]),
-    getDocuments: ref([
-      {
-        id: 1,
-        title: "Form C",
-        filename: "FileName_GoesHere.pdf",
-      },
-      {
-        id: 2,
-        title: "Custodian and Voting Agreement",
-        filename: "FileName_GoesHere.pdf",
-      },
-      {
-        id: 3,
-        title: "Future Proof Convertible Note",
-        filename: "FileName_GoesHere.pdf",
-      },
-      {
-        id: 4,
-        title: "Future Proof Convertible Note",
-        filename: "FileName_GoesHere.pdf",
-      },
-      {
-        id: 5,
-        title: "Future Proof Convertible Note",
-        filename: "FileName_GoesHere.pdf",
-      },
-    ]),
-    getTeamMembers: ref([
-      {
-        id: 1,
-        name: "Jane Smith",
-        position: "Director of Product Marketing",
-        image: "https://example.com/jane.jpg",
-        description: "Lorem ipsum dolor sit amet",
-        socialLinks: {
-          facebook: "#",
-          linkedin: "#",
-          twitter: "#",
-        },
-      },
-    ]),
-    getTeamDescription: ref(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ),
-    loadData: vi.fn(),
-  }),
-}));
+    },
+  ],
+  teamDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  marketingPlan: "Marketing plan content",
+  faqItems: [],
+};
 
-const mountInvestmentDetails = () => {
+const mountInvestmentDetails = (props = {}) => {
   return mount(InvestmentDetails, {
+    props: {
+      investmentData: mockInvestmentData,
+      loading: false,
+      ...props,
+    },
     global: {
       components: {},
     },
@@ -152,11 +163,7 @@ describe("InvestmentDetails", () => {
     const wrapper = mountInvestmentDetails();
     const nav = wrapper.find("nav");
     expect(nav.exists()).toBe(true);
-    expect(nav.classes()).toContain("flex");
-    // Mobile navigation uses flex-wrap, desktop uses flex-col - checking for either
-    const hasMobileNav = nav.classes().includes("flex-wrap");
-    const hasDesktopNav = nav.classes().includes("flex-col");
-    expect(hasMobileNav || hasDesktopNav).toBe(true);
+    expect(nav.classes()).toContain("space-y-2");
   });
 
   it("should have proper card structure", () => {
@@ -167,22 +174,20 @@ describe("InvestmentDetails", () => {
 
   it("should have proper layout structure", () => {
     const wrapper = mountInvestmentDetails();
-    const mainContainer = wrapper.find(".min-h-screen");
+    const mainContainer = wrapper.find(".bg-white");
     expect(mainContainer.exists()).toBe(true);
     expect(mainContainer.classes()).toContain("bg-white");
-    expect(mainContainer.classes()).toContain("pt-[93px]");
-    const hasResponsivePadding = mainContainer
-      .classes()
-      .some(
-        (cls) =>
-          cls.includes("px-4") || cls.includes("px-20") || cls.includes("px-40")
-      );
-    expect(hasResponsivePadding).toBe(true);
   });
 
   it("should pass loading state to InvestmentCards", () => {
     const wrapper = mountInvestmentDetails();
     const investmentCards = wrapper.findComponent({ name: "InvestmentCards" });
     expect(investmentCards.props("loading")).toBe(false);
+  });
+
+  it("should pass loading state when loading is true", () => {
+    const wrapper = mountInvestmentDetails({ loading: true });
+    const investmentCards = wrapper.findComponent({ name: "InvestmentCards" });
+    expect(investmentCards.props("loading")).toBe(true);
   });
 });

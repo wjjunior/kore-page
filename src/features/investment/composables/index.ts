@@ -1,1 +1,2 @@
-export { useInvestmentData } from "./useInvestmentData"; 
+export { useInvestmentData } from "./useInvestmentData";
+export { useInvestmentDataSSR } from "./useInvestmentDataSSR";

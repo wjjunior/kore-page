@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { ref } from "vue";
-import { scrollToSection } from "@/shared/lib/helpers";
+import { scrollToSection, extractErrorMessage } from "@/shared/lib/helpers";
 
 describe("scrollToSection", () => {
   const mockScrollTo = vi.fn();
@@ -153,5 +153,38 @@ describe("scrollToSection", () => {
       top: -50,
       behavior: "smooth",
     });
+  });
+});
+
+describe("extractErrorMessage", () => {
+  it("returns the same string when input is a string", () => {
+    expect(extractErrorMessage("Simple error")).toBe("Simple error");
+  });
+
+  it("returns the message when input is an Error instance", () => {
+    const err = new Error("Boom");
+    expect(extractErrorMessage(err)).toBe("Boom");
+  });
+
+  it("falls back when message is undefined on an object", () => {
+    const err = { message: undefined } as unknown as Error;
+    expect(extractErrorMessage(err)).toBe("An error occurred");
+  });
+
+  it("stringifies non-string messages", () => {
+    const err = { message: 404 } as unknown as Error;
+    expect(extractErrorMessage(err)).toBe("404");
+  });
+
+  it("returns null when input is a number", () => {
+    expect(extractErrorMessage(123)).toBeNull();
+  });
+
+  it("returns null when input is null", () => {
+    expect(extractErrorMessage(null)).toBeNull();
+  });
+
+  it("returns null when object has no message property", () => {
+    expect(extractErrorMessage({})).toBeNull();
   });
 });

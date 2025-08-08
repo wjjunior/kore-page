@@ -1,8 +1,8 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
-import { useInvestmentStore } from "@/app/providers/store";
+import { useInvestmentStore } from "@/app/providers/store/investment";
 
-export function useInvestmentData() {
+export function useInvestmentData(ssrDataAvailable = false) {
   const investmentStore = useInvestmentStore();
 
   const {
@@ -33,7 +33,8 @@ export function useInvestmentData() {
   );
 
   const loadData = async () => {
-    if (!investmentStore.isDataLoaded) {
+    // Only load data if SSR data is not available and store data is not loaded
+    if (!ssrDataAvailable && !investmentStore.isDataLoaded) {
       await investmentStore.fetchInvestmentsData();
     }
   };

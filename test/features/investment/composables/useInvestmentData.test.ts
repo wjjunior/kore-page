@@ -3,6 +3,11 @@ import { createPinia, setActivePinia } from "pinia";
 import { useInvestmentData } from "@/features/investment";
 import { useInvestmentStore } from "@/app/providers/store";
 
+vi.mock("nuxt/app", () => ({
+  useAsyncData: vi.fn(),
+  useState: vi.fn(),
+}));
+
 vi.mock("@/shared/lib/api", () => ({
   investmentAPI: {
     fetchInvestmentsData: vi.fn(),
@@ -118,7 +123,6 @@ describe("useInvestmentData", () => {
         mockError
       );
 
-      // Mock console.error to prevent stderr output
       const consoleErrorSpy = vi
         .spyOn(console, "error")
         .mockImplementation(() => {});
@@ -135,7 +139,6 @@ describe("useInvestmentData", () => {
         mockError
       );
 
-      // Restore console.error
       consoleErrorSpy.mockRestore();
     });
 

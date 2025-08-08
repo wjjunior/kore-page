@@ -16,3 +16,11 @@ export const scrollToSection = (
     });
   }
 };
+
+export const extractErrorMessage = (err: unknown): string | null => {
+  if (typeof err === "string") return err;
+  if (err && typeof err === "object" && "message" in err) {
+    return String((err as any).message ?? "An error occurred");
+  }
+  return null;
+};

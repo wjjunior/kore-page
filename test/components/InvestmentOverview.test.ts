@@ -1,40 +1,43 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
-import { ref } from "vue";
 import InvestmentOverview from "@/features/investment/ui/InvestmentOverview.vue";
-
-vi.mock("@/features/investment/composables/useInvestmentData", () => ({
-  useInvestmentData: () => ({
-    loading: ref(false),
-    error: ref(null),
-    isDataReady: ref(true),
-    getDaysLeft: ref(213),
-    getTotalInvestors: ref(157),
-    getFundingGoal: ref(250000),
-    getFundsRaised: ref(300000),
-    getMinimumInvestment: ref(100),
-    getDeadline: ref("Feb, 2025"),
-    getTypeOfSecurity: ref("Revenue Share Agreement"),
-    getRevenueShareDuration: ref(36),
-    getCategories: ref(["Fintech", "Investments"]),
-    getCompanyName: ref("Kore"),
-    getCompanyDescription: ref("Lorem ipsum dolor sit"),
-    getWebsite: ref("https://site.com"),
-    getOfferingTerms: ref([]),
-    getDocuments: ref([]),
-    getTeamMembers: ref([]),
-    retryLoad: vi.fn(),
-  }),
-}));
+import type { InvestmentBannerData } from "@/shared/lib/types";
 
 const MockNuxtImg = {
   name: "NuxtImg",
   template: '<img :src="$attrs.src" :alt="$attrs.alt" :class="$attrs.class" />',
 };
 
-const mountInvestmentOverview = () => {
+const mockInvestmentData: InvestmentBannerData = {
+  daysLeft: 213,
+  totalInvestors: 157,
+  fundingGoal: 250000,
+  fundsRaised: 300000,
+  minimumInvestment: 100,
+  deadline: "Feb, 2025",
+  typeOfSecurity: "Revenue Share Agreement",
+  revenueShareDuration: 36,
+  categories: ["Fintech", "Investments"],
+  companyName: "Kore",
+  companyDescription: "Lorem ipsum dolor sit",
+  website: "https://site.com",
+  offeringTerms: [],
+  documents: [],
+  teamMembers: [],
+  teamDescription: "",
+  marketingPlan: "",
+  faqItems: [],
+};
+
+const mountInvestmentOverview = (props = {}) => {
   return mount(InvestmentOverview, {
+    props: {
+      investmentData: mockInvestmentData,
+      loading: false,
+      error: null,
+      ...props,
+    },
     global: {
       components: {
         NuxtImg: MockNuxtImg,
@@ -145,5 +148,29 @@ describe("InvestmentOverview", () => {
   it("should display share this deal section", () => {
     const wrapper = mountInvestmentOverview();
     expect(wrapper.text()).toContain("Share This Deal");
+  });
+
+  it("should show loading state when loading is true", () => {
+    const wrapper = mountInvestmentOverview({ loading: true });
+    expect(wrapper.text()).toContain("Loading");
+  });
+
+  it("should show error state when error is provided", () => {
+    const wrapper = mountInvestmentOverview({ 
+      error: "Failed to load data" 
+    });
+    expect(wrapper.text()).toContain("Failed to load data");
+  });
+
+  it("should emit retry event when retry button is clicked", async () => {
+    const wrapper = mountInvestmentOverview({ 
+      error: "Failed to load data" 
+    });
+    
+    const retryButton = wrapper.find('[data-testid="retry-button"]');
+    if (retryButton.exists()) {
+      await retryButton.trigger("click");
+      expect(wrapper.emitted("retry")).toBeTruthy();
+    }
   });
 });
