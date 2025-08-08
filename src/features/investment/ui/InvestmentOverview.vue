@@ -7,7 +7,10 @@
     v-else-if="investmentData"
     class="bg-gradient-to-br from-primary-500 to-primary-200 text-white px-3 sm:px-6 md:px-8 lg:px-16 xl:px-[120px] pt-4 lg:pt-10 min-w-0 overflow-hidden"
   >
-    <button class="flex items-center gap-2 p-0 text-white rounded-lg">
+    <button
+      class="flex items-center gap-2 p-0 text-white rounded-lg"
+      aria-label="Go back"
+    >
       <FontAwesomeIcon
         :icon="faChevronLeft"
         class="w-[7.12px] h-[11.41px] text-secondary-50"
@@ -60,6 +63,7 @@
               v-for="button in shareButtons"
               :key="button.icon.iconName"
               class="w-7 h-7 sm:w-8 sm:h-8 lg:w-6 lg:h-6 bg-white hover:bg-white/90 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
+              :aria-label="'Share on ' + button.label"
             >
               <FontAwesomeIcon
                 :icon="button.icon"
@@ -287,9 +291,9 @@ const viewOffering = () => {
 };
 
 const shareButtons = [
-  { icon: faFacebookF, size: "w-[6px] h-[12px]" },
-  { icon: faLinkedinIn, size: "w-[10px] h-[10px]" },
-  { icon: faXTwitter, size: "w-[12.94px] h-[13.7px]" },
-  { icon: faEnvelope, size: "w-[11px] h-[9px]" },
+  { icon: faFacebookF, size: "w-3 h-3", label: "Facebook" },
+  { icon: faLinkedinIn, size: "w-3 h-3", label: "LinkedIn" },
+  { icon: faXTwitter, size: "w-3.5 h-3.5", label: "X" },
+  { icon: faEnvelope, size: "w-3 h-3", label: "Email" },
 ];
 </script>

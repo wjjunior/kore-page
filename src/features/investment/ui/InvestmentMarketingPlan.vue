@@ -31,7 +31,7 @@
       class="flex flex-col gap-6 max-w-full lg:max-w-3xl xl:max-w-4xl"
     >
       <div
-        v-html="props.marketingPlan"
+        v-html="sanitizedMarketingPlan"
         class="prose prose-sm md:prose prose-gray max-w-none break-words"
       ></div>
     </div>
@@ -39,6 +39,9 @@
 </template>
 
 <script setup lang="ts">
+import DOMPurify from "dompurify";
+import { computed } from "vue";
+
 defineOptions({
   name: "InvestmentMarketingPlan",
 });
@@ -52,4 +55,8 @@ const props = withDefaults(defineProps<InvestmentMarketingPlanProps>(), {
   loading: false,
   marketingPlan: "",
 });
+
+const sanitizedMarketingPlan = computed(() =>
+  DOMPurify.sanitize(props.marketingPlan ?? "")
+);
 </script>

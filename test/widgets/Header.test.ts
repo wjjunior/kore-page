@@ -4,11 +4,17 @@ import Header from "@/widgets/header/ui/Header.vue";
 
 const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
+const MockNuxtLink = {
+  name: "NuxtLink",
+  props: ["to"],
+  template: '<a :href="to"><slot /></a>',
+};
+
 const mountHeader = (props = {}) => {
   return mount(Header, {
     props,
     global: {
-      components: {},
+      components: { NuxtLink: MockNuxtLink },
     },
   });
 };

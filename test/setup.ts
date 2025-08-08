@@ -1,12 +1,21 @@
 import { beforeEach, afterEach } from "vitest";
+import { config } from "@vue/test-utils";
 
-// Global test setup
 beforeEach(() => {
-  // Reset DOM between tests
   document.body.innerHTML = "";
 });
 
 afterEach(() => {
-  // Cleanup after each test
   document.body.innerHTML = "";
 });
+
+const NuxtLinkStub = {
+  name: "NuxtLink",
+  props: ["to"],
+  template: '<a :href="to"><slot /></a>',
+};
+
+config.global.components = {
+  ...(config.global?.components || {}),
+  NuxtLink: NuxtLinkStub,
+};

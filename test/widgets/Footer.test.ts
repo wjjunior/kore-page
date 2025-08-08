@@ -5,11 +5,17 @@ import Footer from "@/widgets/footer/ui/Footer.vue";
 const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
 
+const MockNuxtLink = {
+  name: "NuxtLink",
+  props: ["to"],
+  template: '<a :href="to"><slot /></a>',
+};
+
 const mountFooter = (props = {}) => {
   return mount(Footer, {
     props,
     global: {
-      components: {},
+      components: { NuxtLink: MockNuxtLink },
     },
   });
 };
@@ -211,7 +217,7 @@ describe("Footer", () => {
       });
     });
 
-    it("handles platform link clicks", async () => {
+    it("renders platform links with correct hrefs", async () => {
       const wrapper = mountFooter();
 
       const platformLinks = wrapper
@@ -219,16 +225,9 @@ describe("Footer", () => {
         .findAll("a");
 
       expect(platformLinks.length).toBeGreaterThan(0);
-      await platformLinks[0]!.trigger("click");
-      expect(consoleSpy).toHaveBeenCalledWith("Navigate to: /about");
-
-      const contactLink = platformLinks.find((link) =>
-        link.text().includes("Contact")
-      );
-      if (contactLink) {
-        await contactLink.trigger("click");
-        expect(consoleSpy).toHaveBeenCalledWith("Navigate to: /contact");
-      }
+      const hrefs = platformLinks.map((l) => l.attributes("href"));
+      expect(hrefs).toContain("/about");
+      expect(hrefs).toContain("/contact");
     });
   });
 
@@ -252,7 +251,7 @@ describe("Footer", () => {
       expect(socialIcons.length).toBeGreaterThanOrEqual(4); // At least 4 social icons
     });
 
-    it("handles social media link clicks", async () => {
+    it("renders social media links with external href and rel attributes", async () => {
       const wrapper = mountFooter();
 
       const socialLinks = wrapper
@@ -265,23 +264,12 @@ describe("Footer", () => {
             link.text().includes("LinkedIn")
         );
 
-      // Test clicking Facebook link
       const facebookLink = socialLinks.find((link) =>
         link.text().includes("Facebook")
       );
-      if (facebookLink) {
-        await facebookLink.trigger("click");
-        expect(consoleSpy).toHaveBeenCalledWith("Navigate to: /facebook");
-      }
-
-      // Test clicking LinkedIn link
-      const linkedinLink = socialLinks.find((link) =>
-        link.text().includes("LinkedIn")
-      );
-      if (linkedinLink) {
-        await linkedinLink.trigger("click");
-        expect(consoleSpy).toHaveBeenCalledWith("Navigate to: /linkedin");
-      }
+      expect(facebookLink?.attributes("href")).toBe("https://facebook.com");
+      expect(facebookLink?.attributes("target")).toBe("_blank");
+      expect(facebookLink?.attributes("rel")).toContain("noopener");
     });
   });
 

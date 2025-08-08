@@ -109,25 +109,23 @@
           >
             <ul class="flex flex-col gap-y-2 md:gap-y-4">
               <li v-for="link in platformLinksLeft" :key="link.path">
-                <a
-                  href="#"
-                  @click.prevent="navigateTo(link.path)"
+                <NuxtLink
+                  :to="link.path"
                   class="hover:text-white/80 transition-colors whitespace-nowrap text-xs md:text-xs lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
-                </a>
+                </NuxtLink>
               </li>
             </ul>
 
             <ul class="flex flex-col gap-y-2 md:gap-y-4">
               <li v-for="link in platformLinksRight" :key="link.path">
-                <a
-                  href="#"
-                  @click.prevent="navigateTo(link.path)"
+                <NuxtLink
+                  :to="link.path"
                   class="hover:text-white/80 transition-colors whitespace-nowrap text-xs md:text-xs lg:text-xs xl:text-sm"
                 >
                   {{ link.label }}
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </nav>
@@ -140,10 +138,12 @@
             Follow Us
           </h3>
           <ul class="space-y-2 md:space-y-4 lg:space-y-3 xl:space-y-4">
-            <li v-for="social in socialLinks" :key="social.path">
+            <li v-for="social in socialLinks" :key="social.href">
               <a
-                href="#"
-                @click.prevent="navigateTo(social.path)"
+                :href="social.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="'Follow us on ' + social.label"
                 class="flex items-center gap-2 hover:text-white/80 transition-colors"
               >
                 <FontAwesomeIcon
@@ -214,10 +214,10 @@ const platformLinksRight = [
 ];
 
 const socialLinks = [
-  { label: "Facebook", path: "/facebook", icon: faFacebookF },
-  { label: "Instagram", path: "/instagram", icon: faInstagram },
-  { label: "X", path: "/twitter", icon: faXTwitter },
-  { label: "LinkedIn", path: "/linkedin", icon: faLinkedinIn },
+  { label: "Facebook", href: "https://facebook.com", icon: faFacebookF },
+  { label: "Instagram", href: "https://instagram.com", icon: faInstagram },
+  { label: "X", href: "https://x.com", icon: faXTwitter },
+  { label: "LinkedIn", href: "https://linkedin.com", icon: faLinkedinIn },
 ];
 
 const footerLinks = [

@@ -4,42 +4,47 @@
       <div class="flex items-center justify-between">
         <div class="h-[72px] flex gap-8">
           <div class="flex items-center px-[15.38px] py-[11.25px] my-[4.64px]">
-            <a :href="ROUTES.HOME" class="flex items-center space-x-2">
+            <NuxtLink
+              :to="ROUTES.HOME"
+              class="flex items-center space-x-2"
+              aria-label="Go to home"
+            >
               <KoreLogo width="104.33" height="40.22" />
-            </a>
+            </NuxtLink>
           </div>
 
           <nav class="hidden md:flex items-center gap-8 h-full">
-            <a
-              :href="ROUTES.INVEST"
+            <NuxtLink
+              :to="ROUTES.INVEST"
               :class="
                 getNavLinkClasses(activeNavItem === NavItems.INVEST, false)
               "
+              aria-current="page"
             >
               INVEST
-            </a>
-            <a
-              :href="ROUTES.FAQ"
+            </NuxtLink>
+            <NuxtLink
+              :to="ROUTES.FAQ"
               :class="getNavLinkClasses(activeNavItem === NavItems.FAQ, false)"
             >
               FAQ
-            </a>
-            <a
-              :href="ROUTES.CONTACT"
+            </NuxtLink>
+            <NuxtLink
+              :to="ROUTES.CONTACT"
               :class="
                 getNavLinkClasses(activeNavItem === NavItems.CONTACT, false)
               "
             >
               CONTACT US
-            </a>
-            <a
-              :href="ROUTES.EDUCATION"
+            </NuxtLink>
+            <NuxtLink
+              :to="ROUTES.EDUCATION"
               :class="
                 getNavLinkClasses(activeNavItem === NavItems.EDUCATION, false)
               "
             >
               EDUCATION
-            </a>
+            </NuxtLink>
           </nav>
         </div>
 
@@ -70,32 +75,33 @@
 
       <div v-if="isMobileMenuOpen" class="md:hidden border-t border-gray-100">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
-          <a
-            :href="ROUTES.INVEST"
+          <NuxtLink
+            :to="ROUTES.INVEST"
             :class="getNavLinkClasses(activeNavItem === NavItems.INVEST, true)"
+            aria-current="page"
           >
             INVEST
-          </a>
-          <a
-            :href="ROUTES.FAQ"
+          </NuxtLink>
+          <NuxtLink
+            :to="ROUTES.FAQ"
             :class="getNavLinkClasses(activeNavItem === NavItems.FAQ, true)"
           >
             FAQ
-          </a>
-          <a
-            :href="ROUTES.CONTACT"
+          </NuxtLink>
+          <NuxtLink
+            :to="ROUTES.CONTACT"
             :class="getNavLinkClasses(activeNavItem === NavItems.CONTACT, true)"
           >
             CONTACT US
-          </a>
-          <a
-            :href="ROUTES.EDUCATION"
+          </NuxtLink>
+          <NuxtLink
+            :to="ROUTES.EDUCATION"
             :class="
               getNavLinkClasses(activeNavItem === NavItems.EDUCATION, true)
             "
           >
             EDUCATION
-          </a>
+          </NuxtLink>
 
           <div class="pt-4 space-y-2">
             <button

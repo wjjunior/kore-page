@@ -75,6 +75,9 @@
           <a
             v-if="member.socialLinks.linkedin"
             :href="member.socialLinks.linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
             class="flex items-center space-x-1 text-gray-700"
           >
             <FontAwesomeIcon :icon="faLinkedinIn" class="text-gray-700" />
@@ -83,6 +86,9 @@
           <a
             v-if="member.socialLinks.facebook"
             :href="member.socialLinks.facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook profile"
             class="flex items-center space-x-1 text-gray-700"
           >
             <FontAwesomeIcon :icon="faFacebookF" class="text-gray-700" />
@@ -91,6 +97,9 @@
           <a
             v-if="member.socialLinks.twitter"
             :href="member.socialLinks.twitter"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter profile"
             class="flex items-center space-x-1"
           >
             <FontAwesomeIcon :icon="faXTwitter" class="text-gray-500" />
